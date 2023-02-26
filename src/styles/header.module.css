@@ -1,0 +1,15 @@
+.header {
+  padding: 20px 10px;
+  background-color: #800000;
+}
+
+.header h1 a {
+  color: #ffffff;
+}
+
+.member {
+}
+
+.member_right {
+   text-align: center;
+}
