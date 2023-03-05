@@ -1,11 +1,15 @@
-import Head from "next/head";
-import Layout from "@/components/layout";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
-import styles from "@/styles/Home.module.css";
+// lib
 
-const inter = Inter({ subsets: ["latin"] });
+// views
+import Top from "@/views/Top";
 
 export default function Home() {
-    return <div style={{ height: "350px" }}></div>;
+    return <Top></Top>;
+}
+
+export async function getServerSideProps() {
+    // return promiseAll(
+    //     [],
+    //     {}
+    //     );
 }
