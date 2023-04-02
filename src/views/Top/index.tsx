@@ -1,5 +1,14 @@
+// components
+import TopHero from "./components/TopHero";
+import TopMain from "./components/TopMain";
+
 const Top = () => {
-    return <div style={{ height: "350px" }}></div>;
+    return (
+        <>
+            <TopHero />
+            <TopMain />
+        </>
+    );
 };
 
 export default Top;

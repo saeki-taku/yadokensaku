@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Col } from "antd";
 // style
-import styles from "@/styles/header.module.css";
+import styles from "@/styles/header.module.scss";
 
 export default function HeaderMemberFavourite() {
     return (

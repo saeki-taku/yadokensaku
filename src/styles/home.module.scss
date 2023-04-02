@@ -1,0 +1,39 @@
+.hero {
+  position: relative;
+}
+
+.main_wrap {
+  max-width: 1260px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 30px;
+
+  p,span {
+    color: green;
+  }
+}
+
+.ranking {
+
+  &__title {
+    margin-bottom: 30px;
+
+  }
+ 
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 30px;
+    column-gap: 30px;
+    list-style: none;
+  }
+
+    figure {
+      position: relative;
+      max-width: 200px;
+      width: 100%;
+      aspect-ratio: 3/2;
+    }
+
+
+}

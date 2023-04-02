@@ -6,7 +6,7 @@ import HeaderMemberLogin from "../HeaderMemberLogin";
 // lib
 import { Col, Row } from "antd";
 // style
-import styles from "@/styles/header.module.css";
+import styles from "@/styles/header.module.scss";
 
 export default function HeaderMemberWarp() {
     return (
