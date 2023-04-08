@@ -9,6 +9,10 @@ p, span, a {
   letter-spacing: .03em;
 }
 
+a {
+  text-decoration: none;
+}
+
 .common_search {
   height: 45px;
   display: flex;
