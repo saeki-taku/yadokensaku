@@ -1,111 +1,112 @@
 .hero {
-  position: relative;
+    position: relative;
 }
 
 .main_wrap {
-  max-width: 1260px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 60px 30px;
+    max-width: 1260px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 60px 30px;
 
-  p,span {
-    color: green;
-  }
+    p,
+    span {
+        color: green;
+    }
 }
 
 .ranking {
-  padding-bottom: 90px;
+    padding-bottom: 90px;
 
-  &__title {
-    margin-bottom: 25px;
-
-  }
-
-  &__list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 30px;
-    column-gap: 30px;
-    list-style: none;
-  }
-
-  &__item {
-    // background-color: #fff8f3;
-    // padding: 15px;
-    // border-radius: 8px;
-  }
-
-  .pref {
-    background-color: rgb(13, 123, 53);
-    border-radius: 4px;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 14px;
-    display: inline-block;
-    letter-spacing: .1em;
-    margin-bottom: 5px;
-    padding: 2px 8px;
-  }
-
-  .name {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-
-  figure {
-    position: relative;
-    // max-width: 200px;
-    width: 100%;
-    aspect-ratio: 3/2;
-
-    img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 3/2;
-      object-fit: cover;
-      object-position: center;
-    }
-  }
-
-  .kuchikomi {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-
-    .kuchikomiTitle {
-      font-size: 14px;
-      margin-right: 5px;
+    &__title {
+        margin-bottom: 25px;
     }
 
-    a {
-      color: #111;
-      margin-left: 8px;
-      text-decoration: underline;
-      transition: text-decoration .2;
+    &__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        row-gap: 30px;
+        column-gap: 30px;
+        list-style: none;
 
-      &:hover {
-        text-decoration: none;
-      }
+        @media screen and (max-width: 999px) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
     }
-  }
 
-  .link {
-    border: 1px solid #00B901;
-    padding: 5px 8px;
-    border-radius: 4px;
-    background-color: #ffffff;
-
-    span {
-      // background-color: #00B901;
-      color: #00B901;
-      font-weight: bold;
-      font-size: 14px;
-      letter-spacing: .05em;
-      margin-right: 5px;
+    &__item {
+        // background-color: #fff8f3;
+        // padding: 15px;
+        // border-radius: 8px;
     }
-  }
 
+    .pref {
+        background-color: rgb(13, 123, 53);
+        border-radius: 4px;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 14px;
+        display: inline-block;
+        letter-spacing: 0.1em;
+        margin-bottom: 5px;
+        padding: 2px 8px;
+    }
 
+    .name {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
+    figure {
+        position: relative;
+        // max-width: 200px;
+        width: 100%;
+        aspect-ratio: 3/2;
 
+        img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3/2;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .kuchikomi {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+
+        .kuchikomiTitle {
+            font-size: 14px;
+            margin-right: 5px;
+        }
+
+        a {
+            color: #111;
+            margin-left: 8px;
+            text-decoration: underline;
+            transition: text-decoration 0.2;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .link {
+        border: 1px solid #00b901;
+        display: inline-block;
+        padding: 5px 8px;
+        border-radius: 4px;
+        background-color: #ffffff;
+
+        span {
+            // background-color: #00B901;
+            color: #00b901;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            margin-right: 5px;
+        }
+    }
 }
