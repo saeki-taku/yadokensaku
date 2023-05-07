@@ -7,12 +7,44 @@ import styles from "@/styles/home.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import ReactStarsRating from "react-awesome-stars-rating";
+// hooks
+import { useRoute } from "@/hooks/useRoute";
+// api
+import { getRanking } from "@/pages/api/ranking";
+
+import { useQuery } from "@tanstack/react-query";
+
+const fetchUsers = async () => {
+    const res = await fetch(
+        "https://app.rakuten.co.jp/services/api/Gora/GoraGolfCourseSearch/20170623?format=json&applicationId=1064065473399477324"
+    );
+    return res.json();
+};
+
+console.log("fetchUsers", fetchUsers);
 
 type Props = {
     title: string;
 };
 
-export default function TopMainRanking({ title }: Props) {
+// export default function TopMainRanking({ title }: Props) {
+const TopMainRanking = ({ title }: Props) => {
+    const { data, isLoading, isError, error }: any = useQuery(["rankingList"], fetchUsers);
+
+    if (isLoading) {
+        return <span>Loading...</span>;
+    }
+
+    if (isError) {
+        return <span>Error: {error.message}</span>;
+    }
+
+    console.log("data__", data);
+
+    const router = useRoute();
+    // console.log("router__", router);
+    console.log("getRanking__02", getRanking);
+
     return (
         <div className={styles.ranking}>
             <h2 className={styles.ranking__title}>{title}</h2>
@@ -168,4 +200,6 @@ export default function TopMainRanking({ title }: Props) {
             </ul>
         </div>
     );
-}
+};
+
+export default TopMainRanking;

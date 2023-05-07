@@ -1,17 +1,18 @@
 // others
 import { promiseAll } from "@/utils/common";
-import { request } from "http";
 // api
-// import { getCourseListData } from "@/pages/api/list";
+import { getRanking } from "@/pages/api/ranking";
 
 /**
  * requestPageData
  * @param context
  */
 export function requestPageData(context: ANY_OBJECT) {
+
     return promiseAll(
         [
-            requestHotelRankingAll({
+            // requestHotelRankingAll({
+            getRanking({
                 data: {
                     page: context?.query?.page,
                 },
@@ -19,8 +20,8 @@ export function requestPageData(context: ANY_OBJECT) {
             }),
         ],
         {
-            then: ([{ data: postData }]) => ({
-                ...postData,
+            then: ([{ data: rankingData }]) => ({
+                ...rankingData,
             }),
         }
     );
