@@ -1,7 +1,13 @@
 // libs
 import { useRouter } from "next/router";
+// types
+// import { QUERY, ROUTE_PROPS } from "@/types/common";
 // others
 import { getURLSearchParams, getOriginUrl } from "./tools";
+/* import {
+    parseObjToSearchString,
+    parseObjToSearchUrlString,
+} from "@/utils/common"; */
 
 /**
  * useRoute
@@ -14,7 +20,7 @@ export const useRoute = () => {
     const query = {
         ...(nextRouter.query || {}),
         ...searchParams,
-    };
+    } ;
 
     return {
         ...nextRouter,
@@ -23,3 +29,5 @@ export const useRoute = () => {
         originUrl,
     };
 };
+
+// export { parseObjToSearchString, parseObjToSearchUrlString };

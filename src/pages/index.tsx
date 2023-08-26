@@ -1,72 +1,65 @@
-// // lib
-// import axios from "axios";
-// // views
+// react
+import { createContext } from "react";
+import Head from "next/head";
+// views
 import Top from "@/views/Top";
-// // datasources
+// datasources
 import { requestPageData } from "@/dataSource/top/requestPageData";
-
+// api
+import { Ranking } from "@/pages/api/ranking";
 // others
 import { promiseAll } from "@/utils/common";
-// api
-import { getRanking } from "./api/ranking";
+import React from "react";
+import { log } from "console";
 
-export default function Home({ ranking }: { ranking: any }) {
-    // export default function Home() {
-    // console.log("ranking", ranking);
+interface HomeProps {
+    title: string;
+    description: string;
+    pageData: ANY_OBJECT;
+}
+
+// export default function Home({ ranking }: { ranking: any }) {
+export default function Home({ title, description, pageData }: HomeProps) {
     return (
         <>
-            <Top />
+            <Head>
+                <title>{title}</title>
+                <meta
+                    name="description"
+                    content={description}
+                />
+            </Head>
+            <Top pageData={pageData} />
         </>
     );
 }
 
-export const getServerSideProps = async (content: ANY_OBJECT) => {
-    const ranking = await getRanking("all");
-    // console.log("ranking___", ranking);
+export const getServerSideProps = async (context: ANY_OBJECT) => {
+    const title: string = "My Page Title";
+    const description: string = "This is my page description";
+    // return promiseAll([requestPageData(context)], {
+    // 現在はAPIをただ取得してくるだけなのでrequestPageData(context)は不要
 
-    return promiseAll([requestPageData(content)], {
-        then: ([pageData]) => ({
-            props: {
-                page: "list",
-                title: "title",
-                pageData,
-                description: "",
-            },
-        }),
+    return promiseAll([requestPageData(context)], {
+        // return promiseAll([requestPageData(context)], {
+        // contextについての参考: https://www.sukerou.com/2022/02/nextjs-getserversideprops.html
+
+        then: ([pageData]) =>
+            //requestPageDataしたデータのそのまま返している
+            ({
+                props: {
+                    title: title,
+                    description: description,
+                    pageData,
+                },
+            }),
     });
+
+    // promiseAllを記述しない場合
     // return {
     //     props: {
-    //         ranking,
+    //         title: title,
+    //         description: description,
     //     },
     // };
 };
-
-//   return promiseAll(
-//     [
-//         requestPageData(content)
-//     ],
-//     {
-//         then: ([pageData]) => ({
-//             props: {
-//                 page: "postDetail",
-//                 title: "title",
-//                 pageData,
-//                 description: "",
-//                 // dehydratedState: dehydrate(queryClient),
-//             },
-//         }),
-//     }
-//   )
-
-// export async function getServerSideProps() {
-//     then: ([pageData]) => ({
-// return promiseAll([requestPageData(content)], {
-//         props: {
-//             page: "",
-//             title: "title",
-//             pageData,
-//             description: "",
-//         },
-//     }),
-// });
-// }

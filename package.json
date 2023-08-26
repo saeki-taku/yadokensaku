@@ -24,6 +24,7 @@
     "axios": "^1.2.5",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
+    "html-react-parser": "^3.0.16",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-awesome-stars-rating": "^0.13.6",

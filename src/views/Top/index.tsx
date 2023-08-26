@@ -2,11 +2,11 @@
 import TopHero from "./components/TopHero";
 import TopMain from "./components/TopMain";
 
-const Top = () => {
+const Top = (pageData: ANY_OBJECT) => {
     return (
         <>
             <TopHero />
-            <TopMain />
+            <TopMain pageData={pageData} />
         </>
     );
 };
