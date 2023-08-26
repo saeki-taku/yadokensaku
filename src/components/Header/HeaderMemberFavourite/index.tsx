@@ -6,10 +6,8 @@ import styles from "@/styles/header.module.scss";
 
 export default function HeaderMemberFavourite() {
     return (
-        <Col span={12}>
-            <span>
-                <Link href="/">お気に入り(0)</Link>
-            </span>
-        </Col>
+        <span className={styles.favourite}>
+            <Link href="/">お気に入り(0)</Link>
+        </span>
     );
 }

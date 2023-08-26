@@ -6,13 +6,8 @@ import styles from "@/styles/header.module.scss";
 
 export default function HeaderLogo() {
     return (
-        <Col
-            span={6}
-            className={styles.member_left}
-        >
-            <span>
-                <Link href="/">新規会員登録</Link>
-            </span>
-        </Col>
+        <span className={styles.member_new}>
+            <Link href="/">新規会員登録</Link>
+        </span>
     );
 }

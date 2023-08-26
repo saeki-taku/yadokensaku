@@ -4,35 +4,24 @@ import HeaderMemberName from "../HeaderMemberName";
 import HeaderMemberFavourite from "../HeaderMemberFavourite";
 import HeaderMemberLogin from "../HeaderMemberLogin";
 // lib
-import { Col, Row } from "antd";
+import { Col } from "antd";
 // style
 import styles from "@/styles/header.module.scss";
 
 export default function HeaderMemberWarp() {
     return (
         <Col
-            span={10}
-            className={styles.member}
+            span={16}
+            className={styles.member_wrap}
         >
-            <Row
-                align="middle"
-                justify="end"
-            >
-                <HeaderMemberNew />
-                <Col
-                    span={12}
-                    className={styles.member_right}
-                >
-                    <HeaderMemberName />
-                    <Row
-                        align="middle"
-                        justify="space-between"
-                    >
-                        <HeaderMemberFavourite />
-                        <HeaderMemberLogin />
-                    </Row>
-                </Col>
-            </Row>
+            <HeaderMemberNew />
+            <div className={styles.member_right}>
+                <HeaderMemberName />
+                <div className={styles.member_box}>
+                    <HeaderMemberFavourite />
+                    <HeaderMemberLogin />
+                </div>
+            </div>
         </Col>
     );
 }
