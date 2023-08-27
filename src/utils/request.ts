@@ -19,8 +19,6 @@ export async function request(this: REQUEST_CONFIG) {
     };
     try {
         const response = await Axios.request({
-            // ...nativeConfig,
-            // baseURL: process.env.BASE_URL,
             url: url,
             data,
             method: method || "POST",

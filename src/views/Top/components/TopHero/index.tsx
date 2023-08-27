@@ -2,11 +2,16 @@
 import Image from "next/image";
 // styles
 import styles from "@/styles/home.module.scss";
-// lib
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+// libs
+import { useForm, FormProvider } from "react-hook-form";
+// components
+import FormArea from "../FormArea";
 
 export default function TopHero() {
+    // const methods = useForm({
+    //     mode: "onChange",
+    // });
+
     return (
         <div className={styles.hero}>
             <figure style={{ position: "relative", width: "100%", height: "400px" }}>
@@ -19,25 +24,7 @@ export default function TopHero() {
                     }}
                 />
             </figure>
-            <form className="common_search top">
-                <input
-                    className="input_text"
-                    type="text"
-                    placeholder="宿を検索する"
-                />
-                <div className="input_btn">
-                    <input
-                        type="submit"
-                        value=""
-                    />
-                    <FontAwesomeIcon
-                        className="input_btn_icon"
-                        icon={faMagnifyingGlass}
-                        style={{ color: "#ffffff" }}
-                        size="lg"
-                    />
-                </div>
-            </form>
+            <FormArea />
         </div>
     );
 }

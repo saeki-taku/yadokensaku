@@ -1,5 +1,14 @@
 .hero {
     position: relative;
+
+    .form_area {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        border-radius: 5px;
+        transform: translateX(-50%);
+        z-index: 20;
+    }
 }
 
 .main_wrap {

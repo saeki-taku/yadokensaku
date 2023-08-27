@@ -2,7 +2,7 @@
 import { createContext } from "react";
 import Head from "next/head";
 // views
-import Top from "@/views/Top";
+import TopView from "@/views/Top";
 // datasources
 import { requestPageData } from "@/dataSource/top/requestPageData";
 // api
@@ -29,14 +29,14 @@ export default function Home({ title, description, pageData }: HomeProps) {
                     content={description}
                 />
             </Head>
-            <Top pageData={pageData} />
+            <TopView pageData={pageData} />
         </>
     );
 }
 
 export const getServerSideProps = async (context: ANY_OBJECT) => {
-    const title: string = "My Page Title";
-    const description: string = "This is my page description";
+    const title: string = "宿検索";
+    const description: string = "宿検索";
     // return promiseAll([requestPageData(context)], {
     // 現在はAPIをただ取得してくるだけなのでrequestPageData(context)は不要
 
