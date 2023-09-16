@@ -5,7 +5,7 @@ import { Noto_Sans_JP, Rampart_One } from "next/font/google";
 
 // If loading a variable font, you don't need to specify the font weight
 const notojp = Noto_Sans_JP({
-    weight: ["400"],z
+    weight: ["400"],
     subsets: ["latin"],
     // display: "swap",
 });
