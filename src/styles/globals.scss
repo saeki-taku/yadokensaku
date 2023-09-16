@@ -1,14 +1,8 @@
+/* styles/fonts.css */
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-}
-
-p,
-span,
-a {
-    color: #ffffff;
-    letter-spacing: 0.03em;
 }
 
 a {
@@ -19,15 +13,6 @@ a {
     height: 45px;
     display: flex;
     box-shadow: 2px 4px 5px 2px #3e0f0f50;
-}
-
-.common_search.top {
-    // position: absolute;
-    // top: 50%;
-    // left: 50%;
-    // border-radius: 5px;
-    // transform: translate(-50%, -50%);
-    // z-index: 20;
 }
 
 .common_search .input_text {
@@ -76,4 +61,25 @@ a {
     display: block;
     padding: 5px 0;
     font-size: 15px;
+}
+
+.common_btn_oficial {
+    border: 1px solid #00b901;
+    display: inline-block;
+    padding: 5px 8px;
+    border-radius: 4px;
+    background-color: #ffffff;
+
+    span {
+        // background-color: #00B901;
+        color: #00b901;
+        font-weight: bold;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        margin-right: 5px;
+    }
+}
+
+p {
+    // font-family: var(--font-shippori);
 }

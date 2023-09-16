@@ -1,4 +1,5 @@
 // react
+import React from "react";
 import Head from "next/head";
 // views
 import SearchView from "@/views/Search";
@@ -6,15 +7,23 @@ import SearchView from "@/views/Search";
 import { requestPageData } from "@/dataSource/search/requestPageData";
 // others
 import { promiseAll } from "@/utils/common";
-import React from "react";
+import { Noto_Sans_JP } from "next/font/google";
+
+export const notojp = Noto_Sans_JP({
+    weight: ["400", "700"],
+    subsets: ["latin"],
+    display: "swap",
+});
 
 interface SearchProps {
     title: string;
     description: string;
+    keyword: string;
     pageData: ANY_OBJECT;
 }
 
-export default function Seach({ title, description, pageData }: SearchProps) {
+export default function Seach({ title, description, keyword, pageData }: SearchProps) {
+    // console.log("pageData___: ", pageData);
     return (
         <>
             <Head>
@@ -24,21 +33,27 @@ export default function Seach({ title, description, pageData }: SearchProps) {
                     content={description}
                 />
             </Head>
-            <SearchView pageData={pageData} />
+            <SearchView
+                pageData={pageData}
+                keyword={keyword}
+            />
         </>
     );
 }
 
 export const getServerSideProps = async (context: ANY_OBJECT) => {
-    const title: string = `宿検索｜${context?.query?.keyword} の検索結果`;
-    const description: string = "宿検索の検索結果";
+    // console.log("context____:", context.query);
+    const keyword = context.query.keyword;
+    const title: string = `宿検索 ${keyword}の検索結果`;
+    const description: string = `宿検索 ${keyword}の検索結果`;
 
     return promiseAll([requestPageData(context)], {
         then: ([pageData]) => ({
             props: {
                 title: title,
                 description: description,
-                pageData,
+                keyword: keyword,
+                pageData: pageData,
             },
         }),
     });

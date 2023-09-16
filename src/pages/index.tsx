@@ -9,8 +9,6 @@ import { requestPageData } from "@/dataSource/top/requestPageData";
 import { Ranking } from "@/pages/api/ranking";
 // others
 import { promiseAll } from "@/utils/common";
-import React from "react";
-import { log } from "console";
 
 interface HomeProps {
     title: string;

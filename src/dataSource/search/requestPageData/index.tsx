@@ -8,12 +8,11 @@ import { Keyword } from "@/pages/api/keyword";
  * @param context
  */
 
-// export function requestPageData(context: ANY_OBJECT) {
 export function requestPageData(context: any) {
-    console.log("test__", context?.query?.keyword);
+    // console.log("context__", context?.query);
     // return promiseAll([requestPageData(context)], {
     // contextについての参考: https://www.sukerou.com/2022/02/nextjs-getserversideprops.html
-    return promiseAll([Keyword(context?.query?.keyword)], {
+    return promiseAll([Keyword(context?.query?.keyword, context?.query?.page)], {
         then: ([rankingDataAll]) => ({
             rankingDataAll,
         }),

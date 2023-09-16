@@ -1,10 +1,10 @@
 import Head from "next/head";
 
-export default function Meta() {
-  return (
-    <Head>
-        <title>{title}</title>
-        {/* <meta property="og:title" content={title} />
+export default function Meta(title: string) {
+    return (
+        <Head>
+            <title>{title}</title>
+            {/* <meta property="og:title" content={title} />
         <meta name="description" content={desc} />
         <meta property="og:description" content={desc} />
         <link rel="canonical" href={url} />
@@ -18,6 +18,6 @@ export default function Meta() {
         <meta property="og:image:width" content={imgW} />
         <meta property="og:image:height" content={imgH} />
         <meta name="twitter:card" content="summary_large_image" /> */}
-    </Head>
-  )
+        </Head>
+    );
 }

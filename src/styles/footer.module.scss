@@ -1,9 +1,16 @@
 .footer {
-  padding: 20px;
-  background-color: #800000;
-  text-align: center;
+    padding: 20px;
+    background-color: #800000;
+    text-align: center;
+
+    p,
+    span,
+    a {
+        color: #ffffff;
+        letter-spacing: 0.03em;
+    }
 }
 .footer p {
-  color: #e3e3e3;
-  letter-spacing: 0.05em;
+    color: #e3e3e3;
+    letter-spacing: 0.05em;
 }

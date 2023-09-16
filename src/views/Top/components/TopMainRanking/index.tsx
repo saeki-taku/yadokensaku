@@ -15,8 +15,6 @@ type Props = {
 const TopMainRanking = ({ title, ranikingData }: Props) => {
     const hotels: any = ranikingData || 0;
 
-    // console.log("hotels%%%%", hotels);
-
     return (
         <div className={styles.ranking}>
             <h2 className={styles.ranking__title}>{title}</h2>
@@ -55,7 +53,7 @@ const TopMainRanking = ({ title, ranikingData }: Props) => {
                                     </div>
                                     <a
                                         href={value.hotel.planListUrl}
-                                        className={styles.link}
+                                        className="common_btn_oficial"
                                         target="_blank"
                                         rel="noreferrer"
                                     >

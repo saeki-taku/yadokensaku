@@ -4,6 +4,13 @@
     box-shadow: 0px 10px 20px 2px #ffe7e795;
     position: relative;
     z-index: 10;
+
+    p,
+    span,
+    a {
+        color: #ffffff;
+        letter-spacing: 0.03em;
+    }
 }
 
 .header h1 a {
