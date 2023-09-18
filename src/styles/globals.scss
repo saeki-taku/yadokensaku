@@ -1,12 +1,40 @@
-/* styles/fonts.css */
+@use "./common/_viewport.scss" as mq;
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+
+    @include mq.mq(sp) {
+        font-size: 1.5rem;
+    }
+}
+
 a {
     text-decoration: none;
+}
+
+.common_wrap {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 60px 30px;
+
+    @include mq.mq(isp) {
+        padding: 60px 20px;
+    }
+
+    @include mq.mq(xs) {
+        padding: 30px 15px;
+    }
 }
 
 .common_search {
@@ -19,7 +47,7 @@ a {
     height: 100%;
     width: 350px;
     opacity: 0.9;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     padding: 5px 10px;
     color: #333333;
     border-top-left-radius: 5px;
@@ -66,9 +94,10 @@ a {
 .common_btn_oficial {
     border: 1px solid #00b901;
     display: inline-block;
-    padding: 5px 8px;
+    padding: 4px 8px 5px;
     border-radius: 4px;
     background-color: #ffffff;
+    text-align: center;
 
     span {
         // background-color: #00B901;
@@ -78,8 +107,4 @@ a {
         letter-spacing: 0.05em;
         margin-right: 5px;
     }
-}
-
-p {
-    // font-family: var(--font-shippori);
 }
