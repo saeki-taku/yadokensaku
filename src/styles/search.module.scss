@@ -293,39 +293,3 @@
         }
     }
 }
-
-.pagenation_wrap {
-    .pagenation_box {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .pagenation_numList {
-        list-style: none;
-        display: flex;
-        margin: 0 10px;
-        column-gap: 15px;
-
-        > li {
-            &.active {
-                a {
-                    border: 1px solid #800000;
-                    background-color: #fff;
-                    color: #800000;
-                }
-            }
-
-            a {
-                display: block;
-                width: 30px;
-                height: 30px;
-                border-radius: 5px;
-                text-align: center;
-                line-height: 26px;
-                border: 1px solid #800000;
-                background-color: #800000;
-                color: #ffffff;
-            }
-        }
-    }
-}

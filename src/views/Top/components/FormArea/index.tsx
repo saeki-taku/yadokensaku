@@ -49,7 +49,7 @@ export default function FormArea() {
                 <input
                     {...register("keyword", {
                         // required: "未入力です",
-                        maxLength: { value: 20, message: "20文字以内で入力してください" },
+                        maxLength: { value: 120, message: "20文字以内で入力してください" },
                     })}
                     className="input_text"
                     type="text"

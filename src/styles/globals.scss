@@ -108,3 +108,132 @@ a {
         margin-right: 5px;
     }
 }
+
+/**
+ページネーション
+*/
+.pagenation_wrap {
+    .pagenation_box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pagenation_btn {
+        display: block;
+        width: 25px;
+        height: 30px;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 26px;
+        border: 1px solid #800000;
+        background-color: #800000;
+        color: #ffffff;
+        position: relative;
+        margin-right: 10px;
+
+        &._prev {
+            &:after(:not(.start)) {
+                transform: translate(0%, -50%) rotate(-135deg);
+                &:before {
+                    display: none;
+                }
+            }
+
+            &._start {
+                &:before {
+                    transform: translate(-50%, -50%) rotate(-135deg);
+                }
+                &:after {
+                    transform: translate(10%, -50%) rotate(-135deg);
+                }
+            }
+        }
+
+        &._next {
+            &:after(:not(.start)) {
+                transform: translate(0%, -50%) rotate(-135deg);
+                &:before {
+                    display: none;
+                }
+            }
+
+            &._end {
+                &:before {
+                    transform: translate(-50%, -50%) rotate(-135deg);
+                }
+                &:after {
+                    transform: translate(10%, -50%) rotate(-135deg);
+                }
+            }
+            transform: scale(-1, 1);
+        }
+
+        &:before,
+        &:after {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-top: 1px solid #ffffff;
+            border-right: 1px solid #ffffff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-25%, -50%) rotate(-135deg);
+        }
+
+        &:before {
+        }
+
+        &::after {
+        }
+
+        &:hover {
+            border: 1px solid #800000;
+            background-color: #ffffff;
+
+            &:before,
+            &:after {
+                border-top: 1px solid #800000;
+                border-right: 1px solid #800000;
+            }
+        }
+    }
+
+    .pagenation_numList {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 10px;
+        column-gap: 15px;
+
+        > li {
+            &.active {
+                a {
+                    border: 1px solid #800000;
+                    background-color: #fff;
+                    color: #800000;
+                }
+            }
+
+            a {
+                display: block;
+                width: 30px;
+                height: 30px;
+                border-radius: 5px;
+                text-align: center;
+                line-height: 26px;
+                border: 1px solid #800000;
+                background-color: #800000;
+                color: #ffffff;
+
+                &:hover {
+                    border: 1px solid #800000;
+                    background-color: #ffffff;
+                    color: #800000;
+                }
+            }
+        }
+    }
+}
