@@ -28,7 +28,7 @@ const TopMainRanking = ({ title, ranikingData }: Props) => {
                                 <figure>
                                     <Image
                                         alt=""
-                                        src={value.hotel.hotelImageUrl || "/img/top/noimage.jpg"}
+                                        src={value.hotel.hotelImageUrl || "/img/noimage.jpg"}
                                         fill
                                         style={{
                                             objectFit: "cover",

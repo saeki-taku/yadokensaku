@@ -1,6 +1,5 @@
 // react / next
 import Link from "next/link";
-import Image from "next/image";
 // styles
 import styles from "@/styles/search.module.scss";
 // lib
@@ -8,7 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import ReactStarsRating from "react-awesome-stars-rating";
 // components
-import Pagenation from "./components/Pagenation";
+import Pagenation from "../../components/common/Pagenation";
+import ImgLinkCheck from "../../components/common/ImgLinkCheck";
 
 const SearchView = ({ pageData, keyword }: ANY_OBJECT) => {
     const hotels = pageData.rankingDataAll.hotels;
@@ -54,17 +54,7 @@ const SearchView = ({ pageData, keyword }: ANY_OBJECT) => {
                                 <div className={styles.search__body}>
                                     <div className={styles.img_box}>
                                         <figure>
-                                            <Image
-                                                src={hotelData.hotelImageUrl || "/img/top/noimage.jpg"}
-                                                alt=""
-                                                width={1000}
-                                                height={750}
-                                                sizes="100vw"
-                                                style={{
-                                                    width: "100%",
-                                                    height: "auto",
-                                                }}
-                                            />
+                                            <ImgLinkCheck link={hotelData.hotelImageUrl} />
                                         </figure>
                                     </div>
                                     <div className={styles.text_box}>

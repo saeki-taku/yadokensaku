@@ -22,12 +22,9 @@ const Pagenatino = ({ pageData, keyword }: ANY_OBJECT) => {
         let maxPagenationNum = pagingInfo?.pageCount;
         if (pagingInfo?.page === 1) {
             maxPagenationNum = pagingInfo?.page + 4;
-            console.log("+4");
         } else if (pagingInfo?.page === 2) {
-            console.log("+3");
             maxPagenationNum = pagingInfo?.page + 3;
         } else if (pagingInfo?.page < pagingInfo?.pageCount) {
-            console.log("+2");
             maxPagenationNum = pagingInfo?.page + 2;
         }
 

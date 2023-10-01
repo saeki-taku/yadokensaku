@@ -30,7 +30,6 @@ type Props = {
 
 // export default function TopMainRanking({ title }: Props) {
 const TopMainRanking = ({ title }: Props) => {
-
     // const { data, isLoading, isError, error }: any = useQuery(["rankingList"], getRanking);
     const { data, isLoading, isError, error }: any = useQuery(["rankingList"], Ranking);
     // useQuery("ユニークキー（任意の名前）", Promiseを返す関数);
@@ -60,7 +59,7 @@ const TopMainRanking = ({ title }: Props) => {
                                 <figure>
                                     <Image
                                         alt=""
-                                        src={value.hotel.hotelImageUrl || "/img/top/noimage.jpg"}
+                                        src={value.hotel.hotelImageUrl || "/img/noimage.jpg"}
                                         fill
                                         style={{
                                             objectFit: "cover",
