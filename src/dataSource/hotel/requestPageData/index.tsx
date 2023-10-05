@@ -9,7 +9,8 @@ import { Hotel } from "@/pages/api/hotel";
  */
 
 export function requestPageData(context: any) {
-    return promiseAll([Hotel(context?.hotel_no)], {
+    // console.log("no///", context.query.hotel_no);
+    return promiseAll([Hotel(context?.query?.hotel_no)], {
         then: ([hotelDetail]) => ({
             hotelDetail,
         }),
