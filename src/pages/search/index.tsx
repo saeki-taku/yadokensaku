@@ -22,7 +22,7 @@ interface SearchProps {
     pageData: ANY_OBJECT;
 }
 
-export default function Seach({ title, description, keyword, pageData }: SearchProps) {
+export default function Search({ title, description, keyword, pageData }: SearchProps) {
     // console.log("pageData___: ", pageData);
     return (
         <>

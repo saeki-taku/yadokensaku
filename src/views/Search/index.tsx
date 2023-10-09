@@ -43,8 +43,7 @@ const SearchView = ({ pageData, keyword }: ANY_OBJECT) => {
                                 <div className={styles.search__head}>
                                     <a
                                         className={styles.hotelName}
-                                        href={hotelData.planListUrl}
-                                        target="_blank"
+                                        href={`/hotel/${hotelData.hotelNo}`}
                                         rel="noreferrer"
                                     >
                                         {hotelData.hotelName}

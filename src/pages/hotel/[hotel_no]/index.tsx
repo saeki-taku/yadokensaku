@@ -15,8 +15,8 @@ interface Hotel {
     hotel_no: number;
 }
 
-export default function Seach({ title, description, pageData }: Hotel) {
-    console.log("pageData___: ", pageData);
+export default function Hotel({ title, description, pageData }: Hotel) {
+    console.log("description___", description);
     return (
         <>
             <Head>
@@ -32,15 +32,11 @@ export default function Seach({ title, description, pageData }: Hotel) {
 }
 
 export const getServerSideProps = async (context: ANY_OBJECT) => {
-    console.log("context____:", context.query);
-    const title: string = `宿検索 の検索結果`;
-    const description: string = `宿検索 の検索結果`;
-
     return promiseAll([requestPageData(context)], {
         then: ([pageData]) => ({
             props: {
-                title: title,
-                description: description,
+                title: `${pageData.hotelDetail?.hotels[0].hotel[0].hotelBasicInfo.hotelName}|宿検索`,
+                description: pageData.hotelDetail?.hotels[0].hotel[0].hotelBasicInfo.hotelSpecial,
                 pageData: pageData,
             },
         }),
