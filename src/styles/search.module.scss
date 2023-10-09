@@ -185,6 +185,7 @@
                 color: #313131;
                 font-weight: normal;
                 font-size: 1.4rem;
+                letter-spacing: 0.08em;
 
                 &:after {
                     content: ":";
@@ -252,6 +253,7 @@
 
             > li {
                 line-height: 1.5;
+
                 &:last-of-type {
                     margin-bottom: 0;
                 }
