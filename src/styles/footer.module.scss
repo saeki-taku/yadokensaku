@@ -1,6 +1,8 @@
+@use "./common/_color.scss" as color;
+
 .footer {
     padding: 20px;
-    background-color: #800000;
+    background-color: color.$main;
     text-align: center;
 
     p,

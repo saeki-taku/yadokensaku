@@ -4,7 +4,7 @@ import HeaderMemberWrap from "./HeaderMemberWrap";
 // style
 import styles from "@/styles/header.module.scss";
 // lib
-import { Col, Row, Space } from "antd";
+import { Row } from "antd";
 
 export default function Header() {
     return (

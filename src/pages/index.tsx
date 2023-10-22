@@ -1,12 +1,9 @@
 // react
-import { createContext } from "react";
 import Head from "next/head";
 // views
 import TopView from "@/views/Top";
 // datasources
 import { requestPageData } from "@/dataSource/top/requestPageData";
-// api
-import { Ranking } from "@/pages/api/ranking";
 // others
 import { promiseAll } from "@/utils/common";
 
@@ -52,12 +49,4 @@ export const getServerSideProps = async (context: ANY_OBJECT) => {
                 },
             }),
     });
-
-    // promiseAllを記述しない場合
-    // return {
-    //     props: {
-    //         title: title,
-    //         description: description,
-    //     },
-    // };
 };

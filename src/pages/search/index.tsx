@@ -23,7 +23,6 @@ interface SearchProps {
 }
 
 export default function Search({ title, description, keyword, pageData }: SearchProps) {
-    // console.log("pageData___: ", pageData);
     return (
         <>
             <Head>
@@ -42,7 +41,6 @@ export default function Search({ title, description, keyword, pageData }: Search
 }
 
 export const getServerSideProps = async (context: ANY_OBJECT) => {
-    // console.log("context____:", context.query);
     const keyword = context.query.keyword;
     const title: string = `宿検索 ${keyword}の検索結果`;
     const description: string = `宿検索 ${keyword}の検索結果`;

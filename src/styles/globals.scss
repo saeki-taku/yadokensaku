@@ -1,3 +1,4 @@
+@use "./common/_color.scss" as color;
 @use "./common/_viewport.scss" as mq;
 
 * {
@@ -16,6 +17,11 @@ body {
     @include mq.mq(sp) {
         font-size: 1.5rem;
     }
+}
+
+p,
+span {
+    color: #313131;
 }
 
 a {
@@ -110,6 +116,58 @@ a {
 }
 
 /**
+パンくず
+*/
+.breadcrumb {
+    padding: 5px 20px;
+    background-color: #e8e8e8;
+
+    &__list {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 30px;
+
+        li {
+            position: relative;
+
+            &:not(:last-of-type) {
+                &:after {
+                    content: "";
+                    display: inline-block;
+                    width: 5px;
+                    height: 5px;
+                    border-top: 2px solid #313131;
+                    border-right: 2px solid #313131;
+                    position: absolute;
+                    transform: rotate(45deg);
+                    top: 1rem;
+                    right: -1.6rem;
+                }
+            }
+
+            &:last-of-type {
+                a {
+                    font-size: 14px;
+                    color: color.$gray;
+                    pointer-events: none;
+                }
+            }
+        }
+
+        a {
+            font-size: 14px;
+            color: color.$text;
+            transition: opacity 0.2s;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}
+
+/**
 ページネーション
 */
 .pagenation_wrap {
@@ -126,8 +184,8 @@ a {
         border-radius: 5px;
         text-align: center;
         line-height: 26px;
-        border: 1px solid #800000;
-        background-color: #800000;
+        border: 1px solid color.$main;
+        background-color: color.$main;
         color: #ffffff;
         position: relative;
         margin-right: 10px;
@@ -190,13 +248,13 @@ a {
         }
 
         &:hover {
-            border: 1px solid #800000;
+            border: 1px solid color.$main;
             background-color: #ffffff;
 
             &:before,
             &:after {
-                border-top: 1px solid #800000;
-                border-right: 1px solid #800000;
+                border-top: 1px solid color.$main;
+                border-right: 1px solid color.$main;
             }
         }
     }
@@ -211,9 +269,9 @@ a {
         > li {
             &.active {
                 a {
-                    border: 1px solid #800000;
+                    border: 1px solid color.$main;
                     background-color: #fff;
-                    color: #800000;
+                    color: color.$main;
                 }
             }
 
@@ -224,14 +282,14 @@ a {
                 border-radius: 5px;
                 text-align: center;
                 line-height: 26px;
-                border: 1px solid #800000;
-                background-color: #800000;
+                border: 1px solid color.$main;
+                background-color: color.$main;
                 color: #ffffff;
 
                 &:hover {
-                    border: 1px solid #800000;
+                    border: 1px solid color.$main;
                     background-color: #ffffff;
-                    color: #800000;
+                    color: color.$main;
                 }
             }
         }
