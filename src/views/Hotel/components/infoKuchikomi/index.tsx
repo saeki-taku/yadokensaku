@@ -18,7 +18,7 @@ const InfoKuchikomi = ({ hotelBasicInfo, hotelRatingInfo }: ANY_OBJECT) => {
                         <ReactStarsRating
                             isEdit={false}
                             size={18}
-                            value={hotelBasicInfo.reviewAverage}
+                            value={hotelBasicInfo.reviewAverage ?? 0}
                         />
                     </div>
                     <a
@@ -38,7 +38,7 @@ const InfoKuchikomi = ({ hotelBasicInfo, hotelRatingInfo }: ANY_OBJECT) => {
                             <ReactStarsRating
                                 isEdit={false}
                                 size={15}
-                                value={hotelRatingInfo.serviceAverage}
+                                value={hotelRatingInfo.serviceAverage ?? 0}
                             />
                         </li>
                         <li>
@@ -47,7 +47,7 @@ const InfoKuchikomi = ({ hotelBasicInfo, hotelRatingInfo }: ANY_OBJECT) => {
                             <ReactStarsRating
                                 isEdit={false}
                                 size={15}
-                                value={hotelRatingInfo.locationAverage}
+                                value={hotelRatingInfo.locationAverage ?? 0}
                             />
                         </li>
                         <li>
@@ -56,7 +56,7 @@ const InfoKuchikomi = ({ hotelBasicInfo, hotelRatingInfo }: ANY_OBJECT) => {
                             <ReactStarsRating
                                 isEdit={false}
                                 size={15}
-                                value={hotelRatingInfo.roomAverage}
+                                value={hotelRatingInfo.roomAverage ?? 0}
                             />
                         </li>
                         <li>
@@ -65,7 +65,7 @@ const InfoKuchikomi = ({ hotelBasicInfo, hotelRatingInfo }: ANY_OBJECT) => {
                             <ReactStarsRating
                                 isEdit={false}
                                 size={15}
-                                value={hotelRatingInfo.equipmentAverage}
+                                value={hotelRatingInfo.equipmentAverage ?? 0}
                             />
                         </li>
                         <li>
@@ -74,7 +74,7 @@ const InfoKuchikomi = ({ hotelBasicInfo, hotelRatingInfo }: ANY_OBJECT) => {
                             <ReactStarsRating
                                 isEdit={false}
                                 size={15}
-                                value={hotelRatingInfo.bathAverage}
+                                value={hotelRatingInfo.bathAverage ?? 0}
                             />
                         </li>
                         <li>
@@ -83,7 +83,7 @@ const InfoKuchikomi = ({ hotelBasicInfo, hotelRatingInfo }: ANY_OBJECT) => {
                             <ReactStarsRating
                                 isEdit={false}
                                 size={15}
-                                value={hotelRatingInfo.mealAverage}
+                                value={hotelRatingInfo.mealAverage ?? 0}
                             />
                         </li>
                     </ul>
