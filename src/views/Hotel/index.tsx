@@ -11,9 +11,10 @@ import ReactStarsRating from "react-awesome-stars-rating";
 import ImgLinkCheck from "../../components/common/ImgLinkCheck";
 import InfoKuchikomi from "../../views/Hotel/components/infoKuchikomi";
 import InfoAccess from "./components/infoAccess";
+import React from "react";
 
 const HotelView = ({ pageData }: ANY_OBJECT) => {
-    console.log("hotels__??", pageData);
+    // console.log("hotels__??", pageData);
 
     const hotelBasicInfo = pageData.hotelDetail.hotels[0].hotel[0].hotelBasicInfo;
     const hotelRatingInfo = pageData.hotelDetail.hotels[0].hotel[1].hotelRatingInfo;
@@ -22,7 +23,56 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
     const hotelPolicyInfo = pageData.hotelDetail.hotels[0].hotel[4].hotelPolicyInfo;
     const hotelOtherInfo = pageData.hotelDetail.hotels[0].hotel[5].hotelOtherInfo;
 
-    hotelFacilitiesInfo.aboutMealPlace.map((item: any) => console.log(item.dinnerPlace));
+    // console.log("place", hotelFacilitiesInfo.aboutMealPlace);
+    // console.log("cancelPolicy", hotelPolicyInfo.cancelPolicy);
+
+    const breakfastPlaces = hotelFacilitiesInfo.aboutMealPlace.filter((item: ANY_OBJECT) => item.breakfastPlace).map((item: ANY_OBJECT) => item.breakfastPlace);
+    const dinnerPlaces = hotelFacilitiesInfo.aboutMealPlace.filter((item: ANY_OBJECT) => item.dinnerPlace).map((item: ANY_OBJECT) => item.dinnerPlace);
+
+    const convertText = (text: any) => {
+        // const lines = text.split("<BR>");
+        return text.split("<BR>");
+    };
+
+    // console.log("convertText :", convertText(hotelPolicyInfo.cancelPolicy));
+
+    // const convertText = (text: any) => {
+    //     return text.split("<BR>");
+    // };
+
+    // const convertText = (text: any) => {
+    //     const lines = text.split("<BR>");
+
+    //     lines.map((line: any, index: any) => {
+    //         return <p key={index}>{line}</p>;
+    //     });
+    // };
+
+    // const convertText(hotelPolicyInfo.cancelPolicy).map((line: any, index: any) => {
+    //         return <p key={index}>{line}</p>;
+    //     });
+
+    // オリジナルのテキスト
+    const originalText =
+        "キャンセル料は以下の通り頂戴いたします。<BR>連絡なしの不泊/不着 ：宿泊料金の100％ <BR>当日 ：宿泊料金の100％ <BR>前日 ：宿泊料金の50％ <BR>7日前から ：宿泊料金の20％ <BR>14日前から ：宿泊料金の10％";
+
+    // // <BR>タグを改行文字（\n）に置換
+    // const convertedText = originalText.replace(/<BR>/g, "\n");
+
+    // // 改行文字で分割
+    // const lines = convertedText.split("\n");
+
+    // // ReactのJSXで表示
+    // return (
+    //     <td>
+    //         {lines.map((line, index) => (
+    //             <React.Fragment key={index}>
+    //                 {line}
+    //                 {index < lines.length - 1 && <br />}
+    //             </React.Fragment>
+    //         ))}
+    //     </td>
+    // );
 
     return (
         <>
@@ -217,20 +267,53 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
                                     <tr>
                                         <th>食事場所</th>
                                         <td>
-                                            {hotelFacilitiesInfo.aboutMealPlace.map((item: any) => {
-                                                return (
-                                                    <>
-                                                        <div>
-                                                            朝食：<span>{item.breakfastPlace && <div>{item.breakfastPlace}</div>}</span>
-                                                        </div>
-                                                        {item.dinnerPlace && <div>夕食{item.dinnerPlace}</div>}
-                                                    </>
-                                                );
-                                            })}
+                                            <div>朝食 : {breakfastPlaces.join(", ")}</div>
+                                            <div>夕食 : {dinnerPlaces.join(", ")}</div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th></th>
+                                        <th>カード</th>
+                                        <td>
+                                            <ul className={styles.listFlex}>
+                                                {hotelPolicyInfo.availableCreditCard.map((value: ANY_OBJECT) => (
+                                                    <li
+                                                        className={styles.item}
+                                                        key={value.card}
+                                                    >
+                                                        {value.card}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>領収書発行</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>条件・注意事項</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>キャンセルポリシー</th>
+                                        {/* <td>{hotelPolicyInfo.cancelPolicy}</td> */}
+                                        <td>
+                                            {convertText(hotelPolicyInfo.cancelPolicy).map((line: any, i: any) => (
+                                                <React.Fragment key={i}>
+                                                    {line}
+                                                    <br />
+                                                </React.Fragment>
+                                            ))}
+                                        </td>
+                                        {/* <td>{convertText(hotelPolicyInfo.cancelPolicy)}</td> */}
+                                        {/* <td>
+                                            {convertText(hotelPolicyInfo.cancelPolicy).map((line: any, index: any) => {
+                                                return <p key={index}>{line}</p>;
+                                            })}
+                                        </td> */}
+                                    </tr>
+                                    <tr>
+                                        <th>連絡なしの不泊について</th>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -249,7 +332,7 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th></th>
+                                        <th>その他</th>
                                         <td></td>
                                     </tr>
                                     <tr>
