@@ -9,6 +9,7 @@ import ReactStarsRating from "react-awesome-stars-rating";
 import ImgLinkCheck from "../../components/common/ImgLinkCheck";
 import InfoKuchikomi from "../../views/Hotel/components/infoKuchikomi";
 import InfoAccess from "./components/infoAccess";
+import InfoOthre from "./components/infoOther";
 import React from "react";
 
 const HotelView = ({ pageData }: ANY_OBJECT) => {
@@ -20,9 +21,6 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
     const hotelFacilitiesInfo = pageData.hotelDetail.hotels[0].hotel[3].hotelFacilitiesInfo;
     const hotelPolicyInfo = pageData.hotelDetail.hotels[0].hotel[4].hotelPolicyInfo;
     const hotelOtherInfo = pageData.hotelDetail.hotels[0].hotel[5].hotelOtherInfo;
-
-    // console.log("place", hotelFacilitiesInfo.aboutMealPlace);
-    // console.log("cancelPolicy", hotelPolicyInfo.cancelPolicy);
 
     const breakfastPlaces = hotelFacilitiesInfo.aboutMealPlace.filter((item: ANY_OBJECT) => item.breakfastPlace).map((item: ANY_OBJECT) => item.breakfastPlace);
     const dinnerPlaces = hotelFacilitiesInfo.aboutMealPlace.filter((item: ANY_OBJECT) => item.dinnerPlace).map((item: ANY_OBJECT) => item.dinnerPlace);
@@ -227,7 +225,13 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
                             </table>
                         </div>
                         {/* その他設備・サービス */}
-                        <div className={styles.otherInfo}>
+                        <InfoOthre
+                            hotelPolicyInfo={hotelPolicyInfo}
+                            hotelFacilitiesInfo={hotelFacilitiesInfo}
+                            hotelOtherInfo={hotelOtherInfo}
+                        />
+
+                        {/* <div className={styles.otherInfo}>
                             <h3 className={styles.info_title}>その他設備・サービス</h3>
                             <table>
                                 <tbody>
@@ -287,7 +291,7 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
