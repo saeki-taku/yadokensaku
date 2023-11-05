@@ -1,3 +1,5 @@
+import React from "react";
+
 /**
  * promiseAll - ignore promiseAll maximum promises
  * @param promises

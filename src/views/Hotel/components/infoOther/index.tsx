@@ -9,8 +9,8 @@ const InfoOther = ({ hotelPolicyInfo, hotelFacilitiesInfo, hotelOtherInfo }: ANY
     const breakfastPlaces = hotelFacilitiesInfo.aboutMealPlace.filter((item: ANY_OBJECT) => item.breakfastPlace).map((item: ANY_OBJECT) => item.breakfastPlace);
     const dinnerPlaces = hotelFacilitiesInfo.aboutMealPlace.filter((item: ANY_OBJECT) => item.dinnerPlace).map((item: ANY_OBJECT) => item.dinnerPlace);
 
+    // <BR>もしくは","の場合は改行される
     const convertText = (text: any) => {
-        // const lines = text.split("<BR>");
         const lines = text?.split(/<BR>|,/);
 
         return lines?.map((line: string, i: number) => (
@@ -75,7 +75,7 @@ const InfoOther = ({ hotelPolicyInfo, hotelFacilitiesInfo, hotelOtherInfo }: ANY
                     <tr>
                         <th>その他情報</th>
                         <td>
-                            {(hotelOtherInfo.privilege && hotelOtherInfo.otherInformation) ?? "ー"}
+                            {(!hotelOtherInfo.privilege && !hotelOtherInfo.otherInformation) ?? "ー"}
                             <p>{hotelOtherInfo.privilege}</p>
                             <p>{hotelOtherInfo.otherInformation}</p>
                         </td>

@@ -1,5 +1,6 @@
 // react / next
 import Link from "next/link";
+import { useState, useEffect } from "react";
 // styles
 import styles from "@/styles/search.module.scss";
 // lib
@@ -8,12 +9,11 @@ import { faArrowUpRightFromSquare, faMagnifyingGlass } from "@fortawesome/free-s
 import ReactStarsRating from "react-awesome-stars-rating";
 // components
 import Pagenation from "../../components/common/Pagenation";
-import ImgLinkCheck from "../../components/common/ImgLinkCheck";
+import ImgLinkCheck from "../Search/components/ImgLinkCheck";
 
 const SearchView = ({ pageData, keyword }: ANY_OBJECT) => {
     const hotels = pageData.rankingDataAll.hotels;
     const pagingInfo = pageData.rankingDataAll.pagingInfo;
-
     const minCharge = (val: number) => {
         return String(val).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
     };
@@ -113,7 +113,6 @@ const SearchView = ({ pageData, keyword }: ANY_OBJECT) => {
                                             </Link>
                                             <a
                                                 href={hotelData.planListUrl}
-                                                // className={styles.common_btn_oficial}
                                                 className="common_btn_oficial"
                                                 target="_blank"
                                                 rel="noreferrer"

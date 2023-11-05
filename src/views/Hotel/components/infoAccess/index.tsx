@@ -1,8 +1,13 @@
+// react
 import Image from "next/image";
 // styles
 import styles from "@/styles/hotel.module.scss";
+// hooks
+import { useImageErrorHandling } from "@/hooks/useImageError";
 
 const InfoAccess = ({ hotelBasicInfo }: ANY_OBJECT) => {
+    const { hasError, handleImageError } = useImageErrorHandling();
+
     return (
         <div className={styles.access}>
             <h3 className={styles.info_title}>アクセス</h3>
@@ -33,18 +38,23 @@ const InfoAccess = ({ hotelBasicInfo }: ANY_OBJECT) => {
                         </li>
                     </ul>
                 </div>
-                <div className={styles.img_box}>
-                    <Image
-                        src={hotelBasicInfo.hotelMapImageUrl}
-                        alt=""
-                        width={500}
-                        height={300}
-                        style={{
-                            width: "100%",
-                            height: "auto",
-                        }}
-                    />
-                </div>
+                {hasError ? (
+                    <></>
+                ) : (
+                    <div className={styles.img_box}>
+                        <Image
+                            src={hotelBasicInfo.hotelMapImageUrl}
+                            alt=""
+                            width={500}
+                            height={300}
+                            style={{
+                                width: "100%",
+                                height: "auto",
+                            }}
+                            onError={handleImageError}
+                        />
+                    </div>
+                )}
             </div>
         </div>
     );

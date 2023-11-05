@@ -12,14 +12,31 @@
             padding: 0 5px 10px;
             margin-bottom: 1rem;
 
+            @include mq.mq(isp) {
+                flex-direction: column-reverse;
+            }
+
             .hotelName {
                 font-size: 2.6rem;
                 letter-spacing: 0.1em;
+
+                @include mq.mq(sp) {
+                    font-size: 2.2rem;
+                }
+
+                @include mq.mq(isp) {
+                    font-size: 1.8rem;
+                }
             }
 
             .favoriteBtnWrap {
                 display: flex;
                 column-gap: 10px;
+
+                @include mq.mq(isp) {
+                    margin: 0 0 10px auto;
+                    column-gap: 8px;
+                }
 
                 .favoriteBtn,
                 .wentBtn {
@@ -27,10 +44,11 @@
                     color: color.$gray;
                     padding: 5px 8px;
                     border: 1px solid color.$gray;
-                    border-radius: 2px;
+                    border-radius: 4px;
                     display: flex;
                     align-items: center;
                     text-decoration: underline;
+                    min-width: 145px;
 
                     &:hover {
                         text-decoration: none;
@@ -73,6 +91,15 @@
                                 }
                             }
                         }
+                    }
+
+                    @include mq.mq(xs) {
+                        font-size: 1.2rem;
+                        border: 1px solid #74747470;
+                        padding: 4px 6px;
+                        min-width: 140px;
+                        letter-spacing: 0.05em;
+                        text-decoration: none;
                     }
                 }
 
@@ -131,12 +158,12 @@
         }
 
         .head_bottom {
-            // padding: 0 5px;
-            // display: flex;
-            // justify-content: space-between;
-
             .info_basic {
                 display: flex;
+
+                @include mq.mq(isp) {
+                    flex-wrap: wrap;
+                }
 
                 span {
                     font-size: 1.3rem;
@@ -150,6 +177,11 @@
                             margin: 0 8px;
                         }
                     }
+
+                    @include mq.mq(isp) {
+                        font-size: 1.2rem;
+                        margin-bottom: 5px;
+                    }
                 }
             }
 
@@ -158,15 +190,33 @@
                 padding: 10px 0;
                 margin-bottom: 8px;
 
+                @include mq.mq(xs) {
+                }
+
                 .kuchikomi,
                 .minCharge {
                     display: flex;
-                    align-items: right;
+                    align-items: center;
+
+                    @include mq.mq(xs) {
+                        flex-wrap: wrap;
+                        width: 50%;
+                    }
 
                     .title {
                         font-size: 1.6rem;
                         font-weight: bold;
                         margin-right: 16px;
+
+                        @include mq.mq(isp) {
+                            font-size: 1.5rem;
+                        }
+
+                        @include mq.mq(xs) {
+                            width: 100%;
+                            margin-right: 8px;
+                            margin-bottom: 3px;
+                        }
                     }
                 }
 
@@ -187,12 +237,39 @@
                         transform: translateY(-40%);
                     }
 
+                    @include mq.mq(xs) {
+                        margin-right: 12px;
+                        padding-right: 12px;
+
+                        &::after {
+                            background-color: #c0c0c0;
+                        }
+                    }
+
+                    @include mq.mq(xs2) {
+                        margin-right: 8px;
+                        padding-right: 8px;
+                    }
+
                     .average {
                         color: #bf0000;
                         font-size: 2rem;
                         font-weight: 700;
                         letter-spacing: 0.05em;
                         margin-right: 10px;
+
+                        @include mq.mq(xs) {
+                            font-size: 1.8rem;
+                            margin-right: 6px;
+                        }
+                    }
+
+                    .box > span > span {
+                        @include mq.mq(xs) {
+                            svg {
+                                width: 13px;
+                            }
+                        }
                     }
 
                     .url {
@@ -202,6 +279,11 @@
 
                         &:hover {
                             text-decoration: none;
+                        }
+
+                        @include mq.mq(xs) {
+                            margin-left: 5px;
+                            font-size: 13px;
                         }
                     }
                 }
@@ -219,6 +301,10 @@
                         font-size: 2rem;
                         font-weight: 700;
                         letter-spacing: 0.05em;
+
+                        @include mq.mq(xs) {
+                            font-size: 1.7rem;
+                        }
                     }
                 }
             }
@@ -236,8 +322,21 @@
     &__body {
         .hotelImg_wrap {
             width: 100%;
-            height: 450px;
-            background-color: gray;
+            // height: 450px;
+            height: 600px;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #5a5a5a50;
+            position: relative;
+
+            img {
+                object-fit: contain;
+                object-position: center;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
         }
 
         .info_title {
@@ -253,6 +352,7 @@
         .access {
             &__wrap {
                 display: flex;
+                justify-content: space-between;
                 padding: 0 15px;
             }
 
@@ -298,6 +398,9 @@
         }
 
         .kuchikomi {
+            // 仮
+            overflow: hidden;
+
             &__wrap {
                 display: flex;
                 justify-content: center;
@@ -385,7 +488,8 @@
         .basicInfo,
         .otherInfo {
             table {
-                width: 1000px;
+                max-width: 1000px;
+                width: 100%;
                 margin: 0 auto;
                 border-radius: 5px;
                 overflow: hidden;
@@ -407,6 +511,17 @@
                     }
                 }
 
+                th,
+                td {
+                    @include mq.mq(isp) {
+                        font-size: 1.5rem;
+                    }
+                    @include mq.mq(xs) {
+                        width: 100%;
+                        display: block;
+                    }
+                }
+
                 th {
                     width: 200px;
                     // padding: 15px 10px 15px 30px;
@@ -415,6 +530,15 @@
                     letter-spacing: 0.08em;
                     background-color: #800000;
                     // text-align: left;
+
+                    @include mq.mq(isp) {
+                        width: 150px;
+                    }
+
+                    @include mq.mq(xs) {
+                        width: 100%;
+                        padding: 10px 8px;
+                    }
                 }
 
                 td {
