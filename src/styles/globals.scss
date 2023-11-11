@@ -317,3 +317,13 @@ a {
         }
     }
 }
+
+.ranking__pagenation {
+    transform: translateY(45px);
+}
+
+.ranking__pagenation__page {
+    &.is-active {
+        background-color: color.$main !important;
+    }
+}

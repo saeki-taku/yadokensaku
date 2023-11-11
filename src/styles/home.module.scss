@@ -45,16 +45,32 @@
         padding-bottom: 40px;
     }
 
-    &__title {
-        margin-bottom: 25px;
+    @include mq.mq(xs) {
+        padding-bottom: 60px;
     }
 
-    &__list {
-        display: grid;
+    &__title {
+        margin-bottom: 25px;
+        letter-spacing: 0.08em;
+
+        @include mq.mq(isp) {
+            font-size: 2rem;
+        }
+    }
+
+    /* ======================================
+    splideの記述
+    pagenationのstyleはglobal.scssにて
+    ========================================== */
+    ul {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         row-gap: 30px;
         column-gap: 30px;
         list-style: none;
+
+        @media screen and (min-width: 576px) {
+            display: grid !important;
+        }
 
         @include mq.mq(sp) {
             grid-template-columns: 1fr 1fr 1fr;
@@ -65,15 +81,13 @@
         }
 
         @include mq.mq(xs) {
-            row-gap: 30px;
-            column-gap: 15px;
+            row-gap: 0;
+            column-gap: 0;
         }
     }
 
     &__item {
-        // background-color: #fff8f3;
-        // padding: 15px;
-        // border-radius: 8px;
+        width: 100%;
     }
 
     .pref {

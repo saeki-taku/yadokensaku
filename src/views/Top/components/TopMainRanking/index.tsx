@@ -20,10 +20,40 @@ const TopMainRanking = ({ title, ranikingData }: Props) => {
     return (
         <div className={styles.ranking}>
             <h2 className={styles.ranking__title}>{title}</h2>
-            <ul className={styles.ranking__list}>
-                {hotels !== 0 ? (
-                    hotels.slice(0, 4).map((value: ANY_OBJECT) => (
-                        <li key={value.hotel.hotelNo}>
+            {hotels !== 0 ? (
+                <Splide
+                    options={{
+                        // autoplay: true,
+                        rewind: true,
+                        interval: 25000,
+                        speed: 2000,
+                        autoWidth: true,
+                        destroy: true,
+                        perPage: 1,
+                        gap: "10px",
+                        padding: "20px",
+                        width: "100%",
+                        arrows: false,
+                        paginationDirection: "ltr",
+                        classes: {
+                            pagination: "splide__pagination ranking__pagenation", // container
+                            page: "splide__pagination__page ranking__pagenation__page", // each button
+                        },
+                        breakpoints: {
+                            575: {
+                                destroy: false,
+                            },
+                        },
+                    }}
+                    aria-label="お気に入りの写真"
+                    tag="section"
+                >
+                    {hotels.slice(0, 4).map((value: ANY_OBJECT) => (
+                        // <li key={value.hotel.hotelNo}>
+                        <SplideSlide
+                            key={value.hotel.hotelNo}
+                            className={styles.ranking__item}
+                        >
                             <span className={styles.pref}>{value.hotel.middleClassName}</span>
                             <p className={styles.name}>{value.hotel.hotelName}</p>
                             <div className={styles.ranking__itemBox}>
@@ -68,12 +98,12 @@ const TopMainRanking = ({ title, ranikingData }: Props) => {
                                     </a>
                                 </div>
                             </div>
-                        </li>
-                    ))
-                ) : (
-                    <p>ランキングデータがありません</p>
-                )}
-            </ul>
+                        </SplideSlide>
+                    ))}
+                </Splide>
+            ) : (
+                <p>ランキングデータがありません</p>
+            )}
         </div>
     );
 };
