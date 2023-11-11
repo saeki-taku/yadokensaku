@@ -26,15 +26,15 @@ const InfoAccess = ({ hotelBasicInfo }: ANY_OBJECT) => {
                         </li>
                         <li>
                             <span className={styles.title}>アクセス</span>
-                            {hotelBasicInfo.access}
+                            <p className={styles.text}>{hotelBasicInfo.access}</p>
                         </li>
                         <li>
                             <span className={styles.title}>最寄駅</span>
-                            {hotelBasicInfo.nearestStation}駅
+                            <p className={styles.text}>{hotelBasicInfo.nearestStation}駅</p>
                         </li>
                         <li>
                             <span className={styles.title}>駐車場</span>
-                            {hotelBasicInfo.parkingInformation}
+                            <p className={styles.text}>{hotelBasicInfo.parkingInformation}</p>
                         </li>
                     </ul>
                 </div>

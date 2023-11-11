@@ -1,3 +1,5 @@
+@use "./common/_viewport.scss" as mq;
+
 .hero {
     position: relative;
 
@@ -8,6 +10,11 @@
         border-radius: 5px;
         transform: translateX(-50%);
         z-index: 20;
+
+        @include mq.mq(xs) {
+            max-width: 350px;
+            width: calc(100% - 30px);
+        }
     }
 }
 
@@ -21,10 +28,22 @@
     span {
         color: green;
     }
+
+    @include mq.mq(isp) {
+        padding: 40px 20px;
+    }
+
+    @include mq.mq(xs) {
+        padding: 40px 15px;
+    }
 }
 
 .ranking {
     padding-bottom: 90px;
+
+    @include mq.mq(isp) {
+        padding-bottom: 40px;
+    }
 
     &__title {
         margin-bottom: 25px;
@@ -37,8 +56,17 @@
         column-gap: 30px;
         list-style: none;
 
-        @media screen and (max-width: 999px) {
+        @include mq.mq(sp) {
             grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @include mq.mq(isp) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @include mq.mq(xs) {
+            row-gap: 30px;
+            column-gap: 15px;
         }
     }
 
@@ -58,6 +86,11 @@
         letter-spacing: 0.1em;
         margin-bottom: 5px;
         padding: 2px 8px;
+
+        @include mq.mq(xs) {
+            font-size: 12px;
+            padding: 2px 6px;
+        }
     }
 
     .name {
@@ -70,6 +103,12 @@
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2; /* 表示する行数 */
+
+        @include mq.mq(xs) {
+            font-size: 13px;
+            min-height: 40px;
+            -webkit-line-clamp: 3; /* 表示する行数 */
+        }
     }
 
     figure {

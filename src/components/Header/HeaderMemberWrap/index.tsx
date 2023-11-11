@@ -14,11 +14,10 @@ export default function HeaderMemberWarp() {
             span={16}
             className={styles.member_wrap}
         >
-            <HeaderMemberNew />
             <div className={styles.member_right}>
                 <HeaderMemberName />
                 <div className={styles.member_box}>
-                    <HeaderMemberFavourite />
+                    <HeaderMemberNew />
                     <HeaderMemberLogin />
                 </div>
             </div>

@@ -19,7 +19,7 @@ const HotelHead = ({ hotelBasicInfo, hotelDetailInfo, hotelFacilitiesInfo }: ANY
                             src=""
                             alt=""
                         />
-                        お気に入りに追加
+                        お気に入り<span className="xs_none">に追加</span>
                     </a>
                     <a
                         href=""
@@ -31,7 +31,7 @@ const HotelHead = ({ hotelBasicInfo, hotelDetailInfo, hotelFacilitiesInfo }: ANY
                             src=""
                             alt=""
                         />
-                        行ったことがある
+                        行った<span className="">ことがある</span>
                     </a>
                 </div>
             </div>

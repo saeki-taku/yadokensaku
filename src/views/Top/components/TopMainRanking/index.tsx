@@ -6,6 +6,8 @@ import styles from "@/styles/home.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import ReactStarsRating from "react-awesome-stars-rating";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
 
 type Props = {
     title: string;

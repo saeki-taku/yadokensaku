@@ -28,6 +28,24 @@ a {
     text-decoration: none;
 }
 
+.sp_none {
+    @include mq.mq(sp) {
+        display: none;
+    }
+}
+
+.isp_none {
+    @include mq.mq(isp) {
+        display: none;
+    }
+}
+
+.xs_none {
+    @include mq.mq(ipc) {
+        display: none;
+    }
+}
+
 .common_wrap {
     max-width: 1200px;
     width: 100%;
@@ -51,7 +69,7 @@ a {
 
 .common_search .input_text {
     height: 100%;
-    width: 350px;
+    width: 300px;
     opacity: 0.9;
     font-size: 1.5rem;
     padding: 5px 10px;
@@ -60,6 +78,10 @@ a {
     border-bottom-left-radius: 5px;
     box-shadow: -1px 0px 4px 0px #3e0f0f40 inset;
     border: none;
+
+    @include mq.mq(xs) {
+        width: 100%;
+    }
 }
 
 .common_search .input_btn {
