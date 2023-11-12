@@ -3,6 +3,7 @@ import HeaderMemberNew from "../HeaderMemberNew/";
 import HeaderMemberName from "../HeaderMemberName";
 import HeaderMemberFavourite from "../HeaderMemberFavourite";
 import HeaderMemberLogin from "../HeaderMemberLogin";
+import HeaderMemberMypage from "../HeaderMemberLogin";
 // lib
 import { Col } from "antd";
 // style
@@ -19,6 +20,8 @@ export default function HeaderMemberWarp() {
                 <div className={styles.member_box}>
                     <HeaderMemberNew />
                     <HeaderMemberLogin />
+                    {/* todo: ログイン済していたら <HeaderMemberMypage /> を表示させる条件分岐 */}
+                    {/* <HeaderMemberMypage /> */}
                 </div>
             </div>
         </Col>

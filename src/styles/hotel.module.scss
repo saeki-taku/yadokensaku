@@ -108,9 +108,8 @@
                 }
 
                 .favoriteBtn {
-                    @include mq.mq(xs) {
-                        min-width: 100px;
-                    }
+                    min-width: 110px;
+
                     .icon {
                         background: url("/img/icon/favorite.png") transparent no-repeat;
                         background-size: 16px 48px;
@@ -151,6 +150,10 @@
                     &:hover {
                         border-color: color.$main;
                         color: color.$main;
+
+                        span {
+                            color: color.$main;
+                        }
                     }
 
                     &._add {

@@ -1,18 +1,18 @@
 // lib
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 // style
 import styles from "@/styles/header.module.scss";
 
-export default function HeaderLogin() {
+export default function HeaderMypage() {
     return (
         <span className={styles.mypage}>
             <Link href="/">
-                <span className={styles.text}>ログイン</span>
+                <span className={styles.text}>マイページ</span>
                 <FontAwesomeIcon
-                    icon={faRightToBracket}
-                    style={{ color: "#800000" }}
+                    icon={faUser}
+                    style={{ color: "#ffffff" }}
                     className={styles.icon}
                 />
             </Link>
