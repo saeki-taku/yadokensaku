@@ -6,22 +6,25 @@ import { getAuth, Auth } from "firebase/auth";
 
 // .envファイルで設定した環境変数をfirebaseConfigに入れる
 const firebaseConfig = {
-    apiKey: process.env.NEXT_PUBLIC_APIKEY,
-    authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
-    projectId: process.env.NEXT_PUBLIC_PROJECTID,
-    storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
-    messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
-    appId: process.env.NEXT_PUBLIC_APPID,
+    apiKey: "process.env.FIREBASE_API_KEY",
+    authDomain: "process.env.FIREBASE_AUTHD_OMAIN",
+    projectId: "process.env.FIREBASE_PROJECT_ID",
+    storageBucket: "process.env.FIREBASE_STORAGE_BUCKET",
+    messagingSenderId: "process.env.FIREBASE_MESSAGING_SENDER_ID",
+    appId: "process.env.FIREBASE_APP_ID",
+    measurementId: "process.env.FIREBASE_MEASUREMENT_ID",
 };
 
-let firebaseApp = FirebaseApp;
+let app = FirebaseApp;
 let auth = Auth;
-let firestore = getFirestore;
+// let firestore = getFirestore;
 
 // サーバーサイドでレンダリングするときにエラーが起きないようにするための記述
 if (typeof window !== "undefined" && !getApps().length) {
-    firebaseApp = initializeApp(firebaseConfig);
-    auth = getAuth();
-    firestore = getFirestore();
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    // firestore = getFirestore();
 }
-export { firebaseApp, auth, firestore };
+
+export { auth };
+// export { firebaseApp, auth, firestore };

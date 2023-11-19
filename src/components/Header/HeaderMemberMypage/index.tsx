@@ -12,7 +12,7 @@ export default function HeaderMypage() {
                 <span className={styles.text}>マイページ</span>
                 <FontAwesomeIcon
                     icon={faUser}
-                    style={{ color: "#ffffff" }}
+                    style={{ color: "#800000" }}
                     className={styles.icon}
                 />
             </Link>

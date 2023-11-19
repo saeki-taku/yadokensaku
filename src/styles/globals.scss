@@ -28,6 +28,16 @@ a {
     text-decoration: none;
 }
 
+.root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    main {
+        flex-grow: 2;
+    }
+}
+
 .sp_none {
     @include mq.mq(sp) {
         display: none;
@@ -114,6 +124,8 @@ a {
 
 .error {
     font-weight: bold;
+    color: #db2a2a;
+    box-shadow: 1px 1px 0 0 #fff;
     display: block;
     padding: 5px 0;
     font-size: 15px;

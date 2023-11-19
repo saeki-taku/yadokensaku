@@ -12,10 +12,10 @@ const notojp = Noto_Sans_JP({
 
 export default function Layout({ children }: any) {
     return (
-        <>
+        <div className="root">
             <Header />
             <main className={notojp.className}>{children}</main>
             <Footer />
-        </>
+        </div>
     );
 }

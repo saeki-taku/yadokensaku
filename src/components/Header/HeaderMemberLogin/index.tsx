@@ -8,7 +8,7 @@ import styles from "@/styles/header.module.scss";
 export default function HeaderLogin() {
     return (
         <span className={styles.mypage}>
-            <Link href="/">
+            <Link href="/login">
                 <span className={styles.text}>ログイン</span>
                 <FontAwesomeIcon
                     icon={faRightToBracket}

@@ -85,6 +85,10 @@
                 color: #ffffff !important;
             }
         }
+
+        @include mq.mq(xs3) {
+            padding: 2px 6px;
+        }
     }
 
     .text {
@@ -95,11 +99,19 @@
             letter-spacing: 0.05em;
             font-size: 1.3rem;
         }
+
+        @include mq.mq(xs3) {
+            font-size: 1.2rem;
+        }
     }
 }
 
 .member_new {
     margin-right: 15px;
+
+    @include mq.mq(xs3) {
+        margin-right: 10px;
+    }
 }
 
 .member_right {
