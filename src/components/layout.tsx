@@ -4,17 +4,12 @@ import Footer from "./Footer";
 // 公式：https://nextjs.org/docs/pages/building-your-application/optimizing/fonts#google-fonts
 // 参考：https://commte.net/nextjs-google-font
 // https://fonts.google.com/variablefonts
-import { Noto_Sans_JP } from "next/font/google";
-const notojp = Noto_Sans_JP({
-    weight: ["400"],
-    subsets: ["latin"],
-});
 
 export default function Layout({ children }: any) {
     return (
         <div className="root">
             <Header />
-            <main className={notojp.className}>{children}</main>
+            <main>{children}</main>
             <Footer />
         </div>
     );

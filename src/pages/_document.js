@@ -7,10 +7,6 @@ class MyDocument extends Document {
             <Html lang="ja">
                 <Head>
                     <link
-                        rel="stylesheet"
-                        href="https://fonts.googleapis.com/css2?family=YourFontFamily&display=optional"
-                    />
-                    <link
                         rel="preconnect"
                         href="https://fonts.googleapis.com"
                     />
