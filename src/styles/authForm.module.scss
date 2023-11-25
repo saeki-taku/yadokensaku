@@ -46,8 +46,8 @@
         text-align: left;
         width: 100%;
 
-        &:first-of-type {
-            margin-bottom: 20px;
+        &:not(:last-of-type) {
+            margin-bottom: 15px;
         }
     }
 
@@ -64,7 +64,7 @@
         border: none;
         box-sizing: border-box;
         box-shadow: inset 1px 1px 2px 1px #33333330;
-        font-size: 17px;
+        font-size: 16px;
     }
 
     .login_btn {
@@ -126,5 +126,11 @@
         // min-height: 50px;
         letter-spacing: 0.1em;
         cursor: pointer;
+    }
+
+    .login_error_message {
+        font-size: 1.4rem;
+        color: color.$red;
+        margin-bottom: 15px;
     }
 }

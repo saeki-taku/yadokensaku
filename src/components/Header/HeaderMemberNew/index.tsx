@@ -8,7 +8,7 @@ import styles from "@/styles/header.module.scss";
 export default function HeaderLogo() {
     return (
         <span className={styles.member_new}>
-            <Link href="/">
+            <Link href="/signup">
                 <span className={styles.text}>会員登録</span>
                 <FontAwesomeIcon
                     icon={faUser}

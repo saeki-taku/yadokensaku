@@ -124,11 +124,12 @@ a {
 
 .error {
     font-weight: bold;
+    text-align: center;
     color: #db2a2a;
-    box-shadow: 1px 1px 0 0 #fff;
     display: block;
     padding: 5px 0;
     font-size: 15px;
+    text-shadow: 0px 1px 2px #fff;
 }
 
 .common_btn_oficial {
@@ -298,7 +299,7 @@ a {
         display: flex;
         flex-wrap: wrap;
         margin: 0 10px;
-        column-gap: 15px;
+        column-gap: 12px;
 
         > li {
             &.active {
@@ -311,11 +312,12 @@ a {
 
             a {
                 display: block;
-                width: 30px;
-                height: 30px;
+                width: 32px;
+                height: 32px;
                 border-radius: 5px;
+                font-size: 1.4rem;
                 text-align: center;
-                line-height: 26px;
+                line-height: 30px;
                 border: 1px solid color.$main;
                 background-color: color.$main;
                 color: #ffffff;

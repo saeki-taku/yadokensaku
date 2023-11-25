@@ -8,12 +8,13 @@ import { useRoute } from "@/hooks/useRoute";
 // lib
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { getAuth, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, signInAnonymously } from "firebase/auth";
 import { useForm, useFormContext } from "react-hook-form";
 import { auth } from "@/lib/firebaseConfig";
 // components
 
-const LoginView = () => {
+// const TopMainRanking = ({ title, ranikingData }: Props) => {
+const SignupView = () => {
     const router = useRoute();
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -24,16 +25,19 @@ const LoginView = () => {
         getValues,
     } = useForm();
 
-    // ユーザーのログイン
-    const onLogin = async (data: ANY_OBJECT) => {
+    // ユーザーのサインアップ
+    const onSubmit = async (data: ANY_OBJECT) => {
         try {
-            const userCredentical = await signInWithEmailAndPassword(auth, data.mail, data.pass);
-            const user = userCredentical.user;
-            console.log("ログインに成功しました", user);
-            alert("ログインしました");
-            router.push({
-                pathname: "/",
+            const userCredentical = await createUserWithEmailAndPassword(auth, data.mail, data.pass);
+            updateProfile(auth.currentUser, {
+                displayName: data.name,
             });
+            const user = userCredentical.user;
+            console.log("登録完了しました", user);
+            alert("登録完了しました");
+            // router.push({
+            //     pathname: "",
+            // });
             return user;
         } catch (error: any) {
             setErrorMessage("※メールアドレスもしくはパスワードが違います");
@@ -41,15 +45,52 @@ const LoginView = () => {
         }
     };
 
+    // import { getAuth, updateProfile } from "firebase/auth";
+    // const auth = getAuth();
+    // updateProfile(auth.currentUser, {
+    //     displayName: "Jane Q. User",
+    //     photoURL: "https://example.com/jane-q-user/profile.jpg",
+    // })
+    //     .then(() => {
+    //         // Profile updated!
+    //         // ...
+    //     })
+    //     .catch((error) => {
+    //         // An error occurred
+    //         // ...
+    //     });
+
+    // const onSubmit = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    //         updateProfile(auth.currentUser, {
+    //             displayName: name,
+    //         });
+    //         navigate("/");
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
+
     return (
         <div className="common_wrap">
             <div className={styles.login}>
                 <div className={styles.title_box}>
-                    <span className={styles.title}>ログインフォーム</span>
+                    <span className={styles.title}>会員新規登録フォーム</span>
                 </div>
-                <form onSubmit={handleSubmit(onLogin)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     {errorMessage.length > 0 && <p className={styles.login_error_message}>{errorMessage}</p>}
                     <div className={styles.form_box}>
+                        <div className={styles.input_frame}>
+                            <p className={styles.input_label}>ユーザー名</p>
+                            <input
+                                type="text"
+                                {...register("name", {
+                                    maxLength: { value: 100, message: "" },
+                                })}
+                            />
+                        </div>
                         <div className={styles.input_frame}>
                             <p className={styles.input_label}>メールアドレス</p>
                             <input
@@ -86,7 +127,7 @@ const LoginView = () => {
     );
 };
 
-export default LoginView;
+export default SignupView;
 
 // saetaku333@yahoo.co.jp
 // test001
