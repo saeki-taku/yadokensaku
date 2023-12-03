@@ -9,6 +9,7 @@ import { useRoute } from "@/hooks/useRoute";
 // lib
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faHeart, faMapLocationDot, faArrowRightFromBracket, faUser } from "@fortawesome/free-solid-svg-icons";
+import ReactStarsRating from "react-awesome-stars-rating";
 
 const MypageView = () => {
 	return (
@@ -71,10 +72,55 @@ const MypageView = () => {
 					</ul>
 				</div>
 
+				{/* お気に入りリスト　3件まで */}
 				<div className={styles.list_wrap}>
+					<div className={styles.list_title}>
+						<span>お気に入り</span>
+					</div>
 					<ul className={styles.list}>
 						<li>
-							<a href=""></a>
+							<div className={styles.img_box}>
+								<figure>{/* <ImgLinkCheck link={} /> */}</figure>
+							</div>
+							<div className={styles.text_box}>
+								<div className={styles.title}>三井ガーデンホテル　プラナ東京ベイ</div>
+								<div className={styles.info_evaluation}>
+									{/* {hotelBasicInfo.reviewAverage && ( */}
+									<div className={styles.kuchikomi}>
+										<span className={styles.title}>総合評価</span>
+										<span className={styles.average}>{5}</span>
+										<div className={styles.box}>
+											<ReactStarsRating isEdit={false} size={15} value={4} />
+											<a className={styles.url} href={"/"} target="_blank" rel="noreferrer">
+												{100}
+											</a>
+										</div>
+									</div>
+									{/* )} */}
+									<div className={styles.minCharge}>
+										<span className={styles.title}>
+											最安値<span>（税込）</span>
+										</span>
+										<span className={styles.num}>{1000}円〜</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				{/* 行ったリスト　3件まで */}
+				<div className={styles.list_wrap}>
+					<div className={styles.list_title}>
+						<span>行ったことある</span>
+					</div>
+					<ul className={styles.list}>
+						<li>
+							<a href="">
+								<div className={styles.img_box}>
+									<figure>{/* <ImgLinkCheck link={} /> */}</figure>
+								</div>
+								<div className={styles.text_box}></div>
+							</a>
 						</li>
 					</ul>
 				</div>
