@@ -1,0 +1,124 @@
+@use "./common/_viewport.scss" as mq;
+@use "./common/_color.scss" as color;
+
+.mypage_wrap {
+	max-width: 1200px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0px 30px 60px;
+
+	@include mq.mq(isp) {
+		padding: 0px 20px 60px;
+	}
+
+	@include mq.mq(xs) {
+		padding: 0px 15px 30px;
+	}
+}
+
+.name_wrap {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+}
+
+.menu_wrap {
+	position: relative;
+	background-color: #eee;
+	// background: linear-gradient(180deg, rgba(238,238,238,1) 0%, rgba(238,238,238,0.9360119047619048) 68%, rgba(238,238,238,0.2) 100%);
+	padding: 30px 20px;
+	margin-top: -60px;
+	z-index: 5;
+
+	.menu_list {
+		display: flex;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		column-gap: 20px;
+		row-gap: 20px;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 20px;
+		max-width: 900px;
+		width: 100%;
+		margin: 0 auto;
+
+		> li {
+			// width: calc(50% - 10px);
+
+			&:first-of-type {
+				// width: 100%;
+
+				a {
+					// width: calc(50% - 10px);
+					margin: 0 auto;
+				}
+			}
+
+			&.mypage_top a {
+				&:hover {
+					background-color: color.$main;
+				}
+			}
+
+			&.favorit a {
+				&:hover {
+					background-color: #f2abc6;
+				}
+			}
+			&.went a {
+				&:hover {
+					background-color: #cc8e23;
+				}
+			}
+			&.memberInfo a {
+				&:hover {
+					background-color: #248b51;
+				}
+			}
+			&.logout a {
+				&:hover {
+					background-color: #8a6f10;
+				}
+			}
+
+			a {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				background-color: #fff;
+				padding: 20px 15px;
+				border-radius: 5px;
+				box-shadow: 3px 3px 10px 1px #80000015;
+
+				&:hover {
+					.icon,
+					.text {
+						color: #fff !important;
+					}
+				}
+			}
+
+			.icon {
+				display: block;
+				margin-bottom: 10px;
+				// margin-right: 20px;
+			}
+
+			.text {
+				color: #473131;
+				font-weight: 600;
+				font-size: 1.5rem;
+			}
+		}
+	}
+}
+
+.mypage_top {
+	svg {
+		// color: #fff !important;
+	}
+}

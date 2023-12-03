@@ -8,10 +8,11 @@ import { useRoute } from "@/hooks/useRoute";
 // lib
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { createUserWithEmailAndPassword, updateProfile, signInAnonymously } from "firebase/auth";
 import { useForm, useFormContext } from "react-hook-form";
-import { auth } from "@/lib/firebaseConfig";
-// components
+// firebase
+import { createUserWithEmailAndPassword, updateProfile, signInAnonymously } from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { app, auth, db } from "@/lib/firebaseConfig";
 
 // const TopMainRanking = ({ title, ranikingData }: Props) => {
 const SignupView = () => {
@@ -28,11 +29,27 @@ const SignupView = () => {
     // ユーザーのサインアップ
     const onSubmit = async (data: ANY_OBJECT) => {
         try {
+            console.log("auth.currentUser::", auth.currentUser);
+            console.log("db::", db);
+
             const userCredentical = await createUserWithEmailAndPassword(auth, data.mail, data.pass);
-            updateProfile(auth.currentUser, {
-                displayName: data.name,
-            });
+            // updateProfile(auth.currentUser, {
+            //     displayName: data.name,
+            // });
             const user = userCredentical.user;
+            const docRef = doc(db, "users", user.uid);
+            const docSnap = await getDoc(docRef);
+
+            console.log("docRef", docRef);
+            console.log("docSnap", docSnap);
+
+            if (!docSnap.exists()) {
+                await setDoc(doc(db, "users", user.uid), {
+                    name: data.name,
+                    email: user.email,
+                });
+            }
+
             console.log("登録完了しました", user);
             alert("登録完了しました");
             // router.push({
@@ -40,38 +57,11 @@ const SignupView = () => {
             // });
             return user;
         } catch (error: any) {
-            setErrorMessage("※メールアドレスもしくはパスワードが違います");
-            console.log("ログインに失敗しました", error);
+            setErrorMessage("※登録に失敗しました");
+            // setErrorMessage("※既に使用されているメールアドレスです。");
+            console.log("登録に失敗しました", error);
         }
     };
-
-    // import { getAuth, updateProfile } from "firebase/auth";
-    // const auth = getAuth();
-    // updateProfile(auth.currentUser, {
-    //     displayName: "Jane Q. User",
-    //     photoURL: "https://example.com/jane-q-user/profile.jpg",
-    // })
-    //     .then(() => {
-    //         // Profile updated!
-    //         // ...
-    //     })
-    //     .catch((error) => {
-    //         // An error occurred
-    //         // ...
-    //     });
-
-    // const onSubmit = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    //         updateProfile(auth.currentUser, {
-    //             displayName: name,
-    //         });
-    //         navigate("/");
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
 
     return (
         <div className="common_wrap">
@@ -109,8 +99,8 @@ const SignupView = () => {
                                 })}
                             />
                         </div>
-                        <div className={styles.login_btn}>
-                            <span className={styles.btn_text}>ログイン</span>
+                        <div className={styles.submit_btn}>
+                            <span className={styles.btn_text}>登録する</span>
                             <input
                                 type="submit"
                                 value=""

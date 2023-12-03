@@ -8,10 +8,10 @@ import { useRoute } from "@/hooks/useRoute";
 // lib
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { getAuth, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
 import { useForm, useFormContext } from "react-hook-form";
+// firebase
+import { getAuth, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
 import { auth } from "@/lib/firebaseConfig";
-// components
 
 const LoginView = () => {
     const router = useRoute();
@@ -29,11 +29,13 @@ const LoginView = () => {
         try {
             const userCredentical = await signInWithEmailAndPassword(auth, data.mail, data.pass);
             const user = userCredentical.user;
-            console.log("ログインに成功しました", user);
+
+            console.log("ログインしました", user);
             alert("ログインしました");
-            router.push({
-                pathname: "/",
-            });
+            // router.push({
+            //     pathname: "/",
+            // });
+
             return user;
         } catch (error: any) {
             setErrorMessage("※メールアドレスもしくはパスワードが違います");
@@ -68,7 +70,7 @@ const LoginView = () => {
                                 })}
                             />
                         </div>
-                        <div className={styles.login_btn}>
+                        <div className={styles.submit_btn}>
                             <span className={styles.btn_text}>ログイン</span>
                             <input
                                 type="submit"

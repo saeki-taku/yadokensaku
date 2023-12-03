@@ -10,7 +10,7 @@ import { Row } from "antd";
 import { auth } from "@/lib/firebaseConfig";
 
 export default function Header() {
-    console.log("ログイン情報", auth);
+    // console.log("ログイン情報", auth);
 
     return (
         <header className={styles.header}>

@@ -1,8 +1,8 @@
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// Firestoreはログインやユーザー登録の実装には使わないが、今後のことを考えて入れておく
-import { getFirestore, Firestore } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 import { getAuth, Auth } from "firebase/auth";
+// Firestoreはログインやユーザー登録の実装には使わないが、今後のことを考えて入れておく
+import { getAnalytics } from "firebase/analytics";
 
 // .envファイルで設定した環境変数をfirebaseConfigに入れる
 const firebaseConfig = {
@@ -17,31 +17,9 @@ const firebaseConfig = {
 
 console.log("firebaseConfig？", firebaseConfig);
 
-let app = FirebaseApp;
-let auth = Auth;
-let firestore = getFirestore;
-
 // サーバーサイドでレンダリングするときにエラーが起きないようにするための記述
-if (typeof window !== "undefined" && !getApps().length) {
-    app = initializeApp(firebaseConfig);
-    auth = getAuth(app);
-    firestore = getFirestore(app);
-}
-export { auth, firestore };
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth(app);
-// let app = "";
-// let auth = "";
-// サーバーサイドでレンダリングするときにエラーが起きないようにするための記述;
-// if (typeof window !== "undefined" && !getApps().length) {
-// app = initializeApp(firebaseConfig);
-// auth = getAuth(app);
-// firestore = getFirestore();
-// }
-
-// console.log("app:", app);
-// console.log("auth:", auth);
-
-// export { auth };
-// export { firebaseApp, auth, firestore };
+export { app, auth, db };
