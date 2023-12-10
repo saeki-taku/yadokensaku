@@ -3,745 +3,746 @@
 @use "./common/_viewport.scss" as mq;
 
 .hotelInfo {
-    &__head {
-        .head_top {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            border-bottom: 1px solid color.$main;
-            padding: 0 5px 10px;
-            margin-bottom: 1rem;
-
-            @include mq.mq(isp) {
-                flex-direction: column-reverse;
-            }
-
-            .hotelName {
-                font-size: 2.6rem;
-                letter-spacing: 0.1em;
-
-                @include mq.mq(sp) {
-                    font-size: 2.2rem;
-                }
-
-                @include mq.mq(isp) {
-                    font-size: 1.8rem;
-                }
-
-                @include mq.mq(xs) {
-                    font-size: 1.7rem;
-                }
-            }
-
-            .favoriteBtnWrap {
-                display: flex;
-                column-gap: 10px;
-
-                @include mq.mq(isp) {
-                    margin: 0 0 10px auto;
-                    column-gap: 8px;
-                }
-
-                .favoriteBtn,
-                .wentBtn {
-                    font-size: 1.3rem;
-                    color: color.$gray;
-                    padding: 5px 8px;
-                    border: 1px solid color.$gray;
-                    border-radius: 4px;
-                    display: flex;
-                    align-items: center;
-                    text-decoration: underline;
-                    min-width: 145px;
-
-                    &:hover {
-                        text-decoration: none;
-                        .icon {
-                            background-position-y: 0;
-                        }
-                    }
-
-                    &._add {
-                        color: #ffffff;
-                        border: transparent;
-
-                        .icon {
-                            background-position-y: -32px;
-
-                            &:after {
-                                content: "";
-                                display: inline-block;
-                                position: absolute;
-                                top: 50%;
-                                left: 50%;
-                                transform: translate(-50%, -50%);
-                                width: 60px;
-                                height: 60px;
-                                margin-top: -30px;
-                                margin-left: -30px;
-                                border-radius: 100%;
-                                opacity: 0;
-                                animation: ripple 0.3s 1 ease-out;
-                            }
-
-                            @keyframes ripple {
-                                0% {
-                                    opacity: 1;
-                                    transform: scale(0);
-                                }
-                                100% {
-                                    opacity: 0;
-                                    transform: scale(1);
-                                }
-                            }
-                        }
-                    }
-
-                    @include mq.mq(xs) {
-                        font-size: 1.2rem;
-                        border: 1px solid #74747470;
-                        padding: 4px 6px;
-                        min-width: 140px;
-                        letter-spacing: 0.05em;
-                        text-decoration: none;
-                    }
-                }
-
-                .favoriteBtn {
-                    min-width: 110px;
-
-                    .icon {
-                        background: url("/img/icon/favorite.png") transparent no-repeat;
-                        background-size: 16px 48px;
-                        background-position-y: -16px;
-
-                        @include mq.mq(xs) {
-                            background: url("/img/icon/favorite.png") transparent no-repeat;
-                            width: 12px;
-                            height: 12px;
-                            background-size: 12px 37px;
-                            background-position-y: -12px;
-                        }
-                    }
-
-                    &:hover {
-                        border-color: #dda1b8;
-                        color: #dda1b8;
-                    }
-
-                    &._add {
-                        background-color: #dda1b8;
-
-                        .icon {
-                            &:after {
-                                background: #dda1b8;
-                            }
-                        }
-                    }
-                }
-
-                .wentBtn {
-                    .icon {
-                        background: url("/img/icon/pin.png") transparent no-repeat;
-                        background-size: 16px 48px;
-                        background-position-y: -16px;
-                    }
-
-                    &:hover {
-                        border-color: color.$main;
-                        color: color.$main;
-
-                        span {
-                            color: color.$main;
-                        }
-                    }
-
-                    &._add {
-                        background-color: color.$main;
-                        .icon {
-                            &:after {
-                                background: color.$main;
-                            }
-                        }
-                    }
-                }
-
-                .icon {
-                    width: 16px;
-                    height: 16px;
-                    margin-right: 5px;
-                    transform: translateY(1px);
-                    position: relative;
-                }
-            }
-        }
-
-        .head_bottom {
-            .info_basic {
-                display: flex;
-
-                @include mq.mq(isp) {
-                    flex-wrap: wrap;
-                }
-
-                span {
-                    font-size: 1.3rem;
-                    color: color.$gray;
-                    letter-spacing: 0.08em;
-
-                    &:not(:last-of-type) {
-                        &:after {
-                            content: "/";
-                            display: inline-block;
-                            margin: 0 8px;
-                        }
-                    }
-
-                    @include mq.mq(isp) {
-                        font-size: 1.2rem;
-                        margin-bottom: 5px;
-                    }
-                }
-            }
-
-            .info_evaluation {
-                display: flex;
-                padding: 10px 0;
-                margin-bottom: 8px;
-
-                @include mq.mq(xs) {
-                }
-
-                .kuchikomi,
-                .minCharge {
-                    display: flex;
-                    align-items: center;
-
-                    @include mq.mq(xs) {
-                        flex-wrap: wrap;
-                        width: 50%;
-                    }
-
-                    .title {
-                        font-size: 1.6rem;
-                        font-weight: bold;
-                        margin-right: 16px;
-
-                        @include mq.mq(isp) {
-                            font-size: 1.5rem;
-                        }
-
-                        @include mq.mq(xs) {
-                            width: 100%;
-                            margin-right: 8px;
-                            margin-bottom: 3px;
-                        }
-                    }
-                }
-
-                .kuchikomi {
-                    margin-right: 25px;
-                    padding-right: 25px;
-                    position: relative;
-
-                    &::after {
-                        content: "";
-                        display: inline-block;
-                        width: 1px;
-                        height: calc(100%);
-                        background-color: #b6b6b6;
-                        position: absolute;
-                        top: 50%;
-                        right: 0;
-                        transform: translateY(-40%);
-                    }
-
-                    @include mq.mq(xs) {
-                        margin-right: 12px;
-                        padding-right: 12px;
-
-                        &::after {
-                            background-color: #c0c0c0;
-                        }
-                    }
-
-                    @include mq.mq(xs2) {
-                        margin-right: 8px;
-                        padding-right: 8px;
-                    }
-
-                    .average {
-                        color: #bf0000;
-                        font-size: 2rem;
-                        font-weight: 700;
-                        letter-spacing: 0.05em;
-                        margin-right: 10px;
-
-                        @include mq.mq(xs) {
-                            font-size: 1.6rem;
-                            margin-right: 3px;
-                        }
-                    }
-
-                    .box > span > span {
-                        @include mq.mq(xs) {
-                            svg {
-                                width: 12px;
-                            }
-                        }
-                    }
-
-                    .url {
-                        margin-left: 8px;
-                        font-size: 15px;
-                        text-decoration: underline;
-
-                        &:hover {
-                            text-decoration: none;
-                        }
-
-                        @include mq.mq(xs) {
-                            display: inline-block;
-                            transform: translateY(-2px);
-                            margin-left: 4px;
-                            font-size: 13px;
-                        }
-                    }
-                }
-
-                .minCharge {
-                    .title {
-                        margin-right: 10px;
-                        span {
-                            font-size: 1.2rem;
-                        }
-                    }
-
-                    .num {
-                        color: #bf0000;
-                        font-size: 2rem;
-                        font-weight: 700;
-                        letter-spacing: 0.05em;
-
-                        @include mq.mq(xs) {
-                            font-size: 1.6rem;
-                        }
-                    }
-                }
-            }
-
-            .hotelSpecial {
-                color: #b79e24;
-                font-size: 2.2rem;
-                margin-bottom: 2rem;
-                letter-spacing: 0.1em;
-                text-align: center;
-
-                @include mq.mq(isp) {
-                    font-size: 1.8rem;
-                }
-
-                @include mq.mq(xs2) {
-                    font-size: 1.5rem;
-                }
-            }
-        }
-    }
-
-    &__body {
-        .hotelImg_wrap {
-            width: 100%;
-            // height: 450px;
-            height: 600px;
-            border-radius: 5px;
-            overflow: hidden;
-            border: 1px solid #5a5a5a20;
-            position: relative;
-
-            img {
-                object-fit: contain;
-                object-position: center;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 100%;
-                height: auto;
-            }
-
-            @include mq.mq(sp) {
-                height: 450px;
-            }
-
-            @include mq.mq(isp) {
-                height: 300px;
-                background-color: #f5f5f5;
-
-                img {
-                    object-fit: cover;
-                    height: 100%;
-                }
-            }
-
-            @include mq.mq(xs) {
-                height: 230px;
-            }
-        }
-
-        .info_title {
-            margin-top: 4rem;
-            margin-bottom: 4rem;
-            font-size: 2.5rem;
-            letter-spacing: 0.05em;
-            padding: 3px 15px;
-            border-bottom: 1px solid color.$main;
-            color: color.$main;
-
-            @include mq.mq(isp) {
-                font-size: 2.2rem;
-                margin-top: 3.5rem;
-                margin-bottom: 2.8rem;
-            }
-
-            @include mq.mq(xs) {
-                font-size: 2rem;
-                padding: 3px 10px;
-            }
-        }
-
-        .access {
-            &__wrap {
-                display: flex;
-                justify-content: space-between;
-                padding: 0 15px;
-
-                @include mq.mq(sp) {
-                    flex-direction: column;
-                    row-gap: 25px;
-                }
-            }
-
-            .text_box {
-                margin-right: 30px;
-
-                .info_list {
-                    list-style: none;
-
-                    > li {
-                        display: flex;
-                        line-height: 1.8;
-
-                        @include mq.mq(xs) {
-                            display: block;
-                        }
-
-                        &:not(:last-of-type) {
-                            margin-bottom: 1.5rem;
-                        }
-
-                        .title {
-                            flex-shrink: 0;
-                            width: 90px;
-                            font-size: 1.6rem;
-                            font-weight: 700;
-                            letter-spacing: 0.05em;
-                            position: relative;
-                            padding-right: 10px;
-                            margin-right: 15px;
-
-                            &:after {
-                                content: ":";
-                                display: inline-block;
-                                position: absolute;
-                                right: 0;
-                            }
-
-                            @include mq.mq(xs) {
-                                &:after {
-                                    content: none;
-                                }
-                            }
-                        }
-
-                        .box,
-                        .text {
-                            padding-left: 1.5rem;
-                        }
-                    }
-                }
-            }
-
-            .img_box {
-                flex-shrink: 0;
-                max-width: 400px;
-                width: 100%;
-            }
-        }
-
-        .kuchikomi {
-            &__wrap {
-                display: flex;
-                justify-content: center;
-                max-width: 1000px;
-                width: 100%;
-                margin: 0 auto;
-
-                @include mq.mq(isp) {
-                    flex-direction: column;
-                }
-
-                .head {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    margin-right: 45px;
-                    flex-shrink: 0;
-
-                    @include mq.mq(isp) {
-                        flex-direction: row;
-                        align-items: baseline;
-                        margin-right: 0;
-                        margin-bottom: 18px;
-                    }
-
-                    @include mq.mq(xs2) {
-                        flex-wrap: wrap;
-                    }
-
-                    .title {
-                        @include font.notoSerif_b;
-                        font-size: 20px;
-                        margin-bottom: 10px;
-                        letter-spacing: 0.25em;
-
-                        @include mq.mq(isp) {
-                            margin-bottom: 0;
-                            margin-right: 5px;
-                            font-size: 1.8rem;
-                        }
-
-                        @include mq.mq(xs2) {
-                            display: block;
-                            text-align: center;
-                            width: 100%;
-                        }
-                    }
-
-                    .average {
-                        font-size: 30px;
-                        font-weight: bold;
-                        color: #bf0000;
-
-                        @include mq.mq(isp) {
-                            font-size: 2.6rem;
-                            display: inline-block;
-                            margin-right: 8px;
-                        }
-                    }
-
-                    .box {
-                        margin: 5px 0;
-                    }
-
-                    .url {
-                        font-size: 13px;
-                        text-decoration: underline;
-
-                        @include mq.mq(isp) {
-                            transform: translateY(-3px);
-                            display: inline-block;
-                            margin-left: 5px;
-                        }
-
-                        &:hover {
-                            text-decoration: none;
-                        }
-                    }
-                }
-
-                .body {
-                    border-radius: 10px;
-                    width: 100%;
-                    padding: 25px 40px;
-                    background-color: #f5f5f5;
-
-                    @include mq.mq(sp) {
-                        padding: 25px 23px;
-                    }
-
-                    @include mq.mq(isp) {
-                        padding: 20px 18px;
-                    }
-
-                    .kuchikomi_list {
-                        list-style: none;
-                        display: grid;
-                        grid-template-columns: repeat(2, 1fr);
-                        column-gap: 40px;
-                        row-gap: 20px;
-
-                        @include mq.mq(sp) {
-                            column-gap: 30px;
-                        }
-
-                        @include mq.mq(isp) {
-                            column-gap: 20px;
-                        }
-
-                        @include mq.mq(xs) {
-                            grid-template-columns: 1fr;
-                            row-gap: 15px;
-                        }
-
-                        > li {
-                            background-color: #ffffff;
-                            border-radius: 8px;
-                            padding: 10px 25px;
-
-                            @include mq.mq(sp) {
-                                padding: 10px 20px;
-                            }
-
-                            @include mq.mq(isp) {
-                                padding: 8px 18px;
-                            }
-                        }
-
-                        .title {
-                            // @include font.notoSerif_r;
-                            font-size: 15px;
-                            font-weight: 600;
-                            letter-spacing: 0.05em;
-                            display: inline-block;
-                            margin-right: 15px;
-                            width: 70px;
-
-                            @include mq.mq(sp) {
-                                width: 65px;
-                                margin-right: 12px;
-                            }
-                        }
-
-                        .average {
-                            display: inline-block;
-                            margin-right: 10px;
-                            font-size: 18px;
-                            font-weight: bold;
-                            color: #bf0000;
-                            width: 60px;
-
-                            @include mq.mq(sp) {
-                                width: 48px;
-                                margin-right: 2px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        .basicInfo,
-        .otherInfo {
-            table {
-                max-width: 1000px;
-                width: 100%;
-                margin: 0 auto;
-                border-radius: 5px;
-                overflow: hidden;
-                border-collapse: collapse;
-                box-sizing: border-box;
-
-                tbody {
-                }
-
-                tr {
-                    &:not(:last-child) {
-                        th {
-                            border-bottom: 1px solid #f5f5f5;
-                        }
-
-                        td {
-                            border-bottom: 1px solid #cab0b0;
-                        }
-                    }
-                }
-
-                th,
-                td {
-                    @include mq.mq(isp) {
-                        font-size: 1.5rem;
-                    }
-                    @include mq.mq(xs) {
-                        width: 100%;
-                        display: block;
-                    }
-                }
-
-                th {
-                    width: 200px;
-                    // padding: 15px 10px 15px 30px;
-                    padding: 15px 10px;
-                    color: #ffffff;
-                    letter-spacing: 0.08em;
-                    background-color: #800000;
-                    // text-align: left;
-
-                    @include mq.mq(isp) {
-                        width: 150px;
-                    }
-
-                    @include mq.mq(xs) {
-                        width: 100%;
-                        padding: 10px 8px;
-                    }
-                }
-
-                td {
-                    background-color: #f5f5f5;
-                    padding: 15px 30px;
-                    letter-spacing: 0.05em;
-
-                    @include mq.mq(isp) {
-                        padding: 15px 20px;
-                    }
-
-                    .rearText {
-                        margin-left: 8px;
-                    }
-
-                    .list,
-                    .listFlex {
-                        list-style: none;
-                        display: grid;
-                        grid-template-columns: 1fr;
-                        column-gap: 20px;
-                        row-gap: 10px;
-
-                        .item {
-                            padding-left: 18px;
-                            position: relative;
-                            letter-spacing: 0.05em;
-
-                            &::before {
-                                content: "";
-                                display: inline-block;
-                                width: 6px;
-                                height: 6px;
-                                border-radius: 50%;
-                                background-color: #800000;
-                                position: absolute;
-                                top: 0.5em;
-                                left: 2px;
-                            }
-                        }
-                    }
-
-                    .listFlex {
-                        grid-template-columns: repeat(2, 1fr);
-                    }
-                }
-            }
-        }
-    }
+	&__head {
+		.head_top {
+			display: flex;
+			justify-content: space-between;
+			align-items: baseline;
+			border-bottom: 1px solid color.$main;
+			padding: 0 5px 10px;
+			margin-bottom: 1rem;
+
+			@include mq.mq(isp) {
+				flex-direction: column-reverse;
+			}
+
+			.hotelName {
+				font-size: 2.6rem;
+				letter-spacing: 0.1em;
+				color: #313131;
+
+				@include mq.mq(sp) {
+					font-size: 2.2rem;
+				}
+
+				@include mq.mq(isp) {
+					font-size: 1.8rem;
+				}
+
+				@include mq.mq(xs) {
+					font-size: 1.7rem;
+				}
+			}
+
+			.favoriteBtnWrap {
+				display: flex;
+				column-gap: 10px;
+
+				@include mq.mq(isp) {
+					margin: 0 0 10px auto;
+					column-gap: 8px;
+				}
+
+				.favoriteBtn,
+				.wentBtn {
+					font-size: 1.3rem;
+					color: color.$gray;
+					padding: 5px 8px;
+					border: 1px solid color.$gray;
+					border-radius: 4px;
+					display: flex;
+					align-items: center;
+					text-decoration: underline;
+					min-width: 145px;
+
+					&:hover {
+						text-decoration: none;
+						.icon {
+							background-position-y: 0;
+						}
+					}
+
+					&._add {
+						color: #ffffff;
+						border: transparent;
+
+						.icon {
+							background-position-y: -32px;
+
+							&:after {
+								content: "";
+								display: inline-block;
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
+								width: 60px;
+								height: 60px;
+								margin-top: -30px;
+								margin-left: -30px;
+								border-radius: 100%;
+								opacity: 0;
+								animation: ripple 0.3s 1 ease-out;
+							}
+
+							@keyframes ripple {
+								0% {
+									opacity: 1;
+									transform: scale(0);
+								}
+								100% {
+									opacity: 0;
+									transform: scale(1);
+								}
+							}
+						}
+					}
+
+					@include mq.mq(xs) {
+						font-size: 1.2rem;
+						border: 1px solid #74747470;
+						padding: 4px 6px;
+						min-width: 140px;
+						letter-spacing: 0.05em;
+						text-decoration: none;
+					}
+				}
+
+				.favoriteBtn {
+					min-width: 110px;
+
+					.icon {
+						background: url("/img/icon/favorite.png") transparent no-repeat;
+						background-size: 16px 48px;
+						background-position-y: -16px;
+
+						@include mq.mq(xs) {
+							background: url("/img/icon/favorite.png") transparent no-repeat;
+							width: 12px;
+							height: 12px;
+							background-size: 12px 37px;
+							background-position-y: -12px;
+						}
+					}
+
+					&:hover {
+						border-color: #dda1b8;
+						color: #dda1b8;
+					}
+
+					&._add {
+						background-color: #dda1b8;
+
+						.icon {
+							&:after {
+								background: #dda1b8;
+							}
+						}
+					}
+				}
+
+				.wentBtn {
+					.icon {
+						background: url("/img/icon/pin.png") transparent no-repeat;
+						background-size: 16px 48px;
+						background-position-y: -16px;
+					}
+
+					&:hover {
+						border-color: color.$main;
+						color: color.$main;
+
+						span {
+							color: color.$main;
+						}
+					}
+
+					&._add {
+						background-color: color.$main;
+						.icon {
+							&:after {
+								background: color.$main;
+							}
+						}
+					}
+				}
+
+				.icon {
+					width: 16px;
+					height: 16px;
+					margin-right: 5px;
+					transform: translateY(1px);
+					position: relative;
+				}
+			}
+		}
+
+		.head_bottom {
+			.info_basic {
+				display: flex;
+
+				@include mq.mq(isp) {
+					flex-wrap: wrap;
+				}
+
+				span {
+					font-size: 1.3rem;
+					color: color.$gray;
+					letter-spacing: 0.08em;
+
+					&:not(:last-of-type) {
+						&:after {
+							content: "/";
+							display: inline-block;
+							margin: 0 8px;
+						}
+					}
+
+					@include mq.mq(isp) {
+						font-size: 1.2rem;
+						margin-bottom: 5px;
+					}
+				}
+			}
+
+			.info_evaluation {
+				display: flex;
+				padding: 10px 0;
+				margin-bottom: 8px;
+
+				@include mq.mq(xs) {
+				}
+
+				.kuchikomi,
+				.minCharge {
+					display: flex;
+					align-items: center;
+
+					@include mq.mq(xs) {
+						flex-wrap: wrap;
+						width: 50%;
+					}
+
+					.title {
+						font-size: 1.6rem;
+						font-weight: bold;
+						margin-right: 16px;
+
+						@include mq.mq(isp) {
+							font-size: 1.5rem;
+						}
+
+						@include mq.mq(xs) {
+							width: 100%;
+							margin-right: 8px;
+							margin-bottom: 3px;
+						}
+					}
+				}
+
+				.kuchikomi {
+					margin-right: 25px;
+					padding-right: 25px;
+					position: relative;
+
+					&::after {
+						content: "";
+						display: inline-block;
+						width: 1px;
+						height: calc(100%);
+						background-color: #b6b6b6;
+						position: absolute;
+						top: 50%;
+						right: 0;
+						transform: translateY(-40%);
+					}
+
+					@include mq.mq(xs) {
+						margin-right: 12px;
+						padding-right: 12px;
+
+						&::after {
+							background-color: #c0c0c0;
+						}
+					}
+
+					@include mq.mq(xs2) {
+						margin-right: 8px;
+						padding-right: 8px;
+					}
+
+					.average {
+						color: #bf0000;
+						font-size: 2rem;
+						font-weight: 700;
+						letter-spacing: 0.05em;
+						margin-right: 10px;
+
+						@include mq.mq(xs) {
+							font-size: 1.6rem;
+							margin-right: 3px;
+						}
+					}
+
+					.box > span > span {
+						@include mq.mq(xs) {
+							svg {
+								width: 12px;
+							}
+						}
+					}
+
+					.url {
+						margin-left: 8px;
+						font-size: 15px;
+						text-decoration: underline;
+
+						&:hover {
+							text-decoration: none;
+						}
+
+						@include mq.mq(xs) {
+							display: inline-block;
+							transform: translateY(-2px);
+							margin-left: 4px;
+							font-size: 13px;
+						}
+					}
+				}
+
+				.minCharge {
+					.title {
+						margin-right: 10px;
+						span {
+							font-size: 1.2rem;
+						}
+					}
+
+					.num {
+						color: #bf0000;
+						font-size: 2rem;
+						font-weight: 700;
+						letter-spacing: 0.05em;
+
+						@include mq.mq(xs) {
+							font-size: 1.6rem;
+						}
+					}
+				}
+			}
+
+			.hotelSpecial {
+				color: #b79e24;
+				font-size: 2.2rem;
+				margin-bottom: 2rem;
+				letter-spacing: 0.1em;
+				text-align: center;
+
+				@include mq.mq(isp) {
+					font-size: 1.8rem;
+				}
+
+				@include mq.mq(xs2) {
+					font-size: 1.5rem;
+				}
+			}
+		}
+	}
+
+	&__body {
+		.hotelImg_wrap {
+			width: 100%;
+			// height: 450px;
+			height: 600px;
+			border-radius: 5px;
+			overflow: hidden;
+			border: 1px solid #5a5a5a20;
+			position: relative;
+
+			img {
+				object-fit: contain;
+				object-position: center;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 100%;
+				height: auto;
+			}
+
+			@include mq.mq(sp) {
+				height: 450px;
+			}
+
+			@include mq.mq(isp) {
+				height: 300px;
+				background-color: #f5f5f5;
+
+				img {
+					object-fit: cover;
+					height: 100%;
+				}
+			}
+
+			@include mq.mq(xs) {
+				height: 230px;
+			}
+		}
+
+		.info_title {
+			margin-top: 4rem;
+			margin-bottom: 4rem;
+			font-size: 2.5rem;
+			letter-spacing: 0.05em;
+			padding: 3px 15px;
+			border-bottom: 1px solid color.$main;
+			color: color.$main;
+
+			@include mq.mq(isp) {
+				font-size: 2.2rem;
+				margin-top: 3.5rem;
+				margin-bottom: 2.8rem;
+			}
+
+			@include mq.mq(xs) {
+				font-size: 2rem;
+				padding: 3px 10px;
+			}
+		}
+
+		.access {
+			&__wrap {
+				display: flex;
+				justify-content: space-between;
+				padding: 0 15px;
+
+				@include mq.mq(sp) {
+					flex-direction: column;
+					row-gap: 25px;
+				}
+			}
+
+			.text_box {
+				margin-right: 30px;
+
+				.info_list {
+					list-style: none;
+
+					> li {
+						display: flex;
+						line-height: 1.8;
+
+						@include mq.mq(xs) {
+							display: block;
+						}
+
+						&:not(:last-of-type) {
+							margin-bottom: 1.5rem;
+						}
+
+						.title {
+							flex-shrink: 0;
+							width: 90px;
+							font-size: 1.6rem;
+							font-weight: 700;
+							letter-spacing: 0.05em;
+							position: relative;
+							padding-right: 10px;
+							margin-right: 15px;
+
+							&:after {
+								content: ":";
+								display: inline-block;
+								position: absolute;
+								right: 0;
+							}
+
+							@include mq.mq(xs) {
+								&:after {
+									content: none;
+								}
+							}
+						}
+
+						.box,
+						.text {
+							padding-left: 1.5rem;
+						}
+					}
+				}
+			}
+
+			.img_box {
+				flex-shrink: 0;
+				max-width: 400px;
+				width: 100%;
+			}
+		}
+
+		.kuchikomi {
+			&__wrap {
+				display: flex;
+				justify-content: center;
+				max-width: 1000px;
+				width: 100%;
+				margin: 0 auto;
+
+				@include mq.mq(isp) {
+					flex-direction: column;
+				}
+
+				.head {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+					margin-right: 45px;
+					flex-shrink: 0;
+
+					@include mq.mq(isp) {
+						flex-direction: row;
+						align-items: baseline;
+						margin-right: 0;
+						margin-bottom: 18px;
+					}
+
+					@include mq.mq(xs2) {
+						flex-wrap: wrap;
+					}
+
+					.title {
+						@include font.notoSerif_b;
+						font-size: 20px;
+						margin-bottom: 10px;
+						letter-spacing: 0.25em;
+
+						@include mq.mq(isp) {
+							margin-bottom: 0;
+							margin-right: 5px;
+							font-size: 1.8rem;
+						}
+
+						@include mq.mq(xs2) {
+							display: block;
+							text-align: center;
+							width: 100%;
+						}
+					}
+
+					.average {
+						font-size: 30px;
+						font-weight: bold;
+						color: #bf0000;
+
+						@include mq.mq(isp) {
+							font-size: 2.6rem;
+							display: inline-block;
+							margin-right: 8px;
+						}
+					}
+
+					.box {
+						margin: 5px 0;
+					}
+
+					.url {
+						font-size: 13px;
+						text-decoration: underline;
+
+						@include mq.mq(isp) {
+							transform: translateY(-3px);
+							display: inline-block;
+							margin-left: 5px;
+						}
+
+						&:hover {
+							text-decoration: none;
+						}
+					}
+				}
+
+				.body {
+					border-radius: 10px;
+					width: 100%;
+					padding: 25px 40px;
+					background-color: #f5f5f5;
+
+					@include mq.mq(sp) {
+						padding: 25px 23px;
+					}
+
+					@include mq.mq(isp) {
+						padding: 20px 18px;
+					}
+
+					.kuchikomi_list {
+						list-style: none;
+						display: grid;
+						grid-template-columns: repeat(2, 1fr);
+						column-gap: 40px;
+						row-gap: 20px;
+
+						@include mq.mq(sp) {
+							column-gap: 30px;
+						}
+
+						@include mq.mq(isp) {
+							column-gap: 20px;
+						}
+
+						@include mq.mq(xs) {
+							grid-template-columns: 1fr;
+							row-gap: 15px;
+						}
+
+						> li {
+							background-color: #ffffff;
+							border-radius: 8px;
+							padding: 10px 25px;
+
+							@include mq.mq(sp) {
+								padding: 10px 20px;
+							}
+
+							@include mq.mq(isp) {
+								padding: 8px 18px;
+							}
+						}
+
+						.title {
+							// @include font.notoSerif_r;
+							font-size: 15px;
+							font-weight: 600;
+							letter-spacing: 0.05em;
+							display: inline-block;
+							margin-right: 15px;
+							width: 70px;
+
+							@include mq.mq(sp) {
+								width: 65px;
+								margin-right: 12px;
+							}
+						}
+
+						.average {
+							display: inline-block;
+							margin-right: 10px;
+							font-size: 18px;
+							font-weight: bold;
+							color: #bf0000;
+							width: 60px;
+
+							@include mq.mq(sp) {
+								width: 48px;
+								margin-right: 2px;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.basicInfo,
+		.otherInfo {
+			table {
+				max-width: 1000px;
+				width: 100%;
+				margin: 0 auto;
+				border-radius: 5px;
+				overflow: hidden;
+				border-collapse: collapse;
+				box-sizing: border-box;
+
+				tbody {
+				}
+
+				tr {
+					&:not(:last-child) {
+						th {
+							border-bottom: 1px solid #f5f5f5;
+						}
+
+						td {
+							border-bottom: 1px solid #cab0b0;
+						}
+					}
+				}
+
+				th,
+				td {
+					@include mq.mq(isp) {
+						font-size: 1.5rem;
+					}
+					@include mq.mq(xs) {
+						width: 100%;
+						display: block;
+					}
+				}
+
+				th {
+					width: 200px;
+					// padding: 15px 10px 15px 30px;
+					padding: 15px 10px;
+					color: #ffffff;
+					letter-spacing: 0.08em;
+					background-color: #800000;
+					// text-align: left;
+
+					@include mq.mq(isp) {
+						width: 150px;
+					}
+
+					@include mq.mq(xs) {
+						width: 100%;
+						padding: 10px 8px;
+					}
+				}
+
+				td {
+					background-color: #f5f5f5;
+					padding: 15px 30px;
+					letter-spacing: 0.05em;
+
+					@include mq.mq(isp) {
+						padding: 15px 20px;
+					}
+
+					.rearText {
+						margin-left: 8px;
+					}
+
+					.list,
+					.listFlex {
+						list-style: none;
+						display: grid;
+						grid-template-columns: 1fr;
+						column-gap: 20px;
+						row-gap: 10px;
+
+						.item {
+							padding-left: 18px;
+							position: relative;
+							letter-spacing: 0.05em;
+
+							&::before {
+								content: "";
+								display: inline-block;
+								width: 6px;
+								height: 6px;
+								border-radius: 50%;
+								background-color: #800000;
+								position: absolute;
+								top: 0.5em;
+								left: 2px;
+							}
+						}
+					}
+
+					.listFlex {
+						grid-template-columns: repeat(2, 1fr);
+					}
+				}
+			}
+		}
+	}
 }
