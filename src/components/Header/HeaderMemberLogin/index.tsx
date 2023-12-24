@@ -6,16 +6,12 @@ import { faRightToBracket, faUser } from "@fortawesome/free-solid-svg-icons";
 import styles from "@/styles/header.module.scss";
 
 export default function HeaderLogin() {
-    return (
-        <span className={styles.mypage}>
-            <Link href="/login">
-                <span className={styles.text}>ログイン</span>
-                <FontAwesomeIcon
-                    icon={faRightToBracket}
-                    style={{ color: "#800000" }}
-                    className={styles.icon}
-                />
-            </Link>
-        </span>
-    );
+	return (
+		<span className={styles.mypage}>
+			<Link href="/mypage">
+				<span className={styles.text}>マイページ</span>
+				<FontAwesomeIcon icon={faRightToBracket} style={{ color: "#800000" }} className={styles.icon} />
+			</Link>
+		</span>
+	);
 }

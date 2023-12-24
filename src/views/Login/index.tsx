@@ -1,15 +1,16 @@
 // react / next
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // styles
 import styles from "@/styles/authForm.module.scss";
 // hools
 import { useRoute } from "@/hooks/useRoute";
+import useUserStore from "@/hooks/useUserStore";
 // lib
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useForm, useFormContext } from "react-hook-form";
-import useUserStore from "../../lib/useUserStore";
+// import useUserStore from "../../lib/useUserStore";
 
 // firebase
 import { getAuth, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
@@ -51,6 +52,8 @@ const LoginView = () => {
 	// 	}
 	// };
 
+	useEffect(() => {}, []);
+
 	// Zustandの記述
 	const onLogin = async (data: ANY_OBJECT) => {
 		try {
@@ -58,10 +61,13 @@ const LoginView = () => {
 			const user = userCredential.user;
 
 			console.log("ログインしました", user);
-			alert("ログインしました");
+			// alert("ログインしました");
 
 			// Zustandのuser情報を更新
-			setUser({ name: user.displayName, email: user.email });
+			setUser({
+				name: user.displayName ? user.displayName : "",
+				email: user.email ? user.email : "",
+			});
 
 			return user;
 		} catch (error: any) {

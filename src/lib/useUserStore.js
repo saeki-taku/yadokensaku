@@ -15,6 +15,3 @@ const useUserStore = create(
 );
 
 export default useUserStore;
-
-// 2023/12/10
-// ※hooksディレクトリに入れて使用する予定

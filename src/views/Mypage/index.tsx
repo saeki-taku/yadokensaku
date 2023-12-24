@@ -25,10 +25,7 @@ const MypageView = () => {
 						}}
 					/>
 				</figure>
-				<div className={styles.name_wrap}>
-					佐伯　卓哉
-					<span className={styles.rear_text}>さんのマイページ</span>
-				</div>
+				<div className={styles.hero_title}>マイページ</div>
 			</div>
 			<div className={styles.mypage_wrap}>
 				<div className={styles.menu_wrap}>
@@ -80,6 +77,12 @@ const MypageView = () => {
 					</div>
 					<ul className={styles.list}>
 						<li>
+							<div className={`${styles.head} ${styles._sp}`}>
+								<span className={styles.pref}>東京都</span>
+								<div className={styles.title}>
+									<a href="">三井ガーデンホテル　プラナ東京ベイ</a>
+								</div>
+							</div>
 							<div className={styles.img_box}>
 								<figure>
 									<Image
@@ -97,9 +100,11 @@ const MypageView = () => {
 								</figure>
 							</div>
 							<div className={styles.text_box}>
-								<span className={styles.pref}>東京都</span>
-								<div className={styles.title}>
-									<a href="">三井ガーデンホテル　プラナ東京ベイ</a>
+								<div className={`${styles.head} ${styles._pc}`}>
+									<span className={styles.pref}>東京都</span>
+									<div className={styles.title}>
+										<a href="">三井ガーデンホテル　プラナ東京ベイ</a>
+									</div>
 								</div>
 								{/* </div> */}
 								<div className={styles.info_evaluation}>

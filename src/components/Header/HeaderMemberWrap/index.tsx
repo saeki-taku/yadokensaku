@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 // components
 import HeaderMemberNew from "../HeaderMemberNew/";
 import HeaderMemberName from "../HeaderMemberName";
@@ -8,22 +9,36 @@ import HeaderMemberMypage from "../HeaderMemberLogin";
 import { Col } from "antd";
 // style
 import styles from "@/styles/header.module.scss";
+// hooks
+import useUserStore from "@/hooks/useUserStore";
 
 export default function HeaderMemberWarp() {
-    return (
-        <Col
-            span={16}
-            className={styles.member_wrap}
-        >
-            <div className={styles.member_right}>
-                <HeaderMemberName />
-                <div className={styles.member_box}>
-                    <HeaderMemberNew />
-                    <HeaderMemberLogin />
-                    {/* todo: ログイン済していたら <HeaderMemberMypage /> を表示させる条件分岐 */}
-                    {/* <HeaderMemberMypage /> */}
-                </div>
-            </div>
-        </Col>
-    );
+	const { user } = useUserStore();
+	const [userName, setUserName] = useState(false);
+
+	useEffect(() => {
+		if (user?.name === undefined || user?.name === null) {
+			setUserName(true);
+		} else {
+			setUserName(false);
+		}
+	}, [user?.name]);
+
+	return (
+		<Col span={16} className={styles.member_wrap}>
+			<div className={styles.member_right}>
+				<HeaderMemberName />
+				{userName ? (
+					<div className={styles.member_box}>
+						<HeaderMemberNew />
+						<HeaderMemberLogin />
+					</div>
+				) : (
+					<div className={styles.member_box}>
+						<HeaderMemberMypage />
+					</div>
+				)}
+			</div>
+		</Col>
+	);
 }
