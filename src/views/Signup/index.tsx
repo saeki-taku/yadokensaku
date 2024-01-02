@@ -6,12 +6,10 @@ import styles from "@/styles/authForm.module.scss";
 // hools
 import { useRoute } from "@/hooks/useRoute";
 // lib
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useForm, useFormContext } from "react-hook-form";
+import { useForm } from "react-hook-form";
 // firebase
-import { createUserWithEmailAndPassword, updateProfile, signInAnonymously } from "firebase/auth";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, setDoc, getDoc, addDoc, collection } from "firebase/firestore";
 import { app, auth, db } from "@/lib/firebaseConfig";
 
 // const TopMainRanking = ({ title, ranikingData }: Props) => {
@@ -40,6 +38,7 @@ const SignupView = () => {
 			});
 
 			// firebase doc関数について https://firebase.google.com/docs/firestore/query-data/get-data?hl=ja
+			// doc(db, "users（firebaseに登録するパス名）", user.uid（追加する情報（今回はユーザーID））);
 			const docRef = doc(db, "users", user.uid);
 			const docSnap = await getDoc(docRef);
 
@@ -51,14 +50,33 @@ const SignupView = () => {
 					name: data.name,
 					email: user.email,
 				});
+
+				// サブコレクショにお気に入り情報を追加
+				await setDoc(doc(db, `users/${user.uid}/favoriteHotels`, "hotel"), {
+					id: {},
+				});
+				// サブコレクショに行ったことある情報を追加
+				await setDoc(doc(db, `users/${user.uid}/wentHotels`, "hotel"), {
+					id: {},
+				});
+
+				// ユーザードキュメント内の "favoriteHotels" サブコレクションにお気に入りホテル情報を追加
+				// const favoritesCollectionRef = collection(db, `users/${user.uid}/favoriteHotels`);
+				// await setDoc(doc(db, favoritesCollectionRef, user.uid), {
+				// 	name: data.name,
+				// 	email: user.email,
+				// });
+				// await addDoc(favoritesCollectionRef, {
+				// 	hotelId: "",
+				// });
 			}
 
 			console.log("登録完了しました", user);
 			alert("登録完了しました");
-			// router.push({
-			//     pathname: "",
-			// });
-			return user;
+			router.push({
+				pathname: "/login",
+			});
+			// return user;
 		} catch (error: any) {
 			setErrorMessage("※登録に失敗しました");
 			// setErrorMessage("※既に使用されているメールアドレスです。");
