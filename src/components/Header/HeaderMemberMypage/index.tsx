@@ -6,16 +6,12 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import styles from "@/styles/header.module.scss";
 
 export default function HeaderMypage() {
-    return (
-        <span className={styles.mypage}>
-            <Link href="/">
-                <span className={styles.text}>マイページ</span>
-                <FontAwesomeIcon
-                    icon={faUser}
-                    style={{ color: "#800000" }}
-                    className={styles.icon}
-                />
-            </Link>
-        </span>
-    );
+	return (
+		<span className={styles.mypage}>
+			<Link href="/">
+				<span className={styles.text}>マイページ</span>
+				<FontAwesomeIcon icon={faUser} style={{ color: "#800000" }} className={styles.icon} />
+			</Link>
+		</span>
+	);
 }

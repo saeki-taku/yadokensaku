@@ -4,7 +4,7 @@ import HeaderMemberNew from "../HeaderMemberNew/";
 import HeaderMemberName from "../HeaderMemberName";
 import HeaderMemberFavourite from "../HeaderMemberFavourite";
 import HeaderMemberLogin from "../HeaderMemberLogin";
-import HeaderMemberMypage from "../HeaderMemberLogin";
+import HeaderMemberMypage from "../HeaderMemberMypage";
 // lib
 import { Col } from "antd";
 // style

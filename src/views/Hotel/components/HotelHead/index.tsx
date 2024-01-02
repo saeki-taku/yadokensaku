@@ -4,13 +4,35 @@ import ReactStarsRating from "react-awesome-stars-rating";
 import styles from "@/styles/hotel.module.scss";
 
 const HotelHead = ({ hotelBasicInfo, hotelDetailInfo, hotelFacilitiesInfo }: ANY_OBJECT) => {
+	// お気に入りを追加した時の処理を記述
+	const toggleFavorite = (e: any) => {
+		e.preventDefault();
+	};
+
+	// const handleSignOut = async (e: any) => {
+	// 	e.preventDefault();
+
+	// 	try {
+	// 		const auth = getAuth();
+	// 		await signOut(auth);
+	// 		clearUser();
+
+	// 		// alert("ログアウトしました");
+	// 	} catch (e) {
+	// 		if (e instanceof FirebaseError) {
+	// 			console.log("エラーです", e);
+	// 		}
+	// 	}
+	// };
+
 	return (
 		<div className={styles.hotelInfo__head}>
 			<div className={styles.head_top}>
 				<h2 className={styles.hotelName}>{hotelBasicInfo.hotelName}</h2>
 				<div className={styles.favoriteBtnWrap}>
 					<a
-						href=""
+						href="#"
+						onClick={toggleFavorite}
 						className={styles.favoriteBtn}
 						// className={`${styles.favoriteBtn} ${styles._add}`}
 					>

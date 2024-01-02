@@ -1,5 +1,4 @@
 // react / next
-import Link from "next/link";
 import React, { useState, useEffect } from "react";
 // styles
 import styles from "@/styles/authForm.module.scss";
@@ -17,14 +16,13 @@ import { getAuth, signInWithEmailAndPassword, signInAnonymously } from "firebase
 import { auth } from "@/lib/firebaseConfig";
 
 const LoginView = () => {
-	const router = useRoute();
 	const [errorMessage, setErrorMessage] = useState("");
 
 	// Zustandの記述
 	// setUser関数を取得
 	const setUser = useUserStore((state) => state.setUser);
 	// Zustandの状態を取得
-	const userState = useUserStore((state) => state.user);
+	// const userState = useUserStore((state) => state.user);
 
 	const {
 		register,
@@ -52,21 +50,20 @@ const LoginView = () => {
 	// 	}
 	// };
 
-	useEffect(() => {}, []);
-
 	// Zustandの記述
 	const onLogin = async (data: ANY_OBJECT) => {
 		try {
 			const userCredential = await signInWithEmailAndPassword(auth, data.mail, data.pass);
+			console.log("ログインしました", userCredential);
 			const user = userCredential.user;
 
-			console.log("ログインしました", user);
 			// alert("ログインしました");
 
 			// Zustandのuser情報を更新
 			setUser({
 				name: user.displayName ? user.displayName : "",
 				email: user.email ? user.email : "",
+				uid: user.uid ? user.uid : "",
 			});
 
 			return user;
@@ -75,9 +72,6 @@ const LoginView = () => {
 			console.log("ログインに失敗しました", error);
 		}
 	};
-
-	// 状態をコンソールに出力して確認
-	console.log("User State:", userState);
 
 	return (
 		<div className="common_wrap">
@@ -122,9 +116,3 @@ const LoginView = () => {
 };
 
 export default LoginView;
-
-// saetaku333@yahoo.co.jp
-// test001
-
-// saetaku333@gmail.com
-// test111

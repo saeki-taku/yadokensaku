@@ -7,9 +7,9 @@ import styles from "@/styles/header.module.scss";
 
 export default function HeaderLogin() {
 	return (
-		<span className={styles.mypage}>
-			<Link href="/mypage">
-				<span className={styles.text}>マイページ</span>
+		<span className={styles.login}>
+			<Link href="/login">
+				<span className={styles.text}>ログイン</span>
 				<FontAwesomeIcon icon={faRightToBracket} style={{ color: "#800000" }} className={styles.icon} />
 			</Link>
 		</span>

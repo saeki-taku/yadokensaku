@@ -4,12 +4,14 @@ import { persist } from "zustand/middleware";
 interface User {
   name: string;
   email: string;
+  uid: string;
   // 他のユーザー情報もここに含めることができます
 }
 
 type UserStore = {
   user: User | null;
   setUser: (newUser: User | null) => void;
+  clearUser: any;
 };
 
 const useUserStore = create<UserStore>()(
@@ -17,6 +19,10 @@ const useUserStore = create<UserStore>()(
     (set) => ({
       user: null,
       setUser: (newUser) => set({ user: newUser }),
+      clearUser: () => {
+        set({ user: null })
+        localStorage.removeItem('user-storage');
+      }
     }),
     {
       name: 'user-storage', // 保存先の名前

@@ -5,23 +5,20 @@ import HeaderMemberFavourite from "./HeaderMemberFavourite";
 import HeaderMemberWent from "./HeaderMemberWent";
 // style
 import styles from "@/styles/header.module.scss";
-// lib
-import { Row } from "antd";
-import { auth } from "@/lib/firebaseConfig";
 
 export default function Header() {
-    // console.log("ログイン情報", auth);
+	// console.log("ログイン情報", auth);
 
-    return (
-        <header className={styles.header}>
-            <div className={styles.top}>
-                <HeaderLogo />
-                <HeaderMemberWrap />
-            </div>
-            <div className={styles.bottom}>
-                <HeaderMemberFavourite />
-                <HeaderMemberWent />
-            </div>
-        </header>
-    );
+	return (
+		<header className={styles.header}>
+			<div className={styles.top}>
+				<HeaderLogo />
+				<HeaderMemberWrap />
+			</div>
+			<div className={styles.bottom}>
+				<HeaderMemberFavourite />
+				<HeaderMemberWent />
+			</div>
+		</header>
+	);
 }
