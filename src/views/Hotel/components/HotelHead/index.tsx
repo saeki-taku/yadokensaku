@@ -1,14 +1,11 @@
+// components
+import FavoriteBtn from "../FavoriteBtn";
 // lib
 import ReactStarsRating from "react-awesome-stars-rating";
 // style
 import styles from "@/styles/hotel.module.scss";
 
 const HotelHead = ({ hotelBasicInfo, hotelDetailInfo, hotelFacilitiesInfo }: ANY_OBJECT) => {
-	// お気に入りを追加した時の処理を記述
-	const toggleFavorite = (e: any) => {
-		e.preventDefault();
-	};
-
 	// const handleSignOut = async (e: any) => {
 	// 	e.preventDefault();
 
@@ -29,25 +26,7 @@ const HotelHead = ({ hotelBasicInfo, hotelDetailInfo, hotelFacilitiesInfo }: ANY
 		<div className={styles.hotelInfo__head}>
 			<div className={styles.head_top}>
 				<h2 className={styles.hotelName}>{hotelBasicInfo.hotelName}</h2>
-				<div className={styles.favoriteBtnWrap}>
-					<a
-						href="#"
-						onClick={toggleFavorite}
-						className={styles.favoriteBtn}
-						// className={`${styles.favoriteBtn} ${styles._add}`}
-					>
-						<i className={styles.icon}></i>
-						お気に入り<span className="xs_none">に追加</span>
-					</a>
-					<a
-						href=""
-						className={styles.wentBtn}
-						// className={`${styles.wentBtn} ${styles._add}`}
-					>
-						<i className={styles.icon}></i>
-						行った<span className="">ことがある</span>
-					</a>
-				</div>
+				<FavoriteBtn hotelNo={hotelBasicInfo.hotelNo} />
 			</div>
 			<div className={styles.head_bottom}>
 				<div className={styles.info_basic}>

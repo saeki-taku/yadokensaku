@@ -53,22 +53,12 @@ const SignupView = () => {
 
 				// サブコレクショにお気に入り情報を追加
 				await setDoc(doc(db, `users/${user.uid}/favoriteHotels`, "hotel"), {
-					id: {},
+					id: [],
 				});
 				// サブコレクショに行ったことある情報を追加
 				await setDoc(doc(db, `users/${user.uid}/wentHotels`, "hotel"), {
-					id: {},
+					id: [],
 				});
-
-				// ユーザードキュメント内の "favoriteHotels" サブコレクションにお気に入りホテル情報を追加
-				// const favoritesCollectionRef = collection(db, `users/${user.uid}/favoriteHotels`);
-				// await setDoc(doc(db, favoritesCollectionRef, user.uid), {
-				// 	name: data.name,
-				// 	email: user.email,
-				// });
-				// await addDoc(favoritesCollectionRef, {
-				// 	hotelId: "",
-				// });
 			}
 
 			console.log("登録完了しました", user);

@@ -6,8 +6,6 @@ export default function HeaderMemberName() {
 	const { user } = useUserStore();
 	const [userName, setUserName] = useState("ゲスト");
 
-	console.log("user____", user);
-
 	useEffect(() => {
 		if (user?.name === undefined || user?.name === null) {
 			setUserName("ゲスト");
