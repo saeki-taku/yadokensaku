@@ -65,6 +65,7 @@
 					&._add {
 						color: #ffffff;
 						border: transparent;
+						text-decoration: none;
 
 						.icon {
 							background-position-y: -32px;
@@ -95,6 +96,10 @@
 									transform: scale(1);
 								}
 							}
+						}
+
+						> span {
+							color: #fff;
 						}
 					}
 
@@ -133,6 +138,11 @@
 					&._add {
 						background-color: #dda1b8;
 
+						&:hover {
+							opacity: 0.8;
+							color: #fff;
+						}
+
 						.icon {
 							&:after {
 								background: #dda1b8;
@@ -159,6 +169,16 @@
 
 					&._add {
 						background-color: color.$main;
+
+						&:hover {
+							opacity: 0.8;
+							color: #fff;
+
+							> span {
+								color: #fff;
+							}
+						}
+
 						.icon {
 							&:after {
 								background: color.$main;
