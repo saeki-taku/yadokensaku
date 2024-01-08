@@ -1,45 +1,48 @@
+// react
+import { useEffect, useState } from "react";
 // style
 import styles from "@/styles/hotel.module.scss";
-// hools
+// hooks
 import { useRoute } from "@/hooks/useRoute";
+// utils
+import { getHotelIds } from "../../../../utils/myhotel";
 // firebase
 import { doc, getDocs, updateDoc, arrayUnion, arrayRemove, collection } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
 import "firebase/firestore";
 // zustand
 import useUserStore from "@/hooks/useUserStore";
-import { useEffect, useState } from "react";
 
 const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
-	// // Zustandの状態を取得
+	// Zustandの状態を取得
 	const uid = useUserStore((state) => state.user?.uid);
 	// console.log("uid::", uid);
 
 	const [isFavoriteHotelId, setIsFavoriteHotelId] = useState(false);
 	const [isWentHotelId, setIsWentHotelId] = useState(false);
 
-	// // お気に入りホテル
+	// お気に入りホテル
 	useEffect(() => {
-		const getHotelIds = async (type: string) => {
-			const userDocRef = doc(db, "users", `${uid}`);
-			const favoritesCollectionRef = collection(userDocRef, type);
-			let favoriteData: Array<number> = [];
+		// const getHotelIds = async (type: string) => {
+		// 	const userDocRef = doc(db, "users", `${uid}`);
+		// 	const favoritesCollectionRef = collection(userDocRef, type);
+		// 	let favoriteData: Array<number> = [];
 
-			try {
-				const querySnapshot = await getDocs(favoritesCollectionRef);
-				querySnapshot.forEach((docs) => {
-					const hotelIdsArray = docs.data().id;
-					hotelIdsArray.forEach((id: number) => {
-						favoriteData.push(id);
-					});
-				});
-			} catch (error) {
-				console.error("Error getting documents: ", error);
-			}
-			return favoriteData;
-		};
+		// 	try {
+		// 		const querySnapshot = await getDocs(favoritesCollectionRef);
+		// 		querySnapshot.forEach((docs) => {
+		// 			const hotelIdsArray = docs.data().id;
+		// 			hotelIdsArray.forEach((id: number) => {
+		// 				favoriteData.push(id);
+		// 			});
+		// 		});
+		// 	} catch (error) {
+		// 		console.error("Error getting documents: ", error);
+		// 	}
+		// 	return favoriteData;
+		// };
 
-		getHotelIds("favoriteHotels")
+		getHotelIds("favoriteHotels", uid)
 			.then((result) => {
 				result.forEach((id: number) => {
 					if (hotelNo.hotelNo === id) {
@@ -52,7 +55,7 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 				console.error("Error:", error);
 			});
 
-		getHotelIds("wentHotels")
+		getHotelIds("wentHotels", uid)
 			.then((result) => {
 				result.forEach((id: number) => {
 					if (hotelNo.hotelNo === id) {

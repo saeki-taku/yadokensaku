@@ -1,4 +1,6 @@
+// react / next
 import { useEffect, useState } from "react";
+import Link from "next/link";
 // components
 import HeaderMemberNew from "../HeaderMemberNew/";
 import HeaderMemberName from "../HeaderMemberName";
@@ -12,7 +14,7 @@ import styles from "@/styles/header.module.scss";
 // hooks
 import useUserStore from "@/hooks/useUserStore";
 
-export default function HeaderMemberWarp() {
+export default function HeaderTop() {
 	const { user } = useUserStore();
 	const [userName, setUserName] = useState(false);
 
@@ -25,20 +27,27 @@ export default function HeaderMemberWarp() {
 	}, [user?.name]);
 
 	return (
-		<Col span={16} className={styles.member_wrap}>
-			<div className={styles.member_right}>
-				<HeaderMemberName />
-				{userName ? (
-					<div className={styles.member_box}>
-						<HeaderMemberNew />
-						<HeaderMemberLogin />
-					</div>
-				) : (
-					<div className={styles.member_box}>
-						<HeaderMemberMypage />
-					</div>
-				)}
-			</div>
-		</Col>
+		<div className={styles.top}>
+			<Col span={8}>
+				<h1>
+					<Link href="/">宿検索</Link>
+				</h1>
+			</Col>
+			<Col span={16} className={styles.member_wrap}>
+				<div className={styles.member_right}>
+					<HeaderMemberName />
+					{userName ? (
+						<div className={styles.member_box}>
+							<HeaderMemberNew />
+							<HeaderMemberLogin />
+						</div>
+					) : (
+						<div className={styles.member_box}>
+							<HeaderMemberMypage />
+						</div>
+					)}
+				</div>
+			</Col>
+		</div>
 	);
 }
