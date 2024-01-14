@@ -1,5 +1,5 @@
 // firebase
-import { doc, getDocs, updateDoc, arrayUnion, arrayRemove, collection } from "firebase/firestore";
+import { doc, getDocs, collection } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
 import "firebase/firestore";
 

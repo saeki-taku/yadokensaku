@@ -5,7 +5,7 @@ import { faRightToBracket, faUser } from "@fortawesome/free-solid-svg-icons";
 // style
 import styles from "@/styles/header.module.scss";
 
-export default function HeaderLogin() {
+export default function HeaderMembarLogin() {
 	return (
 		<span className={styles.login}>
 			<Link href="/login">

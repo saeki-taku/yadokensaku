@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "@/styles/header.module.scss";
-import useUserStore from "@/hooks/useUserStore";
+import { useUserStore } from "@/hooks/useUserStore";
 
 export default function HeaderMemberName() {
 	const { user } = useUserStore();

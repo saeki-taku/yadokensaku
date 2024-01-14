@@ -11,7 +11,7 @@ import { doc, getDocs, updateDoc, arrayUnion, arrayRemove, collection } from "fi
 import { db } from "@/lib/firebaseConfig";
 import "firebase/firestore";
 // zustand
-import useUserStore from "@/hooks/useUserStore";
+import { useUserStore } from "@/hooks/useUserStore";
 
 const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 	// Zustandの状態を取得

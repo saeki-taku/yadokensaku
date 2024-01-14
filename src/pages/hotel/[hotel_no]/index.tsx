@@ -16,6 +16,7 @@ interface Hotel {
 }
 
 export default function Hotel({ title, description, pageData }: Hotel) {
+	console.log("pageDatasssssss", pageData);
 	return (
 		<>
 			<Head>

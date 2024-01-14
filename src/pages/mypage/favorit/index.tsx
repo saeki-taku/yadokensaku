@@ -1,13 +1,15 @@
 // react
 import React, { useEffect } from "react";
 import Head from "next/head";
-// datasources
-// import { requestPageData } from "@/dataSource/mypage/requestPageData";
 // views
 import MypageView from "@/views/Mypage";
+// datasources
+import { requestPageData } from "@/dataSource/hotel/requestPageData";
+// others
+import { promiseAll } from "@/utils/common";
 // hools
 import { useRoute } from "@/hooks/useRoute";
-import { useUserStore } from "@/hooks/useUserStore";
+import useUserStore from "@/hooks/useUserStore";
 
 interface mypageProps {
 	title: string;
@@ -38,10 +40,13 @@ export default function Mypage({ title, description, pageData }: mypageProps) {
 }
 
 export const getServerSideProps = async (context: ANY_OBJECT) => {
-	return {
-		props: {
-			title: "マイページ|宿検索",
-			description: "マイページのログインです",
-		},
-	};
+	return promiseAll([requestPageData(context)], {
+		then: ([pageData]) => ({
+			props: {
+				title: "マイページのお気に入り|宿検索",
+				description: "マイページのお気に入りです",
+				// pageData: pageData,
+			},
+		}),
+	});
 };

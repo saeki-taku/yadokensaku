@@ -144,6 +144,10 @@
 						}
 
 						.icon {
+							@include mq.mq(xs) {
+								background-position-y: -24px;
+							}
+
 							&:after {
 								background: #dda1b8;
 							}

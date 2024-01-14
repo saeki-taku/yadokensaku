@@ -7,7 +7,7 @@ import styles from "@/styles/header.module.scss";
 // utils
 import { getHotelIds } from "../../../utils/myhotel";
 // zustand
-import useUserStore from "@/hooks/useUserStore";
+import { useUserStore } from "@/hooks/useUserStore";
 
 export default function HeaderBottom() {
 	// Zustandの状態を取得

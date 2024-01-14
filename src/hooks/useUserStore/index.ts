@@ -14,7 +14,7 @@ type UserStore = {
   clearUser: any;
 };
 
-const useUserStore = create<UserStore>()(
+export const useUserStore = create<UserStore>()(
   persist<UserStore>(
     (set) => ({
       user: null,
@@ -30,8 +30,6 @@ const useUserStore = create<UserStore>()(
     }
   )
 );
-
-export default useUserStore;
 
 // jsで記述すると...
 // import { create } from "zustand";

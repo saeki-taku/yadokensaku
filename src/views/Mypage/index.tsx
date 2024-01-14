@@ -1,5 +1,5 @@
 // react / next
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 // styles
 import styles from "@/styles/mypage.module.scss";
@@ -7,8 +7,59 @@ import styles from "@/styles/mypage.module.scss";
 import MypageMenuList from "./components/MypageMenuList";
 // lib
 import ReactStarsRating from "react-awesome-stars-rating";
+// utils
+import { getHotelIds } from "../../utils/myhotel";
+// zustand
+import { useUserStore } from "@/hooks/useUserStore";
+// api
+import { HotelSimple } from "@/api/hotel";
 
 const MypageView = () => {
+	// Zustandの状態を取得
+	const uid = useUserStore((state) => state.user?.uid);
+	const [favoriteHotelIdArr, setFavoriteHotelIdArr] = useState<Array<number>>([]);
+	const [favoriteHotelInfoArr, setFavoriteHotelInfoArr] = useState<any>([]);
+
+	const fetchData = async (idArr: any) => {
+		if (idArr.length === 0) {
+			console.log("No hotel IDs to fetch");
+			return;
+		}
+
+		try {
+			const idArrString = idArr.join(",");
+			return await HotelSimple(idArrString);
+		} catch (error) {
+			console.error("Error:", error);
+			throw error;
+		}
+	};
+
+	useEffect(() => {
+		getHotelIds("favoriteHotels", uid)
+			.then((result) => {
+				setFavoriteHotelIdArr(result);
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [uid, setFavoriteHotelIdArr]);
+
+	// firebaseに保存してあるホテルIDをもとにホテル情報を取得
+	useEffect(() => {
+		fetchData(favoriteHotelIdArr)
+			.then((result) => {
+				setFavoriteHotelInfoArr(result);
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [favoriteHotelIdArr]);
+
+	console.log("favoriteHotelInfoArr___::", favoriteHotelInfoArr);
+
 	return (
 		<>
 			<div className={styles.hero}>

@@ -13,7 +13,7 @@ import { faHouse, faHeart, faMapLocationDot, faArrowRightFromBracket, faUser } f
 import { getAuth, signOut } from "firebase/auth";
 import { FirebaseError } from "@firebase/util";
 // Zustand
-import useUserStore from "@/hooks/useUserStore";
+import { useUserStore } from "@/hooks/useUserStore";
 
 const MypageMenuList = () => {
 	const clearUser = useUserStore((state) => state.clearUser);

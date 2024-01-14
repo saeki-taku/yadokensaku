@@ -1,7 +1,7 @@
 // others
 import { promiseAll } from "@/utils/common";
 // api
-import { Hotel } from "@/pages/api/hotel";
+import { HotelDetail } from "@/api/hotel";
 
 /**
  * requestPageData
@@ -9,9 +9,9 @@ import { Hotel } from "@/pages/api/hotel";
  */
 
 export function requestPageData(context: any) {
-    return promiseAll([Hotel(context?.query?.hotel_no)], {
-        then: ([hotelDetail]) => ({
-            hotelDetail,
-        }),
-    });
+	return promiseAll([HotelDetail(context?.query?.hotel_no)], {
+		then: ([hotelDetail]) => ({
+			hotelDetail,
+		}),
+	});
 }

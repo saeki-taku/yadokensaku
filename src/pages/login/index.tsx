@@ -3,14 +3,10 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 // views
 import LoginView from "@/views/Login";
-// datasources
-import { requestPageData } from "@/dataSource/hotel/requestPageData";
-// others
-import { promiseAll } from "@/utils/common";
 // hools
 import { useRoute } from "@/hooks/useRoute";
 // zustand
-import useUserStore from "@/hooks/useUserStore";
+import { useUserStore } from "@/hooks/useUserStore";
 
 interface LoginProps {
 	title: string;
@@ -42,13 +38,11 @@ export default function Login({ title, description, pageData }: LoginProps) {
 }
 
 export const getServerSideProps = async (context: ANY_OBJECT) => {
-	return promiseAll([requestPageData(context)], {
-		then: ([pageData]) => ({
-			props: {
-				title: "ログイン|宿検索",
-				description: "宿検索のログインです",
-				// pageData: pageData,
-			},
-		}),
-	});
+	return {
+		props: {
+			title: "ログイン|宿検索",
+			description: "宿検索のログインです",
+			// pageData: pageData,
+		},
+	};
 };
