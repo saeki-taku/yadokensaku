@@ -36,28 +36,29 @@ interface favoriteHotels {
   num: number;
 }
 
-type favoriteHotelsStore = {
-  favoriteHotels: User | null;
-  setUser: (newUser: User | null) => void;
-  clearUser: any;
+type favoriteStore = {
+  favoriteHotels: number;
+  // addHotel: 0;
 };
 
-export const usefavoriteHotelsStore = create<favoriteHotelsStore>()(
-  persist<favoriteHotelsStore>(
+export const usefavoriteStore = create<favoriteStore>()(
+  persist<favoriteStore>(
     (set) => ({
       favoriteHotels: 0,
-      setUser: (newUser) => set({ favoriteHotels: newUser }),
-      clearFavoriteHotels: () => {
-        set({ favoriteHotels: 0 })
-        localStorage.removeItem('favoriteHotels-storage');
-      },
-    }),
-    {
-      name: 'favoriteHotels-storage', // 保存先の名前
+    }),{
+      name: 'user-storage', // 保存先の名前
       getStorage: () => localStorage, // 保存先のストレージ
     }
   )
 );
+
+//   count: 1,
+//   increase: () => set((state) => ({ count: state.count + 1 })),
+//   decrease: () => set((state) => ({ count: state.count - 1 })),
+//   reset: () => set({ count: 0 }),
+// }));
+
+
 
 // jsで記述すると...
 // import { create } from "zustand";

@@ -7,18 +7,26 @@ import styles from "@/styles/header.module.scss";
 // utils
 import { getHotelIds } from "../../../utils/myhotel";
 // zustand
-import { useUserStore } from "@/hooks/useUserStore";
+import { useUserStore, usefavoriteStore } from "@/hooks/useUserStore";
 
 export default function HeaderBottom() {
-	// Zustandの状態を取得
+	// Zustand（UserStore）
 	const uid = useUserStore((state) => state.user?.uid);
-
-	console.log("uid??", uid);
-	console.log("getHotelId", getHotelIds("favoriteHotels", uid));
-	getHotelIds("favoriteHotels", uid);
+	// Zustand（favoriteHotelsStore）
+	const setUser = useUserStore((state) => state.setUser);
 
 	const [favoriteHotelLength, setFavoriteHotelLength] = useState(0);
 	const [wentHotelLength, setWentHotelLength] = useState(0);
+
+	// Zustandのuser情報を更新
+	// setUser({
+	// 	name: user.displayName ? user.displayName : "",
+	// 	email: user.email ? user.email : "",
+	// 	uid: user.uid ? user.uid : "",
+	// });
+
+	const { favoriteHotels } = usefavoriteStore();
+	console.log("favoriteHotels", favoriteHotels);
 
 	useEffect(() => {
 		if (uid === undefined) {
@@ -33,7 +41,9 @@ export default function HeaderBottom() {
 					console.error("Error:", error);
 				});
 		}
-	}, [uid, setFavoriteHotelLength, favoriteHotelLength]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+	// }, [uid, setFavoriteHotelLength, favoriteHotelLength]);
 
 	useEffect(() => {
 		if (uid === undefined) {

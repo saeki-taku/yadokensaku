@@ -14,7 +14,6 @@ export const getHotelIds = async (type: string,  uid: string = "") => {
     const querySnapshot = await getDocs(favoritesCollectionRef);
     querySnapshot.forEach((docs) => {
       const hotelIdsArray = docs.data().id;
-      console.log("hotelIdsArray:", hotelIdsArray);
       hotelIdsArray.forEach((id: number) => {
         favoriteData.push(id);
       });

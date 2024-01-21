@@ -63,9 +63,7 @@ const MypageView = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [favoriteHotelIdArr]);
 
-	console.log("favoriteHotelInfoArr___::", favoriteHotelInfoArr);
 	let favoriteHotels = favoriteHotelInfoArr?.hotels ? favoriteHotelInfoArr?.hotels : "";
-	console.log("favoriteHotels___::", favoriteHotels);
 
 	return (
 		<>
