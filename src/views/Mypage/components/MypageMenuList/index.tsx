@@ -43,7 +43,7 @@ const MypageMenuList = () => {
 		<div className={styles.menu_wrap}>
 			<ul className={styles.menu_list}>
 				<li className={styles.mypage_top}>
-					<Link href="/signup">
+					<Link href="/mypage">
 						<FontAwesomeIcon
 							icon={faHouse}
 							// size="lg"
@@ -55,19 +55,19 @@ const MypageMenuList = () => {
 					</Link>
 				</li>
 				<li className={styles.favorit}>
-					<Link href="">
+					<Link href="/mypage/favorit">
 						<FontAwesomeIcon icon={faHeart} size="xl" style={{ color: "#f2abc6" }} className={styles.icon} />
 						<span className={styles.text}>お気に入り</span>
 					</Link>
 				</li>
 				<li className={styles.went}>
-					<Link href="">
+					<Link href="/mypage/went">
 						<FontAwesomeIcon icon={faMapLocationDot} size="xl" style={{ color: "#cc8e23" }} className={styles.icon} />
 						<span className={styles.text}>行ったことある</span>
 					</Link>
 				</li>
 				<li className={styles.memberInfo}>
-					<Link href="">
+					<Link href="/mypage/userInfo">
 						<FontAwesomeIcon icon={faUser} style={{ color: "#248b51" }} size="xl" className={styles.icon} />
 						<span className={styles.text}>会員情報</span>
 					</Link>

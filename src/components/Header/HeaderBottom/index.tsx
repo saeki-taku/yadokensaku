@@ -13,28 +13,41 @@ export default function HeaderBottom() {
 	// Zustandの状態を取得
 	const uid = useUserStore((state) => state.user?.uid);
 
+	console.log("uid??", uid);
+	console.log("getHotelId", getHotelIds("favoriteHotels", uid));
+	getHotelIds("favoriteHotels", uid);
+
 	const [favoriteHotelLength, setFavoriteHotelLength] = useState(0);
 	const [wentHotelLength, setWentHotelLength] = useState(0);
 
 	useEffect(() => {
-		getHotelIds("favoriteHotels", uid)
-			.then((result) => {
-				setFavoriteHotelLength(result.length);
-			})
-			.catch((error) => {
-				console.error("Error:", error);
-			});
-	}, [uid, setFavoriteHotelLength]);
+		if (uid === undefined) {
+			setFavoriteHotelLength(0);
+		} else {
+			console.log("det", getHotelIds("favoriteHotels", uid));
+			getHotelIds("favoriteHotels", uid)
+				.then((result) => {
+					setFavoriteHotelLength(result.length);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		}
+	}, [uid, setFavoriteHotelLength, favoriteHotelLength]);
 
 	useEffect(() => {
-		getHotelIds("wentHotels", uid)
-			.then((result) => {
-				setWentHotelLength(result.length);
-			})
-			.catch((error) => {
-				console.error("Error:", error);
-			});
-	}, [uid, setWentHotelLength]);
+		if (uid === undefined) {
+			setWentHotelLength(0);
+		} else {
+			getHotelIds("wentHotels", uid)
+				.then((result) => {
+					setWentHotelLength(result.length);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+		}
+	}, [uid, setWentHotelLength, wentHotelLength]);
 
 	return (
 		<div className={styles.bottom}>

@@ -133,6 +133,10 @@
 					&:hover {
 						border-color: #dda1b8;
 						color: #dda1b8;
+
+						> span {
+							color: #dda1b8;
+						}
 					}
 
 					&._add {

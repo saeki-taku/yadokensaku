@@ -10,7 +10,7 @@ import { Col } from "antd";
 // style
 import styles from "@/styles/header.module.scss";
 // hooks
-import useUserStore from "@/hooks/useUserStore";
+import { useUserStore } from "@/hooks/useUserStore";
 
 export default function HeaderMemberWarp() {
 	const { user } = useUserStore();

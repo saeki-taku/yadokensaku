@@ -14,6 +14,7 @@ type UserStore = {
   clearUser: any;
 };
 
+// ユーザー情報の登録削除
 export const useUserStore = create<UserStore>()(
   persist<UserStore>(
     (set) => ({
@@ -22,10 +23,37 @@ export const useUserStore = create<UserStore>()(
       clearUser: () => {
         set({ user: null })
         localStorage.removeItem('user-storage');
-      }
+      },
     }),
     {
       name: 'user-storage', // 保存先の名前
+      getStorage: () => localStorage, // 保存先のストレージ
+    }
+  )
+);
+
+interface favoriteHotels {
+  num: number;
+}
+
+type favoriteHotelsStore = {
+  favoriteHotels: User | null;
+  setUser: (newUser: User | null) => void;
+  clearUser: any;
+};
+
+export const usefavoriteHotelsStore = create<favoriteHotelsStore>()(
+  persist<favoriteHotelsStore>(
+    (set) => ({
+      favoriteHotels: 0,
+      setUser: (newUser) => set({ favoriteHotels: newUser }),
+      clearFavoriteHotels: () => {
+        set({ favoriteHotels: 0 })
+        localStorage.removeItem('favoriteHotels-storage');
+      },
+    }),
+    {
+      name: 'favoriteHotels-storage', // 保存先の名前
       getStorage: () => localStorage, // 保存先のストレージ
     }
   )

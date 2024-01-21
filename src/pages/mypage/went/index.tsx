@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import Head from "next/head";
 // views
-import MypageView from "@/views/Mypage";
+import MypageWentView from "@/views/MypageWent";
 // datasources
 import { requestPageData } from "@/dataSource/hotel/requestPageData";
 // others
@@ -34,7 +34,7 @@ export default function Mypage({ title, description, pageData }: mypageProps) {
 				<title>{title}</title>
 				<meta name="description" content={description} />
 			</Head>
-			<MypageView />
+			<MypageWentView />
 		</>
 	);
 }
@@ -43,8 +43,8 @@ export const getServerSideProps = async (context: ANY_OBJECT) => {
 	return promiseAll([requestPageData(context)], {
 		then: ([pageData]) => ({
 			props: {
-				title: "マイページのお気に入り|宿検索",
-				description: "マイページのお気に入りです",
+				title: "マイページの行ったことある|宿検索",
+				description: "マイページの行ったことあるです",
 				// pageData: pageData,
 			},
 		}),

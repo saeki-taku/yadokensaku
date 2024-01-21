@@ -256,18 +256,41 @@
 			.img_box {
 				flex-shrink: 0;
 				margin-right: 40px;
-
-				img {
-					border-radius: 4px;
-					max-width: 180px;
-
-					@include mq.mq(isp) {
-						max-width: 160px;
-					}
-				}
+				max-width: 180px;
+				width: 100%;
+				height: 120px;
+				overflow: hidden;
+				border-radius: 4px;
 
 				@include mq.mq(sp) {
 					margin-right: 25px;
+				}
+
+				@include mq.mq(isp) {
+					max-width: 160px;
+				}
+
+				@include mq.mq(xs) {
+					max-width: 250px;
+					height: 150px;
+					margin-right: 0px;
+					margin: 0 auto 10px;
+				}
+
+				figure {
+					height: 100%;
+				}
+
+				img {
+					border-radius: 4px;
+					// max-width: 180px;
+					height: 100% !important;
+					object-fit: cover;
+					object-position: center;
+
+					@include mq.mq(isp) {
+						// max-width: 160px;
+					}
 				}
 			}
 
@@ -520,5 +543,19 @@
 				}
 			}
 		}
+	}
+}
+
+// went
+.wentMap {
+	overflow: hidden;
+	border-radius: 10px;
+	max-width: 1000px;
+	height: 520px;
+	margin: 0 auto 50px;
+	overflow: hidden;
+
+	#google-map {
+		border-radius: inherit;
 	}
 }

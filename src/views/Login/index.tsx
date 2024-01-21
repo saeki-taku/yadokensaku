@@ -4,10 +4,8 @@ import React, { useState, useEffect } from "react";
 import styles from "@/styles/authForm.module.scss";
 // hools
 import { useRoute } from "@/hooks/useRoute";
-import useUserStore from "@/hooks/useUserStore";
+import { useUserStore } from "@/hooks/useUserStore";
 // lib
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useForm, useFormContext } from "react-hook-form";
 // import useUserStore from "../../lib/useUserStore";
 
