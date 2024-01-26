@@ -13,20 +13,9 @@ export default function HeaderBottom() {
 	// Zustand（UserStore）
 	const uid = useUserStore((state) => state.user?.uid);
 	// Zustand（favoriteHotelsStore）
-	const setUser = useUserStore((state) => state.setUser);
-
+	const favoritHotels = usefavoriteStore((state) => state.favoriteHotels);
 	const [favoriteHotelLength, setFavoriteHotelLength] = useState(0);
 	const [wentHotelLength, setWentHotelLength] = useState(0);
-
-	// Zustandのuser情報を更新
-	// setUser({
-	// 	name: user.displayName ? user.displayName : "",
-	// 	email: user.email ? user.email : "",
-	// 	uid: user.uid ? user.uid : "",
-	// });
-
-	const { favoriteHotels } = usefavoriteStore();
-	console.log("favoriteHotels", favoriteHotels);
 
 	useEffect(() => {
 		if (uid === undefined) {
@@ -35,14 +24,15 @@ export default function HeaderBottom() {
 			console.log("det", getHotelIds("favoriteHotels", uid));
 			getHotelIds("favoriteHotels", uid)
 				.then((result) => {
-					setFavoriteHotelLength(result.length);
+					// 2024/01/24 Zustandの記述があればここではfirebaseからの取得はいらない？
+					setFavoriteHotelLength(favoritHotels);
 				})
 				.catch((error) => {
 					console.error("Error:", error);
 				});
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [favoritHotels]);
 	// }, [uid, setFavoriteHotelLength, favoriteHotelLength]);
 
 	useEffect(() => {

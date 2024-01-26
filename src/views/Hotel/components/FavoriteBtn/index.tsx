@@ -11,7 +11,7 @@ import { doc, getDocs, updateDoc, arrayUnion, arrayRemove, collection } from "fi
 import { db } from "@/lib/firebaseConfig";
 import "firebase/firestore";
 // zustand
-import { useUserStore } from "@/hooks/useUserStore";
+import { useUserStore, usefavoriteStore } from "@/hooks/useUserStore";
 
 const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 	// Zustandの状態を取得
@@ -19,14 +19,12 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 		console.log("state", state.user);
 		return state.user?.uid;
 	});
+	const setFavoriteHotels = usefavoriteStore((state) => state.setFavoriteHotels);
+	const favoritHotelLength = usefavoriteStore((state) => state.favoriteHotels);
 
 	const [favoriteHotelIdLength, setFavoriteHotelIdLength] = useState(0);
 	const [isFavoriteHotelId, setIsFavoriteHotelId] = useState(false);
 	const [isWentHotelId, setIsWentHotelId] = useState(false);
-
-	console.log("favoriteHotelIdLength", favoriteHotelIdLength);
-	console.log("isFavoriteHotelId", isFavoriteHotelId);
-	console.log("isWentHotelId", isWentHotelId);
 
 	// お気に入りホテル
 	useEffect(() => {
@@ -38,7 +36,6 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 						setIsFavoriteHotelId(true);
 					}
 				});
-				// console.log("Result:", result);
 			})
 			.catch((error) => {
 				console.error("Error:", error);
@@ -70,6 +67,7 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 				await updateDoc(favoriteCollection, {
 					id: arrayUnion(hotelNo.hotelNo),
 				});
+				setFavoriteHotels(favoritHotelLength + 1);
 				setIsFavoriteHotelId(true);
 			}
 		} else {
@@ -77,6 +75,7 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 			await updateDoc(favoriteCollection, {
 				id: arrayRemove(hotelNo.hotelNo),
 			});
+			setFavoriteHotels(favoritHotelLength - 1);
 			setIsFavoriteHotelId(false);
 		}
 	};

@@ -2,16 +2,16 @@
 import React, { useState, useEffect } from "react";
 // styles
 import styles from "@/styles/authForm.module.scss";
-// hools
-import { useRoute } from "@/hooks/useRoute";
-import { useUserStore } from "@/hooks/useUserStore";
 // lib
 import { useForm, useFormContext } from "react-hook-form";
-// import useUserStore from "../../lib/useUserStore";
-
+// utils
+import { getHotelIds } from "../../utils/myhotel";
 // firebase
 import { getAuth, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
 import { auth } from "@/lib/firebaseConfig";
+// zustand
+import { useUserStore, usefavoriteStore } from "@/hooks/useUserStore";
+import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 
 const LoginView = () => {
 	const [errorMessage, setErrorMessage] = useState("");
@@ -19,8 +19,9 @@ const LoginView = () => {
 	// Zustandの記述
 	// setUser関数を取得
 	const setUser = useUserStore((state) => state.setUser);
-	// Zustandの状態を取得
-	// const userState = useUserStore((state) => state.user);
+	const setFavoriteHotels = usefavoriteStore((state) => state.setFavoriteHotels);
+
+	const [favoriteHotelLength, setFavoriteHotelLength] = useState(0);
 
 	const {
 		register,
@@ -55,14 +56,24 @@ const LoginView = () => {
 			console.log("ログインしました", userCredential);
 			const user = userCredential.user;
 
-			// alert("ログインしました");
+			console.log("user::", user);
 
+			// alert("ログインしました");
 			// Zustandのuser情報を更新
 			setUser({
 				name: user.displayName ? user.displayName : "",
 				email: user.email ? user.email : "",
 				uid: user.uid ? user.uid : "",
 			});
+
+			getHotelIds("favoriteHotels", user.uid)
+				.then((result) => {
+					console.log("result::", result.length);
+					setFavoriteHotels(result.length);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
 
 			return user;
 		} catch (error: any) {

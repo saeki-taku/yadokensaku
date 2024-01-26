@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, devtools } from "zustand/middleware";
 
 interface User {
   name: string;
@@ -16,6 +16,7 @@ type UserStore = {
 
 // ユーザー情報の登録削除
 export const useUserStore = create<UserStore>()(
+  devtools(
   persist<UserStore>(
     (set) => ({
       user: null,
@@ -30,6 +31,7 @@ export const useUserStore = create<UserStore>()(
       getStorage: () => localStorage, // 保存先のストレージ
     }
   )
+  )
 );
 
 interface favoriteHotels {
@@ -38,15 +40,16 @@ interface favoriteHotels {
 
 type favoriteStore = {
   favoriteHotels: number;
-  // addHotel: 0;
+  setFavoriteHotels: (newFavorite: number) => void;
 };
 
 export const usefavoriteStore = create<favoriteStore>()(
   persist<favoriteStore>(
     (set) => ({
       favoriteHotels: 0,
+      setFavoriteHotels: (newFavorite: number) => set({ favoriteHotels: newFavorite }),
     }),{
-      name: 'user-storage', // 保存先の名前
+      name: 'favoriteHotels-storage', // 保存先の名前
       getStorage: () => localStorage, // 保存先のストレージ
     }
   )
