@@ -2,8 +2,6 @@
 import { useEffect, useState } from "react";
 // style
 import styles from "@/styles/hotel.module.scss";
-// hooks
-import { useRoute } from "@/hooks/useRoute";
 // utils
 import { getHotelIds } from "../../../../utils/myhotel";
 // firebase
@@ -11,22 +9,26 @@ import { doc, getDocs, updateDoc, arrayUnion, arrayRemove, collection } from "fi
 import { db } from "@/lib/firebaseConfig";
 import "firebase/firestore";
 // zustand
-import { useUserStore, usefavoriteStore } from "@/hooks/useUserStore";
+import { useUserStore, useFavoriteStore, useWentStore } from "@/hooks/useUserStore";
 
 const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 	// Zustandの状態を取得
 	const uid = useUserStore((state) => {
-		console.log("state", state.user);
 		return state.user?.uid;
 	});
-	const setFavoriteHotels = usefavoriteStore((state) => state.setFavoriteHotels);
-	const favoritHotelLength = usefavoriteStore((state) => state.favoriteHotels);
+	const favoritHotels = useFavoriteStore((state) => state.favoriteHotels);
+	const increaseFavorite = useFavoriteStore((state) => state.increaseFavorite);
+	const decreaseFavorite = useFavoriteStore((state) => state.decreaseFavorite);
+
+	const wentHotels = useWentStore((state) => state.wentHotels);
+	const increaseWent = useWentStore((state) => state.increasewent);
+	const decreaseWent = useWentStore((state) => state.decreasewent);
 
 	const [favoriteHotelIdLength, setFavoriteHotelIdLength] = useState(0);
 	const [isFavoriteHotelId, setIsFavoriteHotelId] = useState(false);
 	const [isWentHotelId, setIsWentHotelId] = useState(false);
 
-	// お気に入りホテル
+	// お気に入り・行ったことホテルの登録の有無
 	useEffect(() => {
 		getHotelIds("favoriteHotels", uid)
 			.then((result) => {
@@ -52,14 +54,14 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 			.catch((error) => {
 				console.error("Error:", error);
 			});
-	}, [favoriteHotelIdLength, isFavoriteHotelId, isWentHotelId]);
+	}, [uid, hotelNo, favoriteHotelIdLength, isFavoriteHotelId, isWentHotelId]);
 
 	// 「お気に入り」を追加した時の処理を記述（サブコレクショへの登録・削除）
 	const toggleFavorite = async (e: any) => {
 		e.preventDefault();
 
 		const favoriteCollection = doc(db, `users/${uid}/favoriteHotels`, "hotel");
-		// console.log("favoriteCollection", favoriteCollection.id);
+
 		if (!isFavoriteHotelId) {
 			if (15 <= favoriteHotelIdLength) {
 				alert("お気に入り登録は15件までしかできません");
@@ -67,7 +69,7 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 				await updateDoc(favoriteCollection, {
 					id: arrayUnion(hotelNo.hotelNo),
 				});
-				setFavoriteHotels(favoritHotelLength + 1);
+				increaseFavorite(favoritHotels);
 				setIsFavoriteHotelId(true);
 			}
 		} else {
@@ -75,7 +77,7 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 			await updateDoc(favoriteCollection, {
 				id: arrayRemove(hotelNo.hotelNo),
 			});
-			setFavoriteHotels(favoritHotelLength - 1);
+			decreaseFavorite(favoritHotels);
 			setIsFavoriteHotelId(false);
 		}
 	};
@@ -85,19 +87,21 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 		e.preventDefault();
 
 		const wentCollection = doc(db, `users/${uid}/wentHotels`, "hotel");
-		console.log("wentCollection", wentCollection.id);
+
 		if (!isWentHotelId) {
 			await updateDoc(wentCollection, {
 				id: arrayUnion(hotelNo.hotelNo),
-				// ここにidの直下にホテル名/ ホテルの画像URL / 緯度経度 / 自分評価を追加
+				// todo: ここにidの直下にホテル名/ ホテルの画像URL / 緯度経度 / 自分評価を追加
 				// 行ったことある追加時にポップアップ（モーダル）みたいな感じで星評価できるようにする
 			});
+			increaseWent(wentHotels);
 			setIsWentHotelId(true);
 		} else {
 			alert("行ったことあるを解除しました");
 			await updateDoc(wentCollection, {
 				id: arrayRemove(hotelNo.hotelNo),
 			});
+			decreaseWent(wentHotels);
 			setIsWentHotelId(false);
 		}
 	};

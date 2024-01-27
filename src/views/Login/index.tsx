@@ -10,7 +10,7 @@ import { getHotelIds } from "../../utils/myhotel";
 import { getAuth, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
 import { auth } from "@/lib/firebaseConfig";
 // zustand
-import { useUserStore, usefavoriteStore } from "@/hooks/useUserStore";
+import { useUserStore, useFavoriteStore, useWentStore } from "@/hooks/useUserStore";
 import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 
 const LoginView = () => {
@@ -18,8 +18,9 @@ const LoginView = () => {
 
 	// Zustandの記述
 	// setUser関数を取得
-	const setUser = useUserStore((state) => state.setUser);
-	const setFavoriteHotels = usefavoriteStore((state) => state.setFavoriteHotels);
+	const setUser = useUserStore((newUser) => newUser.setUser);
+	const setFavoriteHotels = useFavoriteStore((state) => state.setFavoriteHotels);
+	const setWentHotels = useWentStore((state) => state.setWentHotels);
 
 	const [favoriteHotelLength, setFavoriteHotelLength] = useState(0);
 
@@ -58,7 +59,6 @@ const LoginView = () => {
 
 			console.log("user::", user);
 
-			// alert("ログインしました");
 			// Zustandのuser情報を更新
 			setUser({
 				name: user.displayName ? user.displayName : "",
@@ -68,8 +68,15 @@ const LoginView = () => {
 
 			getHotelIds("favoriteHotels", user.uid)
 				.then((result) => {
-					console.log("result::", result.length);
 					setFavoriteHotels(result.length);
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+
+			getHotelIds("wentHotels", user.uid)
+				.then((result) => {
+					setWentHotels(result.length);
 				})
 				.catch((error) => {
 					console.error("Error:", error);

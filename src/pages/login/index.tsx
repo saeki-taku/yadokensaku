@@ -15,7 +15,6 @@ interface LoginProps {
 }
 
 export default function Login({ title, description, pageData }: LoginProps) {
-	// const router = useRoute();
 	const router = useRoute();
 
 	// Zustandの状態を取得

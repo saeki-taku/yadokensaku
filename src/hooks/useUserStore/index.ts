@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist, devtools } from "zustand/middleware";
 
+// ユーザー情報の登録・削除
 interface User {
   name: string;
   email: string;
@@ -10,17 +11,15 @@ interface User {
 
 type UserStore = {
   user: User | null;
-  setUser: (newUser: User | null) => void;
+  setUser: (userState: User | null) => void;
   clearUser: any;
 };
 
-// ユーザー情報の登録削除
 export const useUserStore = create<UserStore>()(
-  devtools(
   persist<UserStore>(
     (set) => ({
       user: null,
-      setUser: (newUser) => set({ user: newUser }),
+      setUser: (userState) => set({ user: userState }),
       clearUser: () => {
         set({ user: null })
         localStorage.removeItem('user-storage');
@@ -31,35 +30,59 @@ export const useUserStore = create<UserStore>()(
       getStorage: () => localStorage, // 保存先のストレージ
     }
   )
-  )
 );
 
-interface favoriteHotels {
-  num: number;
-}
-
+// お気に入りの数
 type favoriteStore = {
   favoriteHotels: number;
-  setFavoriteHotels: (newFavorite: number) => void;
+  setFavoriteHotels: (favoriteState: number) => void;
+  increaseFavorite: (favoriteState: number) => void;
+  decreaseFavorite: (favoriteState: number) => void;
 };
 
-export const usefavoriteStore = create<favoriteStore>()(
+export const useFavoriteStore = create<favoriteStore>()(
   persist<favoriteStore>(
     (set) => ({
       favoriteHotels: 0,
-      setFavoriteHotels: (newFavorite: number) => set({ favoriteHotels: newFavorite }),
+      setFavoriteHotels: (favoriteState: number) => set({ favoriteHotels: favoriteState }),
+      increaseFavorite: () => set((favoriteState) => ({ favoriteHotels: favoriteState.favoriteHotels + 1 })),
+      decreaseFavorite: () => set((favoriteState) => ({ favoriteHotels: favoriteState.favoriteHotels - 1 })),
     }),{
-      name: 'favoriteHotels-storage', // 保存先の名前
-      getStorage: () => localStorage, // 保存先のストレージ
+      name: 'favoriteHotels-storage',
+      getStorage: () => localStorage,
     }
   )
 );
+
+// 行ったことあるの数
+type wentStore = {
+  wentHotels: number;
+  setWentHotels: (wentState: number) => void;
+  increasewent: (wentState: number) => void;
+  decreasewent: (wentState: number) => void;
+};
+
+export const useWentStore = create<wentStore>()(
+  persist<wentStore>(
+    (set) => ({
+      wentHotels: 0,
+      setWentHotels: (wentState: number) => set({ wentHotels: wentState }),
+      increasewent: () => set((wentState) => ({ wentHotels: wentState.wentHotels + 1 })),
+      decreasewent: () => set((wentState) => ({ wentHotels: wentState.wentHotels - 1 })),
+    }),{
+      name: 'wentHotels-storage',
+      getStorage: () => localStorage,
+    }
+  )
+);
+
+// 行ったことあるの数
+
 
 //   count: 1,
 //   increase: () => set((state) => ({ count: state.count + 1 })),
 //   decrease: () => set((state) => ({ count: state.count - 1 })),
 //   reset: () => set({ count: 0 }),
-// }));
 
 
 
@@ -81,3 +104,8 @@ export const usefavoriteStore = create<favoriteStore>()(
 // );
 
 // export default useUserStore;
+
+
+// const { count } = useStore();
+// const increase = useStore((state) => state.increase);
+// const decrease = useStore((state) => state.decrease);

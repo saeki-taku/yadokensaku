@@ -4,50 +4,28 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 // style
 import styles from "@/styles/header.module.scss";
-// utils
-import { getHotelIds } from "../../../utils/myhotel";
 // zustand
-import { useUserStore, usefavoriteStore } from "@/hooks/useUserStore";
+import { useUserStore, useFavoriteStore, useWentStore } from "@/hooks/useUserStore";
 
 export default function HeaderBottom() {
-	// Zustand（UserStore）
+	// Zustand
 	const uid = useUserStore((state) => state.user?.uid);
-	// Zustand（favoriteHotelsStore）
-	const favoritHotels = usefavoriteStore((state) => state.favoriteHotels);
+	const favoritHotels = useFavoriteStore((state) => state.favoriteHotels);
+	const wentHotels = useWentStore((state) => state.wentHotels);
+
 	const [favoriteHotelLength, setFavoriteHotelLength] = useState(0);
 	const [wentHotelLength, setWentHotelLength] = useState(0);
 
 	useEffect(() => {
 		if (uid === undefined) {
 			setFavoriteHotelLength(0);
-		} else {
-			console.log("det", getHotelIds("favoriteHotels", uid));
-			getHotelIds("favoriteHotels", uid)
-				.then((result) => {
-					// 2024/01/24 Zustandの記述があればここではfirebaseからの取得はいらない？
-					setFavoriteHotelLength(favoritHotels);
-				})
-				.catch((error) => {
-					console.error("Error:", error);
-				});
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [favoritHotels]);
-	// }, [uid, setFavoriteHotelLength, favoriteHotelLength]);
-
-	useEffect(() => {
-		if (uid === undefined) {
 			setWentHotelLength(0);
 		} else {
-			getHotelIds("wentHotels", uid)
-				.then((result) => {
-					setWentHotelLength(result.length);
-				})
-				.catch((error) => {
-					console.error("Error:", error);
-				});
+			setFavoriteHotelLength(favoritHotels);
+			setWentHotelLength(wentHotels);
 		}
-	}, [uid, setWentHotelLength, wentHotelLength]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [uid, favoritHotels, wentHotels]);
 
 	return (
 		<div className={styles.bottom}>
