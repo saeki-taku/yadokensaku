@@ -51,14 +51,12 @@ const SignupView = () => {
 					email: user.email,
 				});
 
-				// サブコレクショにお気に入り情報を追加
-				await setDoc(doc(db, `users/${user.uid}/favoriteHotels`, "hotel"), {
+				// フィールドにお気に入り情報を追加
+				await setDoc(doc(db, `users/${user.uid}/myhotel`, "favorite"), {
 					id: [],
 				});
-				// サブコレクショに行ったことある情報を追加
-				await setDoc(doc(db, `users/${user.uid}/wentHotels`, "hotel"), {
-					id: [],
-				});
+				// フィールドに行ったことある情報を追加
+				await setDoc(doc(db, `users/${user.uid}/myhotel`, "went"), {});
 			}
 
 			console.log("登録完了しました", user);

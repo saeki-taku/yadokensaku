@@ -188,17 +188,66 @@
 
 .list_wrap {
 	&.favorit {
-		margin-bottom: 50px;
+		margin-bottom: 60px;
 
-		.favoriteBtn {
+		.removeBtn {
 			width: 120px;
 		}
 	}
 
 	&.went {
-		margin-bottom: 50px;
+		margin-bottom: 60px;
 
-		.favoriteBtn {
+		.list {
+			> li {
+				.img_box {
+					height: 100px;
+
+					@include mq.mq(xs) {
+						height: 150px;
+					}
+				}
+
+				.text_box {
+					.info_evaluation {
+						.kuchikomi {
+							.title {
+								margin-right: 16px;
+
+								@include mq.mq(sp) {
+									width: 90px;
+								}
+							}
+						}
+
+						.kuchikomi {
+							margin-bottom: 0;
+							&::after {
+								content: none;
+							}
+
+							.title {
+								// font-weight: 600;
+								// color: #bf0000;
+								font-size: 13px;
+								font-weight: 600;
+								background-color: rgba(255, 255, 255, 0.6);
+								border: 1px solid #eeeeee;
+								box-shadow: 1px 1px 4px 0 #80000025;
+								border-radius: 20px;
+								color: #494949;
+								padding: 3px 4px;
+								margin-left: -5px;
+								text-align: center;
+								letter-spacing: 0.15em;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.removeBtn {
 			width: 150px;
 		}
 	}
@@ -208,7 +257,7 @@
 		font-size: 2.2rem;
 		font-weight: bold;
 		letter-spacing: 0.1em;
-		margin-bottom: 50px;
+		margin-bottom: 45px;
 		padding-bottom: 10px;
 		padding-left: 5px;
 		border-bottom: 2px solid color.$main;
@@ -232,9 +281,10 @@
 		> li {
 			display: flex;
 			border-radius: 6px;
-			background: #e6e6e6;
+			background: #ebebeb;
 			// box-shadow: 50px 50px 100px #d1d1d1, -50px -50px 100px #fbfbfb;
-			box-shadow: 50px 50px 100px #e8e8e8, -50px -50px 100px #fbfbfb;
+			// box-shadow: 50px 50px 100px #e8e8e8, -50px -50px 100px #fbfbfb;
+			box-shadow: 7px 6px 10px #48333324;
 			padding: 30px 30px;
 
 			&:not(:last-of-type) {
@@ -242,7 +292,7 @@
 			}
 
 			@include mq.mq(isp) {
-				padding: 30px 20px;
+				padding: 25px 20px 15px;
 			}
 
 			@include mq.mq(xs) {
@@ -283,14 +333,9 @@
 
 				img {
 					border-radius: 4px;
-					// max-width: 180px;
 					height: 100% !important;
 					object-fit: cover;
 					object-position: center;
-
-					@include mq.mq(isp) {
-						// max-width: 160px;
-					}
 				}
 			}
 
@@ -319,7 +364,7 @@
 					font-size: 14px;
 					display: inline-block;
 					letter-spacing: 0.1em;
-					margin-bottom: 5px;
+					margin-bottom: 8px;
 					padding: 2px 8px;
 
 					@include mq.mq(xs3) {
@@ -378,28 +423,30 @@
 							font-size: 1.6rem;
 							font-weight: bold;
 							margin-right: 16px;
+							letter-spacing: 0.1em;
 
 							@include mq.mq(sp) {
 								font-size: 1.5rem;
 								font-weight: 500;
-								width: 100px;
+								width: 110px;
 								margin-right: 12px;
 							}
 
 							@include mq.mq(isp) {
 								font-size: 1.4rem;
 								margin-right: 10px;
-								width: 90px;
+								width: 100px;
 							}
 
 							@include mq.mq(xs3) {
 								margin-right: 2px;
-								width: 89px;
+								width: 100px;
 							}
 						}
 
 						.num,
-						.average {
+						.average,
+						.kuchikomi_num {
 							color: #bf0000;
 							font-size: 2rem;
 							font-weight: 700;
@@ -451,7 +498,8 @@
 							padding-right: 8px;
 						}
 
-						.average {
+						.average,
+						.kuchikomi_num {
 							margin-right: 10px;
 
 							@include mq.mq(xs) {
@@ -498,7 +546,7 @@
 					}
 				}
 
-				.favoriteBtn {
+				.removeBtn {
 					display: block;
 					font-size: 1.3rem;
 					margin: 0 0 0 auto;

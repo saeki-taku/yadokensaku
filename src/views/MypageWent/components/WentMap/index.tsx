@@ -17,7 +17,7 @@ const WentMap = () => {
 			// url: "url",
 			location: {
 				lat: 35.69731,
-				lng: 139.7747,
+				lng: 139.775,
 			},
 		},
 		{
@@ -37,6 +37,23 @@ const WentMap = () => {
 		}
 	}, [map]);
 
+	// useEffect(() => {
+	// 	// Do something with the map, e.g., add markers
+	// 	if (map) {
+	// 		// Your map-related logic here
+	// 		console.log("map::", map);
+
+	// 		// Add markers or other map-related logic here
+	// 		locations.forEach((item) => {
+	// 			const marker = new window.google.maps.Marker({
+	// 				position: item.location,
+	// 				map: map,
+	// 				title: item.name,
+	// 			});
+	// 		});
+	// 	}
+	// }, [map, locations]);
+
 	return (
 		<div className={styles.wentMap}>
 			<LoadScript googleMapsApiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}>
@@ -53,6 +70,7 @@ const WentMap = () => {
 				>
 					{/* Add your components, like markers, here */}
 					{locations.map((item) => {
+						console.log("item", item);
 						return <Marker key={item.name} position={item.location} />;
 					})}
 				</GoogleMap>
