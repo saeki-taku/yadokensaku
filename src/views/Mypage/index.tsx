@@ -9,7 +9,7 @@ import ImgLinkCheck from "../Search/components/ImgLinkCheck";
 // lib
 import ReactStarsRating from "react-awesome-stars-rating";
 // utils
-import { getHotelIds } from "../../utils/myhotel";
+import { getFavoriteHotelIds } from "../../utils/myhotel";
 // zustand
 import { useUserStore } from "@/hooks/useUserStore";
 // api
@@ -37,7 +37,7 @@ const MypageView = () => {
 	};
 
 	useEffect(() => {
-		getHotelIds("favoriteHotels", uid)
+		getFavoriteHotelIds(uid)
 			.then((result) => {
 				// APIでは16個以上参照できないため15個まで末尾を削除
 				// 登録自体を15までと制限する必要あり
@@ -46,7 +46,7 @@ const MypageView = () => {
 				setFavoriteHotelIdArr(newArr);
 			})
 			.catch((error) => {
-				console.error("Error:", error);
+				console.log("Error:", error);
 			});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [uid, setFavoriteHotelIdArr]);

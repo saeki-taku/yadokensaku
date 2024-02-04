@@ -9,12 +9,8 @@ import ImgLinkCheck from "../Search/components/ImgLinkCheck";
 import WentMap from "./components/WentMap";
 // lib
 import ReactStarsRating from "react-awesome-stars-rating";
-// utils
-import { getHotelIds } from "../../utils/myhotel";
 // zustand
 import { useUserStore } from "@/hooks/useUserStore";
-// api
-import { HotelSimple } from "@/api/hotel";
 
 const MypageWentView = () => {
 	// Zustandの状態を取得

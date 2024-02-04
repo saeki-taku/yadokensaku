@@ -22,11 +22,22 @@ const HotelHead = ({ hotelBasicInfo, hotelDetailInfo, hotelFacilitiesInfo }: ANY
 	// 	}
 	// };
 
+	// console.log("hotelInfo", hotelBasicInfo);
+	console.log("hotelInfo", hotelDetailInfo);
+
 	return (
 		<div className={styles.hotelInfo__head}>
 			<div className={styles.head_top}>
 				<h2 className={styles.hotelName}>{hotelBasicInfo.hotelName}</h2>
-				<FavoriteBtn hotelNo={hotelBasicInfo.hotelNo} />
+				{/* Id hotelName imgUrl pref lat lng myReview */}
+				<FavoriteBtn
+					hotelNo={hotelBasicInfo.hotelNo}
+					hotelName={hotelBasicInfo.hotelName}
+					imgUrl={hotelBasicInfo.hotelImageUrl}
+					pref={hotelBasicInfo.address1}
+					lat={hotelBasicInfo.latitude}
+					lng={hotelBasicInfo.longitude}
+				/>
 			</div>
 			<div className={styles.head_bottom}>
 				<div className={styles.info_basic}>

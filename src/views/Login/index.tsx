@@ -5,7 +5,7 @@ import styles from "@/styles/authForm.module.scss";
 // lib
 import { useForm, useFormContext } from "react-hook-form";
 // utils
-import { getHotelIds } from "../../utils/myhotel";
+import { getFavoriteHotelIds, getWentHotelIds } from "../../utils/myhotel";
 // firebase
 import { getAuth, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
 import { auth } from "@/lib/firebaseConfig";
@@ -66,7 +66,7 @@ const LoginView = () => {
 				uid: user.uid ? user.uid : "",
 			});
 
-			getHotelIds("favoriteHotels", user.uid)
+			getFavoriteHotelIds(user.uid)
 				.then((result) => {
 					setFavoriteHotels(result.length);
 				})
@@ -74,7 +74,7 @@ const LoginView = () => {
 					console.error("Error:", error);
 				});
 
-			getHotelIds("wentHotels", user.uid)
+			getWentHotelIds(user.uid)
 				.then((result) => {
 					setWentHotels(result.length);
 				})

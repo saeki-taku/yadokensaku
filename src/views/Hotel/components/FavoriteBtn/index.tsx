@@ -3,15 +3,24 @@ import { useEffect, useState } from "react";
 // style
 import styles from "@/styles/hotel.module.scss";
 // utils
-import { getHotelIds } from "../../../../utils/myhotel";
+import { getFavoriteHotelIds, getWentHotelIds } from "../../../../utils/myhotel";
 // firebase
-import { doc, getDocs, updateDoc, arrayUnion, arrayRemove, collection } from "firebase/firestore";
+import { doc, getDocs, setDoc, updateDoc, arrayUnion, arrayRemove, collection, FieldValue, deleteField } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
 import "firebase/firestore";
 // zustand
 import { useUserStore, useFavoriteStore, useWentStore } from "@/hooks/useUserStore";
 
-const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
+interface FavoriteBtnProps {
+	hotelNo: number; // 仮に数値型としていますが、実際の型に合わせて変更してください
+	hotelName: string;
+	imgUrl: string;
+	pref: string;
+	lat: number;
+	lng: number;
+}
+
+const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtnProps) => {
 	// Zustandの状態を取得
 	const uid = useUserStore((state) => {
 		return state.user?.uid;
@@ -30,11 +39,11 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 
 	// お気に入り・行ったことホテルの登録の有無
 	useEffect(() => {
-		getHotelIds("favoriteHotels", uid)
+		getFavoriteHotelIds(uid)
 			.then((result) => {
 				setFavoriteHotelIdLength(result.length);
 				result.forEach((id: number) => {
-					if (hotelNo.hotelNo === id) {
+					if (hotelNo === id) {
 						setIsFavoriteHotelId(true);
 					}
 				});
@@ -43,10 +52,11 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 				console.error("Error:", error);
 			});
 
-		getHotelIds("wentHotels", uid)
+		// todo: 行ったことあるのIDを取得して関数を作成する
+		getWentHotelIds(uid)
 			.then((result) => {
 				result.forEach((id: number) => {
-					if (hotelNo.hotelNo === id) {
+					if (hotelNo === id) {
 						setIsWentHotelId(true);
 					}
 				});
@@ -60,14 +70,16 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 	const toggleFavorite = async (e: any) => {
 		e.preventDefault();
 
-		const favoriteCollection = doc(db, `users/${uid}/favoriteHotels`, "hotel");
+		const favoriteCollection = doc(db, `users/${uid}/myhotel`, "favorite");
 
 		if (!isFavoriteHotelId) {
 			if (15 <= favoriteHotelIdLength) {
 				alert("お気に入り登録は15件までしかできません");
 			} else {
+				console.log("favoriteCollection", favoriteCollection);
 				await updateDoc(favoriteCollection, {
-					id: arrayUnion(hotelNo.hotelNo),
+					// users/uid/favorite/hotel/id 保存される場所
+					id: arrayUnion(hotelNo),
 				});
 				increaseFavorite(favoritHotels);
 				setIsFavoriteHotelId(true);
@@ -75,7 +87,7 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 		} else {
 			alert("お気に入りを解除しました");
 			await updateDoc(favoriteCollection, {
-				id: arrayRemove(hotelNo.hotelNo),
+				id: arrayRemove(hotelNo),
 			});
 			decreaseFavorite(favoritHotels);
 			setIsFavoriteHotelId(false);
@@ -83,23 +95,37 @@ const FavoriteBtn = (hotelNo: ANY_OBJECT) => {
 	};
 
 	// 「行ったことある」を追加した時の処理を記述（サブコレクショへの登録・削除）
+	// 登録内容 :
+	// Id hotelName imgUrl pref lat lng myReview
+	// ホテルID/ホテル名/画像URL/都道府県/緯度/経度/自分で評価できる星
 	const toggleWent = async (e: any) => {
 		e.preventDefault();
 
-		const wentCollection = doc(db, `users/${uid}/wentHotels`, "hotel");
+		const wentCollection = doc(db, `users/${uid}/myhotel`, "went");
+		// todo: 行ったことある追加時にポップアップ（モーダル）みたいな感じで自分の星の評価できるようにする
+		const hotelData = {
+			hotelName: hotelName,
+			imgUrl: imgUrl ? imgUrl : "",
+			pref: pref ? pref : "",
+			lat: lat ? lat : undefined,
+			lng: lng ? lng : undefined,
+			myReview: 0,
+		};
 
 		if (!isWentHotelId) {
-			await updateDoc(wentCollection, {
-				id: arrayUnion(hotelNo.hotelNo),
-				// todo: ここにidの直下にホテル名/ ホテルの画像URL / 緯度経度 / 自分評価を追加
-				// 行ったことある追加時にポップアップ（モーダル）みたいな感じで星評価できるようにする
-			});
+			await setDoc(
+				wentCollection,
+				{
+					[hotelNo]: hotelData,
+				},
+				{ merge: true }
+			);
 			increaseWent(wentHotels);
 			setIsWentHotelId(true);
 		} else {
 			alert("行ったことあるを解除しました");
 			await updateDoc(wentCollection, {
-				id: arrayRemove(hotelNo.hotelNo),
+				[hotelNo]: deleteField(),
 			});
 			decreaseWent(wentHotels);
 			setIsWentHotelId(false);
