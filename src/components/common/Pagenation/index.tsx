@@ -1,7 +1,7 @@
 // react / next
 import Link from "next/link";
 
-const Pagenatino = ({ pageData, keyword }: ANY_OBJECT) => {
+const Pagenation = ({ pageData, keyword }: ANY_OBJECT) => {
 	const pagingInfo = pageData?.keywordHotelSearch?.pagingInfo;
 
 	const list: ANY_OBJECT = [];
@@ -69,6 +69,4 @@ const Pagenatino = ({ pageData, keyword }: ANY_OBJECT) => {
 	);
 };
 
-export default Pagenatino;
-
-<script>alert(123456789)</script>;
+export default Pagenation;

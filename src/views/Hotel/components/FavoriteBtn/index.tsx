@@ -10,6 +10,8 @@ import { db } from "@/lib/firebaseConfig";
 import "firebase/firestore";
 // zustand
 import { useUserStore, useFavoriteStore, useWentStore } from "@/hooks/useUserStore";
+// component
+import Modal from "@/components/common/Modal";
 
 interface FavoriteBtnProps {
 	hotelNo: number; // 仮に数値型としていますが、実際の型に合わせて変更してください
@@ -133,16 +135,19 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 	};
 
 	return (
-		<div className={styles.favoriteBtnWrap}>
-			<a href="#" onClick={toggleFavorite} className={isFavoriteHotelId ? `${styles.favoriteBtn} ${styles._add}` : styles.favoriteBtn}>
-				<i className={styles.icon}></i>
-				お気に入り
-			</a>
-			<a href="#" onClick={toggleWent} className={isWentHotelId ? `${styles.wentBtn} ${styles._add}` : styles.wentBtn}>
-				<i className={styles.icon}></i>
-				行った<span className="">ことがある</span>
-			</a>
-		</div>
+		<>
+			<div className={styles.favoriteBtnWrap}>
+				<a href="#" onClick={toggleFavorite} className={isFavoriteHotelId ? `${styles.favoriteBtn} ${styles._add}` : styles.favoriteBtn}>
+					<i className={styles.icon}></i>
+					お気に入り
+				</a>
+				<a href="#" onClick={toggleWent} className={isWentHotelId ? `${styles.wentBtn} ${styles._add}` : styles.wentBtn}>
+					<i className={styles.icon}></i>
+					行った<span className="">ことがある</span>
+				</a>
+			</div>
+			<Modal />
+		</>
 	);
 };
 
