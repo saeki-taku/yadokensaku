@@ -11,7 +11,7 @@ import "firebase/firestore";
 // zustand
 import { useUserStore, useFavoriteStore, useWentStore } from "@/hooks/useUserStore";
 // component
-import Modal from "@/components/common/Modal";
+import Modal from "../Modal";
 
 interface FavoriteBtnProps {
 	hotelNo: number; // 仮に数値型としていますが、実際の型に合わせて変更してください
@@ -27,17 +27,21 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 	const uid = useUserStore((state) => {
 		return state.user?.uid;
 	});
+	// お気に入り
 	const favoritHotels = useFavoriteStore((state) => state.favoriteHotels);
 	const increaseFavorite = useFavoriteStore((state) => state.increaseFavorite);
 	const decreaseFavorite = useFavoriteStore((state) => state.decreaseFavorite);
 
+	const [favoriteHotelIdLength, setFavoriteHotelIdLength] = useState(0);
+	const [isFavoriteHotelId, setIsFavoriteHotelId] = useState(false);
+
+	// 行ったことある
 	const wentHotels = useWentStore((state) => state.wentHotels);
 	const increaseWent = useWentStore((state) => state.increasewent);
 	const decreaseWent = useWentStore((state) => state.decreasewent);
 
-	const [favoriteHotelIdLength, setFavoriteHotelIdLength] = useState(0);
-	const [isFavoriteHotelId, setIsFavoriteHotelId] = useState(false);
 	const [isWentHotelId, setIsWentHotelId] = useState(false);
+	const [isModalShow, setIsModalShow] = useState(false);
 
 	// お気に入り・行ったことホテルの登録の有無
 	useEffect(() => {
@@ -54,7 +58,6 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 				console.error("Error:", error);
 			});
 
-		// todo: 行ったことあるのIDを取得して関数を作成する
 		getWentHotelIds(uid)
 			.then((result) => {
 				result.forEach((id: number) => {
@@ -96,34 +99,16 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 		}
 	};
 
-	// 「行ったことある」を追加した時の処理を記述（サブコレクショへの登録・削除）
-	// 登録内容 :
-	// Id hotelName imgUrl pref lat lng myReview
+	// 「行ったことある」btnを押した時の処理を記述（モーダル表示・サブコレクション削除）
+	// 登録内容 : Id hotelName imgUrl pref lat lng myReview
 	// ホテルID/ホテル名/画像URL/都道府県/緯度/経度/自分で評価できる星
 	const toggleWent = async (e: any) => {
 		e.preventDefault();
 
 		const wentCollection = doc(db, `users/${uid}/myhotel`, "went");
-		// todo: 行ったことある追加時にポップアップ（モーダル）みたいな感じで自分の星の評価できるようにする
-		const hotelData = {
-			hotelName: hotelName,
-			imgUrl: imgUrl ? imgUrl : "",
-			pref: pref ? pref : "",
-			lat: lat ? lat : undefined,
-			lng: lng ? lng : undefined,
-			myReview: 0,
-		};
 
 		if (!isWentHotelId) {
-			await setDoc(
-				wentCollection,
-				{
-					[hotelNo]: hotelData,
-				},
-				{ merge: true }
-			);
-			increaseWent(wentHotels);
-			setIsWentHotelId(true);
+			setIsModalShow(true);
 		} else {
 			alert("行ったことあるを解除しました");
 			await updateDoc(wentCollection, {
@@ -132,6 +117,34 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 			decreaseWent(wentHotels);
 			setIsWentHotelId(false);
 		}
+	};
+	// 「行ったことある」を追加した時の処理を記述（モーダル内の追加btn処理・サブコレクショへの登録）
+	const handleAdd = async (rating: number) => {
+		const wentCollection = doc(db, `users/${uid}/myhotel`, "went");
+		const hotelData = {
+			hotelName: hotelName,
+			imgUrl: imgUrl ? imgUrl : "",
+			pref: pref ? pref : "",
+			lat: lat ? lat : undefined,
+			lng: lng ? lng : undefined,
+			myReview: rating ? rating : 0,
+		};
+
+		await setDoc(
+			wentCollection,
+			{
+				[hotelNo]: hotelData,
+			},
+			{ merge: true }
+		);
+
+		increaseWent(wentHotels);
+		setIsWentHotelId(true);
+		setIsModalShow(false);
+	};
+
+	const handleClose = () => {
+		setIsModalShow(false);
 	};
 
 	return (
@@ -146,7 +159,7 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 					行った<span className="">ことがある</span>
 				</a>
 			</div>
-			<Modal />
+			<Modal show={isModalShow} totalStars={5} initialStars={3} onAdd={handleAdd} onClose={handleClose} />
 		</>
 	);
 };
