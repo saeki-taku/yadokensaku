@@ -75,37 +75,3 @@ export const useWentStore = create<wentStore>()(
     }
   )
 );
-
-// 行ったことあるの数
-
-
-//   count: 1,
-//   increase: () => set((state) => ({ count: state.count + 1 })),
-//   decrease: () => set((state) => ({ count: state.count - 1 })),
-//   reset: () => set({ count: 0 }),
-
-
-
-// jsで記述すると...
-// import { create } from "zustand";
-// import { persist } from "zustand/middleware";
-
-// const useUserStore = create(
-// 	persist(
-// 		(set) => ({
-// 			user: null,
-// 			setUser: (newUser) => set({ user: newUser }),
-// 		}),
-// 		{
-// 			name: "user-storage", // 保存先の名前
-// 			getStorage: () => localStorage, // 保存先のストレージ
-// 		}
-// 	)
-// );
-
-// export default useUserStore;
-
-
-// const { count } = useStore();
-// const increase = useStore((state) => state.increase);
-// const decrease = useStore((state) => state.decrease);

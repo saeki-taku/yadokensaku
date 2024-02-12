@@ -107,7 +107,7 @@
 				}
 			}
 
-			&.favorit a {
+			&.favorite a {
 				&:hover {
 					background-color: #f2abc6;
 				}
@@ -187,7 +187,7 @@
 }
 
 .list_wrap {
-	&.favorit {
+	&.favorite {
 		margin-bottom: 60px;
 
 		.removeBtn {
@@ -227,8 +227,6 @@
 							}
 
 							.title {
-								// font-weight: 600;
-								// color: #bf0000;
 								font-size: 13px;
 								font-weight: 600;
 								background-color: rgba(255, 255, 255, 0.6);
@@ -254,7 +252,7 @@
 
 	.list_title {
 		// @include font.notoSerif_b;
-		font-size: 2.2rem;
+		font-size: 2rem;
 		font-weight: bold;
 		letter-spacing: 0.1em;
 		margin-bottom: 45px;
@@ -263,6 +261,7 @@
 		border-bottom: 2px solid color.$main;
 
 		@include mq.mq(xs) {
+			font-size: 1.8rem;
 			margin-bottom: 35px;
 		}
 	}

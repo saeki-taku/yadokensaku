@@ -52,3 +52,24 @@ export const getWentHotelIds = async (uid: string = "") => {
   }
   return wentData;
 };
+
+export const getWentHotelInfo = async (uid: string = "") => {
+  const userDocRef = doc(db, "users", uid);
+  const wentCollectionRef = collection(userDocRef, "myhotel");
+  let wentData;
+
+  try {
+    const querySnapshot = await getDocs(wentCollectionRef);
+    querySnapshot.docs.forEach((docs) => {
+
+      if(docs.id === "went" ) {
+        console.log("docs.data()",docs.data());
+        wentData = docs.data();
+      }
+    });
+  } catch (error) {
+    console.error("Error getting documents: ", error);
+    throw error; // エラーを再スローして適切に処理
+  }
+  return wentData;
+};

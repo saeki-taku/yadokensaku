@@ -54,8 +54,8 @@ const MypageMenuList = () => {
 						<span className={styles.text}>マイページトップ</span>
 					</Link>
 				</li>
-				<li className={styles.favorit}>
-					<Link href="/mypage/favorit">
+				<li className={styles.favorite}>
+					<Link href="/mypage/favorite">
 						<FontAwesomeIcon icon={faHeart} size="xl" style={{ color: "#f2abc6" }} className={styles.icon} />
 						<span className={styles.text}>お気に入り</span>
 					</Link>

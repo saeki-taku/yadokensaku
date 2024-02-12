@@ -122,6 +122,7 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 	const handleAdd = async (rating: number) => {
 		const wentCollection = doc(db, `users/${uid}/myhotel`, "went");
 		const hotelData = {
+			hotelNo: hotelNo,
 			hotelName: hotelName,
 			imgUrl: imgUrl ? imgUrl : "",
 			pref: pref ? pref : "",
