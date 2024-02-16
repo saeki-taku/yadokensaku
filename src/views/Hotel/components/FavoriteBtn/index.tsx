@@ -36,9 +36,9 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 	const [isFavoriteHotelId, setIsFavoriteHotelId] = useState(false);
 
 	// 行ったことある
-	const wentHotels = useWentStore((state) => state.wentHotels);
-	const increaseWent = useWentStore((state) => state.increasewent);
-	const decreaseWent = useWentStore((state) => state.decreasewent);
+	const wentHotelData = useWentStore((state) => state.wentHotels);
+	const increaseWent = useWentStore((state) => state.increaseWent);
+	const decreaseWent = useWentStore((state) => state.decreaseWent);
 
 	const [isWentHotelId, setIsWentHotelId] = useState(false);
 	const [isModalShow, setIsModalShow] = useState(false);
@@ -114,7 +114,7 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 			await updateDoc(wentCollection, {
 				[hotelNo]: deleteField(),
 			});
-			decreaseWent(wentHotels);
+			decreaseWent(wentHotelData);
 			setIsWentHotelId(false);
 		}
 	};
@@ -139,7 +139,7 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 			{ merge: true }
 		);
 
-		increaseWent(wentHotels);
+		increaseWent(wentHotelData);
 		setIsWentHotelId(true);
 		setIsModalShow(false);
 	};

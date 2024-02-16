@@ -39,7 +39,7 @@ export const getWentHotelIds = async (uid: string = "") => {
     querySnapshot.docs.forEach((docs) => {
 
       if(docs.id === "went" ) {
-        console.log("docs.data()",docs.data());
+        // console.log("docs.data()",docs.data());
         const objToArrData = Object.keys(docs.data());
         objToArrData.forEach((id: string) => {
           wentData.push(Number(id));
@@ -63,7 +63,7 @@ export const getWentHotelInfo = async (uid: string = "") => {
     querySnapshot.docs.forEach((docs) => {
 
       if(docs.id === "went" ) {
-        console.log("docs.data()",docs.data());
+        // console.log("docs.data()",docs.data());
         wentData = docs.data();
       }
     });

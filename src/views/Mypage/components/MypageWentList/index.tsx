@@ -8,7 +8,7 @@ import ImgLinkCheck from "../../../Search/components/ImgLinkCheck";
 // lib
 import ReactStarsRating from "react-awesome-stars-rating";
 // utils
-import { getFavoriteHotelIds, getWentHotelInfo } from "../../../../utils/myhotel";
+import { getWentHotelInfo } from "../../../../utils/myhotel";
 // firebase
 import { doc, getDocs, setDoc, updateDoc, arrayUnion, arrayRemove, collection, FieldValue, deleteField } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
@@ -21,18 +21,33 @@ const MypageWentList = () => {
 	const uid = useUserStore((state) => state.user?.uid);
 	const [wentHotelArr, setWentHotelArr] = useState<Array<any>>([]);
 
+	const wentHotelData = useWentStore((state) => state.wentHotels);
+	const decreaseWent = useWentStore((state) => state.decreaseWent);
+
 	useEffect(() => {
 		getWentHotelInfo(uid)
 			.then((result) => {
-				console.log("setWentHotelArr", result);
+				// console.log("setWentHotelArr", result);
 				result && setWentHotelArr(result);
 			})
 			.catch((error) => {
 				console.log("Error:", error);
 			});
-	}, [uid, setWentHotelArr]);
+	}, [uid, setWentHotelArr, wentHotelData]);
 
 	let wentHotels = wentHotelArr ? Object.values(wentHotelArr) : [];
+
+	const removeWent = async (e: any, hotelNo: number) => {
+		e.preventDefault();
+
+		const wentCollection = doc(db, `users/${uid}/myhotel`, "went");
+
+		alert("行ったことあるを解除しました");
+		await updateDoc(wentCollection, {
+			[hotelNo]: deleteField(),
+		});
+		decreaseWent(wentHotelData);
+	};
 
 	return (
 		<div className={`${styles.list_wrap} ${styles.went}`}>
@@ -80,7 +95,7 @@ const MypageWentList = () => {
 											</div>
 										</div>
 									</div>
-									<a href="" className={styles.removeBtn}>
+									<a href="" className={styles.removeBtn} onClick={(e) => removeWent(e, data.hotelNo)}>
 										<i className={styles.icon}></i>
 										<span className={styles.text}>行ったことあるを解除</span>
 									</a>

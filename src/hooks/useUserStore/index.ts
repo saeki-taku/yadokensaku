@@ -58,8 +58,8 @@ export const useFavoriteStore = create<favoriteStore>()(
 type wentStore = {
   wentHotels: number;
   setWentHotels: (wentState: number) => void;
-  increasewent: (wentState: number) => void;
-  decreasewent: (wentState: number) => void;
+  increaseWent: (wentState: number) => void;
+  decreaseWent: (wentState: number) => void;
 };
 
 export const useWentStore = create<wentStore>()(
@@ -67,8 +67,8 @@ export const useWentStore = create<wentStore>()(
     (set) => ({
       wentHotels: 0,
       setWentHotels: (wentState: number) => set({ wentHotels: wentState }),
-      increasewent: () => set((wentState) => ({ wentHotels: wentState.wentHotels + 1 })),
-      decreasewent: () => set((wentState) => ({ wentHotels: wentState.wentHotels - 1 })),
+      increaseWent: () => set((wentState) => ({ wentHotels: wentState.wentHotels + 1 })),
+      decreaseWent: () => set((wentState) => ({ wentHotels: wentState.wentHotels - 1 })),
     }),{
       name: 'wentHotels-storage',
       getStorage: () => localStorage,

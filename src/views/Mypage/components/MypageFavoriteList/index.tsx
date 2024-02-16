@@ -24,10 +24,8 @@ const MypageFavoriteList = () => {
 	const [favoriteHotelIdArr, setFavoriteHotelIdArr] = useState<Array<number>>([]);
 	const [favoriteHotelInfoArr, setFavoriteHotelInfoArr] = useState<any>([]);
 
-	const favoritHotels = useFavoriteStore((state) => state.favoriteHotels);
+	const favoriteHotelId = useFavoriteStore((state) => state.favoriteHotels);
 	const decreaseFavorite = useFavoriteStore((state) => state.decreaseFavorite);
-
-	const [updateFlag, setUpdateFlag] = useState(false);
 
 	const fetchData = async (idArr: any) => {
 		if (idArr.length === 0) {
@@ -57,7 +55,7 @@ const MypageFavoriteList = () => {
 				console.log("Error:", error);
 			});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [uid, setFavoriteHotelIdArr]);
+	}, [uid, setFavoriteHotelIdArr, favoriteHotelId]);
 
 	// firebaseに保存してあるホテルIDをもとにお気に入りホテル情報を取得
 	useEffect(() => {
@@ -82,7 +80,7 @@ const MypageFavoriteList = () => {
 		await updateDoc(favoriteCollection, {
 			id: arrayRemove(hotelNo),
 		});
-		decreaseFavorite(favoritHotels);
+		decreaseFavorite(favoriteHotelId);
 	};
 
 	return (
