@@ -101,30 +101,82 @@
 				}
 			}
 
-			&.mypage_top a {
-				&:hover {
-					background-color: color.$main;
+			&.mypage_top {
+				&.current {
+					a {
+						background-color: color.$main;
+					}
+				}
+
+				a {
+					&:hover {
+						background-color: color.$main;
+					}
 				}
 			}
 
-			&.favorite a {
-				&:hover {
-					background-color: #f2abc6;
+			&.favorite {
+				&.current {
+					a {
+						background-color: #f2abc6;
+					}
+				}
+
+				a {
+					&:hover {
+						background-color: #f2abc6;
+					}
 				}
 			}
-			&.went a {
-				&:hover {
-					background-color: #cc8e23;
+			&.went {
+				&.current {
+					a {
+						background-color: #cc8e23;
+					}
+				}
+
+				a {
+					&:hover {
+						background-color: #cc8e23;
+					}
 				}
 			}
-			&.memberInfo a {
-				&:hover {
-					background-color: #248b51;
+			&.memberInfo {
+				&.current {
+					a {
+						background-color: #248b51;
+					}
+				}
+
+				a {
+					&:hover {
+						background-color: #248b51;
+					}
 				}
 			}
-			&.logout a {
-				&:hover {
-					background-color: #8a6f10;
+
+			&.logout {
+				&.current {
+					a {
+						background-color: #8a6f10;
+					}
+				}
+
+				a {
+					&:hover {
+						background-color: #8a6f10;
+					}
+				}
+			}
+
+			&.current {
+				a {
+					pointer-events: none;
+
+					.icon,
+					.text {
+						color: #fff !important;
+					}
 				}
 			}
 

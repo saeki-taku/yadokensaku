@@ -6,11 +6,15 @@ import styles from "@/styles/mypage.module.scss";
 // components
 import MypageMenuList from "@/components/Mypage/MypageMenuList";
 import MypageFavoriteList from "@/components/Mypage/MypageFavoriteList";
-import MypageWentList from "@/components/Mypage/MypageWentList";
-// firebase
-import "firebase/firestore";
+// lib
+import ReactStarsRating from "react-awesome-stars-rating";
+// zustand
+import { useUserStore } from "@/hooks/useUserStore";
 
-const MypageView = () => {
+const MypageWentView = () => {
+	// Zustandの状態を取得
+	const uid = useUserStore((state) => state.user?.uid);
+
 	return (
 		<>
 			<div className={styles.hero}>
@@ -28,11 +32,10 @@ const MypageView = () => {
 			</div>
 			<div className={styles.mypage_wrap}>
 				<MypageMenuList />
-				<MypageWentList isLimit={true} />
-				<MypageFavoriteList isLimit={true} />
+				<MypageFavoriteList isLimit={false} />
 			</div>
 		</>
 	);
 };
 
-export default MypageView;
+export default MypageWentView;

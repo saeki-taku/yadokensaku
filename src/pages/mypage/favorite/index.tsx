@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import Head from "next/head";
 // views
-import MypageView from "@/views/Mypage";
+import MypageFavorite from "@/views/MypageFavorite";
 // datasources
 import { requestPageData } from "@/dataSource/hotel/requestPageData";
 // others
@@ -34,7 +34,7 @@ export default function Mypage({ title, description, pageData }: mypageProps) {
 				<title>{title}</title>
 				<meta name="description" content={description} />
 			</Head>
-			<MypageView />
+			<MypageFavorite />
 		</>
 	);
 }
