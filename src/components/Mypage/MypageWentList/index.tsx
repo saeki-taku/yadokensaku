@@ -23,7 +23,7 @@ interface MypageWentListProps {
 const MypageWentList = ({ isLimit }: MypageWentListProps) => {
 	// Zustandの状態を取得
 	const uid = useUserStore((state) => state.user?.uid);
-	const [wentHotelArr, setWentHotelArr] = useState<Array<any>>([]);
+	const [wentHotelObj, setWentHotelObj] = useState<Object>([]);
 
 	const wentHotelData = useWentStore((state) => state.wentHotels);
 	const decreaseWent = useWentStore((state) => state.decreaseWent);
@@ -32,14 +32,14 @@ const MypageWentList = ({ isLimit }: MypageWentListProps) => {
 		getWentHotelInfo(uid)
 			.then((result) => {
 				// console.log("setWentHotelArr", result);
-				result && setWentHotelArr(result);
+				result && setWentHotelObj(result);
 			})
 			.catch((error) => {
 				console.log("Error:", error);
 			});
-	}, [uid, setWentHotelArr, wentHotelData]);
+	}, [uid, setWentHotelObj, wentHotelData]);
 
-	let wentHotels = wentHotelArr ? Object.values(wentHotelArr) : [];
+	let wentHotels = wentHotelObj ? Object.values(wentHotelObj) : [];
 
 	const removeWent = async (e: any, hotelNo: number) => {
 		e.preventDefault();
@@ -64,7 +64,7 @@ const MypageWentList = ({ isLimit }: MypageWentListProps) => {
 							return null;
 						}
 						return (
-							<li key={data.hotelNo}>
+							<li key={`${data.hotelNo}`}>
 								<div className={styles.img_box}>
 									<figure>
 										<ImgLinkCheck link={data.imgUrl} />

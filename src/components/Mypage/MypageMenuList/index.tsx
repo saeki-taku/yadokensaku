@@ -21,9 +21,6 @@ const MypageMenuList = () => {
 	const parts = pathname.split("/");
 	const mypagePart = parts[2] === undefined ? "mypage_top" : parts[2];
 
-	console.log("Part", parts);
-	console.log("lastPart", mypagePart);
-
 	const clearUser = useUserStore((state) => state.clearUser);
 	const uid = useUserStore((state) => state.user?.uid);
 	// setUser: (newUser) => set({ user: newUser }),

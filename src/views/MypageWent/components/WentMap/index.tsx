@@ -2,14 +2,38 @@
 import React, { useState, useEffect } from "react";
 // styles
 import styles from "@/styles/mypage.module.scss";
+// uitls
+import { getWentHotelInfo } from "../../../../utils/myhotel";
+// firebase
+import { doc, getDocs, setDoc, updateDoc, arrayUnion, arrayRemove, collection, FieldValue, deleteField } from "firebase/firestore";
+import { db } from "@/lib/firebaseConfig";
+import "firebase/firestore";
+// zustand
+import { useUserStore, useWentStore } from "@/hooks/useUserStore";
 // Google Map
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker, MarkerF, InfoWindow } from "@react-google-maps/api";
 
 const WentMap = () => {
+	// Zustandの状態を取得
+	const uid = useUserStore((state) => state.user?.uid);
+	const [wentHotelObj, setWentHotelObj] = useState<Object>([]);
+	// React Google Maps
 	const [map, setMap] = useState(null);
-	const onLoad = (map: any) => {
-		setMap(map);
-	};
+	const [markers, setMarkers] = useState<{ lat: number; lng: number }[]>([]);
+	const [selectedLocation, setSelectedLocation] = useState<any>(null);
+
+	useEffect(() => {
+		getWentHotelInfo(uid)
+			.then((result) => {
+				// console.log("setWentHotelObj", result);
+				result && setWentHotelObj(result);
+			})
+			.catch((error) => {
+				console.log("Error:", error);
+			});
+	}, [uid, setWentHotelObj]);
+
+	// console.log("wentHotelObj", Object.values(wentHotelObj));
 
 	const locations = [
 		{
@@ -29,50 +53,114 @@ const WentMap = () => {
 		},
 	];
 
+	const markerIcon = "/img/icon/pin_map.png";
+
 	useEffect(() => {
 		// Do something with the map, e.g., add markers
-		if (map) {
+		if (map && map !== null) {
 			// Your map-related logic here
-			console.log("map::", map);
+			setMarkers(locations.map((location) => location.location));
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [map]);
 
-	// useEffect(() => {
-	// 	// Do something with the map, e.g., add markers
-	// 	if (map) {
-	// 		// Your map-related logic here
-	// 		console.log("map::", map);
+	const onLoad = (map: any) => {
+		if (map && map !== null) {
+			// console.log("onload__map", map);
+			setMap(map);
+		}
+	};
 
-	// 		// Add markers or other map-related logic here
-	// 		locations.forEach((item) => {
-	// 			const marker = new window.google.maps.Marker({
-	// 				position: item.location,
-	// 				map: map,
-	// 				title: item.name,
-	// 			});
-	// 		});
-	// 	}
-	// }, [map, locations]);
+	const onMarkerClick = (location: any) => {
+		console.log("location", location);
+		setSelectedLocation(location);
+	};
 
 	return (
 		<div className={styles.wentMap}>
 			<LoadScript googleMapsApiKey={`${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}>
+				{/* <GoogleMap
+					id="google-map"
+					mapContainerStyle={{
+						height: "600px",
+						width: "100%",
+					}}
+					center={{ lat: 38, lng: 138 }}
+					zoom={5}
+				>
+					{locations &&
+						locations.map((marker, index) => {
+							console.log("marker＝＝＝＝", marker);
+							return (
+								<Marker
+									key={index}
+									visible={true}
+									position={marker.location}
+									onLoad={onLoad}
+									onClick={() => onMarkerClick(locations[index])}
+									// icon={{
+									// 	url: markerIcon,
+									// 	scaledSize: new window.google.maps.Size(32, 32), // マーカーのサイズ
+									// }}
+								/>
+							);
+						})}
+
+					{selectedLocation && (
+						<InfoWindow
+							position={selectedLocation.location} // 位置情報の設定
+							onCloseClick={() => setSelectedLocation(null)}
+						>
+							<div>
+								<h3>{selectedLocation.name}</h3>
+								<p>追加の情報をここに表示</p>
+							</div>
+						</InfoWindow>
+					)}
+				</GoogleMap> */}
+
 				<GoogleMap
 					id="google-map"
+					center={{ lat: 38, lng: 138 }}
 					mapContainerStyle={{
 						height: "600px",
 						width: "100%",
 						// marginTop: "-60px",
 					}}
 					zoom={5}
-					center={{ lat: 38, lng: 138 }}
 					onLoad={onLoad}
 				>
-					{/* Add your components, like markers, here */}
-					{locations.map((item) => {
-						console.log("item", item);
-						return <Marker key={item.name} position={item.location} />;
-					})}
+					{markers &&
+						markers.map((marker, index) => {
+							console.log("marker__", marker);
+							// console.log("locations[index]__", locations[index]);
+							return (
+								<MarkerF
+									key={index}
+									visible={true}
+									icon={{
+										url: markerIcon,
+										scaledSize: new window.google.maps.Size(32, 32), // マーカーのサイズ
+									}}
+									position={marker}
+									onClick={() => onMarkerClick(locations[index])}
+								/>
+							);
+						})}
+
+					{selectedLocation && (
+						<InfoWindow
+							position={selectedLocation.location} // 位置情報の設定
+							onCloseClick={() => setSelectedLocation(null)}
+						>
+							<div className="testMap">
+								<h3>{selectedLocation.name}</h3>
+								<p>追加の情報をここに表示</p>
+								<p>追加の情報をここに表示</p>
+								<p>追加の情報をここに表示</p>
+							</div>
+						</InfoWindow>
+					)}
 				</GoogleMap>
 			</LoadScript>
 		</div>
