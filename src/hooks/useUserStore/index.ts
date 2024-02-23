@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { persist, devtools } from "zustand/middleware";
+import { persist, createJSONStorage, StateStorage } from 'zustand/middleware';
+// import { get, set, del } from 'idb-keyval';
 
 // ユーザー情報の登録・削除
 interface User {
@@ -27,7 +28,8 @@ export const useUserStore = create<UserStore>()(
     }),
     {
       name: 'user-storage', // 保存先の名前
-      getStorage: () => localStorage, // 保存先のストレージ
+      storage: createJSONStorage(() => sessionStorage),
+      // getStorage: () => localStorage, // getStorageは非推奨非推奨となった
     }
   )
 );
@@ -47,9 +49,9 @@ export const useFavoriteStore = create<favoriteStore>()(
       setFavoriteHotels: (favoriteState: number) => set({ favoriteHotels: favoriteState }),
       increaseFavorite: () => set((favoriteState) => ({ favoriteHotels: favoriteState.favoriteHotels + 1 })),
       decreaseFavorite: () => set((favoriteState) => ({ favoriteHotels: favoriteState.favoriteHotels - 1 })),
-    }),{
+    }), {
       name: 'favoriteHotels-storage',
-      getStorage: () => localStorage,
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
@@ -71,7 +73,7 @@ export const useWentStore = create<wentStore>()(
       decreaseWent: () => set((wentState) => ({ wentHotels: wentState.wentHotels - 1 })),
     }),{
       name: 'wentHotels-storage',
-      getStorage: () => localStorage,
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
