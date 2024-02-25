@@ -1,0 +1,167 @@
+@charset "UTF-8";
+.hero {
+  position: relative;
+}
+.hero .form_area {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  border-radius: 5px;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+@media screen and (max-width: 575px) {
+  .hero .form_area {
+    max-width: 350px;
+    width: calc(100% - 30px);
+  }
+}
+
+.main_wrap {
+  max-width: 1260px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 30px;
+}
+.main_wrap p,
+.main_wrap span {
+  color: green;
+}
+@media screen and (max-width: 767px) {
+  .main_wrap {
+    padding: 40px 20px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .main_wrap {
+    padding: 40px 15px;
+  }
+}
+
+.ranking {
+  padding-bottom: 90px;
+  /* ======================================
+  splideの記述
+  pagenationのstyleはglobal.scssにて
+  ========================================== */
+}
+@media screen and (max-width: 767px) {
+  .ranking {
+    padding-bottom: 40px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .ranking {
+    padding-bottom: 60px;
+  }
+}
+.ranking__title {
+  margin-bottom: 25px;
+  letter-spacing: 0.08em;
+}
+@media screen and (max-width: 767px) {
+  .ranking__title {
+    font-size: 2rem;
+  }
+}
+.ranking ul {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 30px;
+  -moz-column-gap: 30px;
+       column-gap: 30px;
+  list-style: none;
+}
+@media screen and (min-width: 576px) {
+  .ranking ul {
+    display: grid !important;
+  }
+}
+@media screen and (max-width: 999px) {
+  .ranking ul {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media screen and (max-width: 767px) {
+  .ranking ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 575px) {
+  .ranking ul {
+    row-gap: 0;
+    -moz-column-gap: 0;
+         column-gap: 0;
+  }
+}
+.ranking__item {
+  width: 100%;
+}
+.ranking .pref {
+  background-color: rgb(13, 123, 53);
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;
+  display: inline-block;
+  letter-spacing: 0.1em;
+  margin-bottom: 5px;
+  padding: 2px 8px;
+}
+@media screen and (max-width: 575px) {
+  .ranking .pref {
+    font-size: 12px;
+    padding: 2px 6px;
+  }
+}
+.ranking .name {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 2px;
+  min-height: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* 表示する行数 */
+}
+@media screen and (max-width: 575px) {
+  .ranking .name {
+    font-size: 13px;
+    min-height: 40px;
+    -webkit-line-clamp: 3; /* 表示する行数 */
+  }
+}
+.ranking figure {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/2;
+}
+.ranking figure img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3/2;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.ranking .kuchikomi {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+.ranking .kuchikomi .kuchikomiTitle {
+  font-size: 14px;
+  margin-right: 5px;
+}
+.ranking .kuchikomi a {
+  color: #111;
+  margin-left: 8px;
+  text-decoration: underline;
+  transition: -webkit-text-decoration 0.2;
+  transition: text-decoration 0.2;
+  transition: text-decoration 0.2, -webkit-text-decoration 0.2;
+}
+.ranking .kuchikomi a:hover {
+  text-decoration: none;
+}

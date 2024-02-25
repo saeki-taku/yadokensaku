@@ -141,7 +141,7 @@
 					}
 				}
 			}
-			&.memberInfo {
+			&.member {
 				&.current {
 					a {
 						background-color: #248b51;
@@ -645,20 +645,232 @@
 	}
 }
 
-// went
+/**
+	went
+*/
 .wentMap {
 	overflow: hidden;
 	border-radius: 10px;
 	max-width: 1000px;
-	height: 520px;
+	height: auto;
 	margin: 0 auto 50px;
 	overflow: hidden;
 
 	#google-map {
 		border-radius: inherit;
 	}
+
+	.gm-style-iw.gm-style-iw-c {
+		padding: 30px;
+	}
+
+	.window_wrap {
+		.hotelName {
+			color: color.$text;
+			font-size: 1.5rem;
+			font-weight: 600;
+			margin-bottom: 10px;
+			// color: color.$main;
+		}
+
+		.detail_link {
+			border: 1px solid #fff;
+			display: block;
+			padding: 4px 8px 5px;
+			border-radius: 4px;
+			background-color: color.$main;
+			text-align: center;
+			width: 100px;
+			margin: 0 auto;
+
+			span {
+				color: #fff;
+				font-weight: bold;
+				font-size: 13px;
+				letter-spacing: 0.08em;
+			}
+
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+	}
 }
 
-.gm-style-iw-a {
-	display: none;
+/**
+	会員情報
+*/
+.member {
+	table {
+		margin-bottom: 80px;
+
+		@include mq.mq(xs) {
+			margin-bottom: 50px;
+		}
+	}
+
+	.btn_list {
+		display: grid;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		column-gap: 40px;
+		row-gap: 30px;
+		max-width: 700px;
+		width: 100%;
+		margin: 0 auto;
+
+		@include mq.mq(xs) {
+			grid-template-columns: 1fr;
+			max-width: 280px;
+			margin-bottom: 50px;
+		}
+
+		> li {
+			a {
+				display: block;
+				text-align: center;
+				border: 1px solid color.$main;
+				border-radius: 4px;
+				color: color.$main;
+				background-color: #fdfdfd;
+				font-weight: 600;
+				padding: 8px;
+				letter-spacing: 0.15em;
+				transition: background-color 0.1s ease-in-out;
+
+				&:hover {
+					border: 1px solid transparent;
+					background-color: color.$main;
+					color: #ffffff;
+				}
+			}
+		}
+	}
+}
+
+/**
+	会員情報修正
+*/
+.infoModefy {
+	padding-top: 60px;
+
+	table {
+		tr {
+			th {
+				width: 180px;
+
+				@include mq.mq(xs) {
+					width: auto;
+				}
+			}
+
+			td {
+				padding: 10px 20px;
+			}
+		}
+	}
+
+	form {
+		input[type="text"] {
+			padding: 5px 10px;
+			padding: 5px 15px;
+			min-height: 45px;
+			width: 100%;
+			border-radius: 5px;
+			border: none;
+			box-sizing: border-box;
+			box-shadow: inset 1px 1px 2px 1px rgba(51, 51, 51, 0.1882352941);
+			font-size: 16px;
+		}
+
+		.careful {
+			padding-top: 8px;
+			padding-bottom: 8px;
+			text-align: center;
+
+			.careful_pre {
+				display: inline-block;
+				margin-right: 2px;
+				color: color.$red;
+				font-weight: 600;
+			}
+		}
+
+		.submit_btn {
+			max-width: 320px;
+			margin: 40px auto 10px;
+			position: relative;
+			overflow: hidden;
+			height: 50px;
+			cursor: pointer;
+
+			&:after {
+				content: "";
+				display: block;
+				width: 120px;
+				height: 120px;
+				background-color: #fff;
+				border: 8px double #eee;
+				border-radius: 50%;
+				opacity: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%) scale(0);
+				transition: 0.2s;
+				// mix-blend-mode: difference;
+				pointer-events: none;
+				z-index: 5;
+			}
+
+			.btn_text {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				color: #ffffff;
+				pointer-events: none;
+				z-index: 6;
+			}
+
+			&:hover {
+				&:after {
+					opacity: 1;
+					transform: translate(-50%, -50%) scale(1);
+				}
+				.btn_text {
+					color: color.$sub;
+				}
+			}
+		}
+
+		input[type="submit"] {
+			width: 100%;
+			height: inherit;
+			padding: 5px 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: color.$sub;
+			color: #ffffff;
+			// min-height: 50px;
+			letter-spacing: 0.1em;
+			cursor: pointer;
+		}
+
+		.login_error_message {
+			font-size: 1.4rem;
+			color: color.$red;
+			margin-bottom: 15px;
+		}
+	}
+
+	.cancel_box {
+		text-align: center;
+		padding-top: 20px;
+		padding-bottom: 10px;
+		.cancel {
+			color: color.$main;
+			text-decoration: underline;
+		}
+	}
 }

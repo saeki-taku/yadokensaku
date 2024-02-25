@@ -1,0 +1,53 @@
+@use "./common/_viewport.scss" as mq;
+@use "./common/_font.scss" as font;
+@use "./common/_color.scss" as color;
+
+.hero_title {
+	@include font.notoSerif_b;
+	position: absolute;
+	top: 200px;
+	left: 50%;
+	transform: translateX(-50%);
+	color: #fff;
+	font-size: 2.8rem;
+	letter-spacing: 0.3em;
+	filter: drop-shadow(1px 1px 5px #eeeeee);
+
+	@include mq.mq(xs) {
+		font-size: 2.4rem;
+		letter-spacing: 0.2em;
+	}
+}
+
+.noPage {
+	text-align: center;
+	margin-top: 20px;
+
+	.title {
+		font-size: 1.8rem;
+		font-weight: 600;
+		color: color.$text;
+		letter-spacing: 0.1em;
+		margin-bottom: 30px;
+	}
+
+	.link {
+		display: block;
+		margin: 0 auto;
+		background-color: color.$main;
+		color: #ffffff;
+		max-width: 280px;
+		width: calc(100% - 20px);
+		border-radius: 4px;
+		border: 1px solid transparent;
+		padding: 10px;
+		box-sizing: border-box;
+		letter-spacing: 0.1em;
+
+		&:hover {
+			background-color: #ffffff;
+			border: 1px solid color.$main;
+			color: color.$main;
+		}
+	}
+}

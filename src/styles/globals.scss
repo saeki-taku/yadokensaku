@@ -211,6 +211,109 @@ ul {
 }
 
 /**
+テーブル
+*/
+table {
+	max-width: 1000px;
+	width: 100%;
+	margin: 0 auto;
+	border-radius: 5px;
+	overflow: hidden;
+	border-collapse: collapse;
+	box-sizing: border-box;
+
+	tbody {
+	}
+
+	tr {
+		&:not(:last-child) {
+			th {
+				border-bottom: 1px solid #f5f5f5;
+			}
+
+			td {
+				border-bottom: 1px solid #cab0b0;
+			}
+		}
+	}
+
+	th,
+	td {
+		@include mq.mq(isp) {
+			font-size: 1.5rem;
+		}
+		@include mq.mq(xs) {
+			width: 100%;
+			display: block;
+		}
+	}
+
+	th {
+		width: 200px;
+		// padding: 15px 10px 15px 30px;
+		padding: 15px 10px;
+		color: #ffffff;
+		letter-spacing: 0.08em;
+		background-color: #800000;
+		// text-align: left;
+
+		@include mq.mq(isp) {
+			width: 150px;
+		}
+
+		@include mq.mq(xs) {
+			width: 100%;
+			padding: 10px 8px;
+		}
+	}
+
+	td {
+		background-color: #f5f5f5;
+		padding: 15px 30px;
+		letter-spacing: 0.05em;
+
+		@include mq.mq(isp) {
+			padding: 15px 20px;
+		}
+
+		.rearText {
+			margin-left: 8px;
+		}
+
+		.list,
+		.listFlex {
+			list-style: none;
+			display: grid;
+			grid-template-columns: 1fr;
+			column-gap: 20px;
+			row-gap: 10px;
+
+			.item {
+				padding-left: 18px;
+				position: relative;
+				letter-spacing: 0.05em;
+
+				&::before {
+					content: "";
+					display: inline-block;
+					width: 6px;
+					height: 6px;
+					border-radius: 50%;
+					background-color: #800000;
+					position: absolute;
+					top: 0.5em;
+					left: 2px;
+				}
+			}
+		}
+
+		.listFlex {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}
+
+/**
 ページネーション
 */
 .pagenation_wrap {

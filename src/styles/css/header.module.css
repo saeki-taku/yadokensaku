@@ -1,0 +1,144 @@
+.header {
+  box-shadow: 0px 10px 20px 2px rgba(255, 231, 231, 0.5843137255);
+  position: relative;
+  z-index: 10;
+}
+.header p,
+.header span,
+.header a {
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+.header .top {
+  background-color: #800000;
+  padding: 12px 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media screen and (max-width: 767px) {
+  .header .top {
+    padding: 15px 15px 5px;
+  }
+}
+@media screen and (max-width: 575px) {
+  .header .top {
+    padding: 10px 15px 10px;
+  }
+}
+.header .bottom {
+  padding: 5px 20px 5px;
+  background-color: #671616;
+  display: flex;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 767px) {
+  .header .bottom {
+    padding: 5px 15px 5px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .header .bottom .favourite,
+  .header .bottom .went {
+    font-size: 1.3rem;
+  }
+}
+.header .bottom .favourite {
+  margin-right: 8px;
+}
+
+.header h1 a {
+  color: #ffffff;
+  letter-spacing: 0.1em;
+}
+@media screen and (max-width: 575px) {
+  .header h1 a {
+    font-size: 2.2rem;
+  }
+}
+
+.member_wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.member_new a,
+.login a,
+.mypage a {
+  background-color: #fff;
+  border-radius: 20px;
+  border: 1px solid #fff;
+  padding: 2px 12px;
+}
+.member_new a:hover,
+.login a:hover,
+.mypage a:hover {
+  background-color: #800000;
+  border-radius: 20px;
+  padding: 2px 12px;
+}
+.member_new a:hover .text,
+.login a:hover .text,
+.mypage a:hover .text {
+  color: #ffffff;
+}
+.member_new a:hover .icon,
+.login a:hover .icon,
+.mypage a:hover .icon {
+  color: #ffffff !important;
+}
+@media screen and (max-width: 375px) {
+  .member_new a,
+  .login a,
+  .mypage a {
+    padding: 2px 6px;
+  }
+}
+.member_new .text,
+.login .text,
+.mypage .text {
+  margin-right: 4px;
+  color: #800000;
+}
+@media screen and (max-width: 575px) {
+  .member_new .text,
+  .login .text,
+  .mypage .text {
+    letter-spacing: 0.05em;
+    font-size: 1.3rem;
+  }
+}
+@media screen and (max-width: 375px) {
+  .member_new .text,
+  .login .text,
+  .mypage .text {
+    font-size: 1.2rem;
+  }
+}
+
+.member_new {
+  margin-right: 15px;
+}
+@media screen and (max-width: 375px) {
+  .member_new {
+    margin-right: 10px;
+  }
+}
+
+.member_right {
+  text-align: center;
+}
+.member_right .member_box {
+  margin-top: 5px;
+}
+
+.memberName {
+  display: inline-block;
+  margin-bottom: 3px;
+}
+@media screen and (max-width: 575px) {
+  .memberName {
+    font-size: 1.3rem;
+  }
+}

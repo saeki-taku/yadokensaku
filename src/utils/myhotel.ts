@@ -8,7 +8,6 @@ export const getFavoriteHotelIds = async (uid: string = "") => {
   // const uid = useUserStore((state) => state.user?.uid);
   const userDocRef = doc(db, "users", uid);
   const favoritesCollectionRef = collection(userDocRef, "myhotel");
-  console.log("favoritesCollectionRef",favoritesCollectionRef);
   let favoriteData: Array<number> = [];
 
   try {
@@ -24,7 +23,7 @@ export const getFavoriteHotelIds = async (uid: string = "") => {
     });
   } catch (error) {
     console.error("Error getting documents: ", error);
-    throw error; // エラーを再スローして適切に処理
+    throw error;
   }
   return favoriteData;
 };
@@ -48,7 +47,7 @@ export const getWentHotelIds = async (uid: string = "") => {
     });
   } catch (error) {
     console.error("Error getting documents: ", error);
-    throw error; // エラーを再スローして適切に処理
+    throw error;
   }
   return wentData;
 };

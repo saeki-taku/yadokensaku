@@ -8,7 +8,7 @@ import { useRoute } from "@/hooks/useRoute";
 // lib
 import { useForm } from "react-hook-form";
 // firebase
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
 import { doc, setDoc, getDoc, addDoc, collection } from "firebase/firestore";
 import { app, auth, db } from "@/lib/firebaseConfig";
 
@@ -33,6 +33,7 @@ const SignupView = () => {
 			const userCredentical = await createUserWithEmailAndPassword(auth, data.mail, data.pass);
 			const user = userCredentical.user;
 
+			await sendEmailVerification(user);
 			await updateProfile(user, {
 				displayName: data.name, // data.nameをdisplayNameに設定する
 			});

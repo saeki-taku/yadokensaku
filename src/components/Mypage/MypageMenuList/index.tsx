@@ -71,8 +71,8 @@ const MypageMenuList = () => {
 						<span className={styles.text}>行ったことある</span>
 					</Link>
 				</li>
-				<li className={`${styles.memberInfo} ${mypagePart === "memberInfo" && styles.current}`}>
-					<Link href="/mypage/userInfo">
+				<li className={`${styles.member} ${mypagePart === "member" && styles.current}`}>
+					<Link href="/mypage/member">
 						<FontAwesomeIcon icon={faUser} style={{ color: "#248b51" }} size="xl" className={styles.icon} />
 						<span className={styles.text}>会員情報</span>
 					</Link>
