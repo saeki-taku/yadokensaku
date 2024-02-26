@@ -6,6 +6,7 @@ import Link from "next/link";
 import styles from "@/styles/mypage.module.scss";
 // lib
 import { useForm, useFormContext } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 // hooks
 import { useUserStore } from "@/hooks/useUserStore";
 // hools
@@ -14,6 +15,7 @@ import { useRoute } from "@/hooks/useRoute";
 import { createUserWithEmailAndPassword, updateProfile, updateEmail, sendEmailVerification } from "firebase/auth";
 import { doc, setDoc, getDoc, addDoc, collection } from "firebase/firestore";
 import { app, auth, db } from "@/lib/firebaseConfig";
+import { error } from "console";
 
 interface User {
 	name: string;
@@ -67,6 +69,57 @@ const MypageMemberView = () => {
 	// });
 
 	const onSubmit = async (data: ANY_OBJECT) => {
+		if (isDirty) {
+			try {
+				// const userCredentical = await createUserWithEmailAndPassword(auth, data.mail, data.pass);
+				// const user = userCredentical.user;
+				const currentUser = auth.currentUser;
+
+				if (currentUser) {
+					await updateProfile(currentUser, {
+						displayName: data.name,
+					});
+
+					// await updateEmail(currentUser, {
+					// 	displayName: data.name,
+					// });
+				}
+
+				// firebase doc関数について https://firebase.google.com/docs/firestore/query-data/get-data?hl=ja
+				// doc(db, "users（firebaseに登録するパス名）", user.uid（追加する情報（今回はユーザーID））);
+				// const docRef = doc(db, "users", user.uid);
+				// const docSnap = await getDoc(docRef);
+
+				// console.log("docRef", docRef);
+				// console.log("docSnap", docSnap);
+
+				// if (!docSnap.exists()) {
+				// 	await setDoc(doc(db, "users", user.uid), {
+				// 		name: data.name,
+				// 		email: user.email,
+				// 	});
+
+				// フィールドにお気に入り情報を追加
+				// await setDoc(doc(db, `users/${user.uid}/myhotel`, "favorite"), {
+				// 	id: [],
+				// });
+				// }
+
+				console.log("変更完了しました", user);
+				alert("変更完了しました");
+				// router.push({
+				// 	pathname: "/mypage/member",
+				// });
+				// return user;
+				return;
+			} catch (error: any) {
+				setErrorMessage("※変更に失敗しました");
+				console.log("変更に失敗しました", error);
+			}
+		} else {
+			alert("フォームは変更されていません");
+			return;
+		}
 		console.log("data", data);
 		try {
 			// const userCredentical = await createUserWithEmailAndPassword(auth, data.mail, data.pass);
@@ -125,7 +178,9 @@ const MypageMemberView = () => {
 				</div>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					{errorMessage.length > 0 && <p className={styles.login_error_message}>{errorMessage}</p>}
-					{/* {message && <p className="error">{message}</p>} */}
+					<ErrorMessage errors={errors} name="name" render={({ message }) => <p className={styles.error_message}>※{message}</p>} />
+					<ErrorMessage errors={errors} name="email" render={({ message }) => <p className={styles.error_message}>※{message}</p>} />
+					<ErrorMessage errors={errors} name="email_comfirm" render={({ message }) => <p className={styles.error_message}>※{message}</p>} />
 					<table>
 						<tbody>
 							<tr>
@@ -134,37 +189,40 @@ const MypageMemberView = () => {
 									<input
 										type="text"
 										{...register("name", {
-											maxLength: { value: 4, message: "ユーザー名は100文字以内で入力してください" },
+											maxLength: { value: 30, message: "ユーザー名は30文字以内で入力してください" },
 										})}
 									/>
 								</td>
 							</tr>
-							{/* <tr>
+							<tr>
 								<th>メールアドレス</th>
 								<td>
 									<input
 										type="text"
 										defaultValue={userInfo?.email || ""}
 										{...register("email", {
-											maxLength: { value: 100, message: "" },
+											maxLength: { value: 50, message: "メールアドレスは50文字以内で入力してください" },
+											pattern: {
+												value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+												message: "メールアドレスの形式で入力してください",
+											},
 										})}
 									/>
 								</td>
-							</tr> */}
-							{/* <tr>
+							</tr>
+							<tr>
 								<th>メールアドレス確認</th>
 								<td>
 									<input
 										type="text"
 										defaultValue={userInfo?.email || ""}
 										{...register("email_comfirm", {
-											maxLength: { value: 100, message: "" },
 											required: "メールアドレス確認は必須です",
-											validate: (value) => value === watch("mail") || "メールアドレスが一致しません",
+											validate: (value) => value === watch("email") || "メールアドレスが一致しません",
 										})}
 									/>
 								</td>
-							</tr> */}
+							</tr>
 						</tbody>
 					</table>
 
@@ -182,7 +240,6 @@ const MypageMemberView = () => {
 						</Link>
 					</div>
 				</form>
-				{/* {message && <p className="error">{message}</p>} */}
 			</div>
 		</div>
 	);

@@ -7,6 +7,7 @@ import styles from "@/styles/authForm.module.scss";
 import { useRoute } from "@/hooks/useRoute";
 // lib
 import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 // firebase
 import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
 import { doc, setDoc, getDoc, addDoc, collection } from "firebase/firestore";
@@ -75,19 +76,22 @@ const SignupView = () => {
 
 	return (
 		<div className="common_wrap">
-			<div className={styles.login}>
+			<div className={styles.signup}>
 				<div className={styles.title_box}>
 					<span className={styles.title}>会員新規登録フォーム</span>
 				</div>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					{errorMessage.length > 0 && <p className={styles.login_error_message}>{errorMessage}</p>}
+					<ErrorMessage errors={errors} name="name" render={({ message }) => <p className={styles.error_message}>※{message}</p>} />
+					<ErrorMessage errors={errors} name="mail" render={({ message }) => <p className={styles.error_message}>※{message}</p>} />
+					<ErrorMessage errors={errors} name="pass" render={({ message }) => <p className={styles.error_message}>※{message}</p>} />
 					<div className={styles.form_box}>
 						<div className={styles.input_frame}>
 							<p className={styles.input_label}>ユーザー名</p>
 							<input
 								type="text"
 								{...register("name", {
-									maxLength: { value: 100, message: "" },
+									maxLength: { value: 30, message: "ユーザー名は30文字以内で入力してください" },
 								})}
 							/>
 						</div>
@@ -96,7 +100,11 @@ const SignupView = () => {
 							<input
 								type="text"
 								{...register("mail", {
-									maxLength: { value: 100, message: "" },
+									maxLength: { value: 50, message: "メールアドレスは50文字以内で入力してください" },
+									pattern: {
+										value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+										message: "メールアドレスの形式で入力してください",
+									},
 								})}
 							/>
 						</div>
@@ -105,7 +113,7 @@ const SignupView = () => {
 							<input
 								type="text"
 								{...register("pass", {
-									maxLength: { value: 10, message: "" },
+									maxLength: { value: 12, message: "パスワードは12文字以内にしてください" },
 								})}
 							/>
 						</div>
@@ -125,9 +133,3 @@ const SignupView = () => {
 };
 
 export default SignupView;
-
-// saetaku333@yahoo.co.jp
-// test001
-
-// saetaku333@gmail.com
-// test111

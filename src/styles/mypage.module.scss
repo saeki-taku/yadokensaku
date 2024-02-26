@@ -755,6 +755,7 @@
 	padding-top: 60px;
 
 	table {
+		margin-top: 10px;
 		tr {
 			th {
 				width: 180px;
@@ -872,5 +873,11 @@
 			color: color.$main;
 			text-decoration: underline;
 		}
+	}
+
+	.error_message {
+		position: relative;
+		color: color.$red;
+		text-align: center;
 	}
 }
