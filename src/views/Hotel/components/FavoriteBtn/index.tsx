@@ -11,7 +11,7 @@ import "firebase/firestore";
 // zustand
 import { useUserStore, useFavoriteStore, useWentStore } from "@/hooks/useUserStore";
 // component
-import Modal from "../Modal";
+import Modal from "../Modal/went";
 
 interface FavoriteBtnProps {
 	hotelNo: number; // 仮に数値型としていますが、実際の型に合わせて変更してください

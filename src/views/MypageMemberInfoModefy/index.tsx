@@ -12,10 +12,19 @@ import { useUserStore } from "@/hooks/useUserStore";
 // hools
 import { useRoute } from "@/hooks/useRoute";
 // firebase
-import { createUserWithEmailAndPassword, updateProfile, updateEmail, sendEmailVerification } from "firebase/auth";
+import {
+	getAuth,
+	signOut,
+	createUserWithEmailAndPassword,
+	updateProfile,
+	updateEmail,
+	sendEmailVerification,
+	reauthenticateWithCredential,
+	verifyBeforeUpdateEmail,
+} from "firebase/auth";
 import { doc, setDoc, getDoc, addDoc, collection } from "firebase/firestore";
 import { app, auth, db } from "@/lib/firebaseConfig";
-import { error } from "console";
+import { FirebaseError } from "@firebase/util";
 
 interface User {
 	name: string;
@@ -28,19 +37,8 @@ const MypageMemberView = () => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [userInfo, setUserInfo] = useState<User | null>(null);
 	const uid = useUserStore((state) => state.user?.uid);
-
+	const clearUser = useUserStore((state) => state.clearUser);
 	const { user } = useUserStore();
-
-	// const {
-	// 	register,
-	// 	handleSubmit,
-	// 	formState: { errors },
-	// 	watch,
-	// } = useForm();
-
-	// useEffect(() => {
-	// 	setUserInfo(user);
-	// }, []);
 
 	const {
 		register,
@@ -56,119 +54,92 @@ const MypageMemberView = () => {
 	});
 
 	const currentUser = auth.currentUser;
+	// console.log("currentUser", currentUser);
 
-	// const {
-	// 	register,
-	// 	handleSubmit,
-	// 	setValue,
-	// 	control,
-	// 	formState: { isDirty, isValid, errors },
-	// } = useForm<InputValues>({
-	// 	mode: "onChange",
-	// 	defaultValues,
-	// });
+	// const credential = promptForCredentials();
 
 	const onSubmit = async (data: ANY_OBJECT) => {
-		if (isDirty) {
-			try {
-				// const userCredentical = await createUserWithEmailAndPassword(auth, data.mail, data.pass);
-				// const user = userCredentical.user;
-				const currentUser = auth.currentUser;
+		const currentUser = auth.currentUser;
 
-				if (currentUser) {
+		const watchedFields = watch(["name", "email"]);
+
+		console.log("isDirty", isDirty);
+		console.log("data", data);
+		console.log("Name field is dirty:", isDirty && "name" in watchedFields);
+		console.log("Email field is dirty:", isDirty && "email" in watchedFields);
+
+		if (isDirty && currentUser) {
+			console.log("currentUser", user?.name, "=== newUser", data.user);
+			console.log("email", user?.email, "=== newEmail", data.email);
+			if (user?.name !== data.user) {
+				try {
 					await updateProfile(currentUser, {
 						displayName: data.name,
 					});
 
-					// await updateEmail(currentUser, {
-					// 	displayName: data.name,
+					// try {
+					// 	await verifyBeforeUpdateEmail(currentUser, data.email);
+					// 	alert("新しく設定したメールアドレスにメールを送信しました。変更を完了するには認証となるためメールをご確認ください。");
+					// } catch (error: any) {
+					// 	alert("メールアドレスの変更に失敗しました。");
+					// }
+
+					// firebase doc関数について https://firebase.google.com/docs/firestore/query-data/get-data?hl=ja
+					// doc(db, "users（firebaseに登録するパス名）", user.uid（追加する情報（今回はユーザーID））);
+					// const docRef = doc(db, "users", user.uid);
+					// const docSnap = await getDoc(docRef);
+
+					// console.log("docRef", docRef);
+					// console.log("docSnap", docSnap);
+
+					// if (!docSnap.exists()) {
+					// 	await setDoc(doc(db, "users", user.uid), {
+					// 		name: data.name,
+					// 		email: user.email,
+					// 	});
+
+					// フィールドにお気に入り情報を追加
+					// await setDoc(doc(db, `users/${user.uid}/myhotel`, "favorite"), {
+					// 	id: [],
 					// });
+
+					console.log("変更完了しました", user);
+					alert("変更完了しました");
+				} catch (error: any) {
+					setErrorMessage("※変更に失敗しました");
+					console.log("ユーザー名の変更に失敗しました", error);
 				}
+			}
 
-				// firebase doc関数について https://firebase.google.com/docs/firestore/query-data/get-data?hl=ja
-				// doc(db, "users（firebaseに登録するパス名）", user.uid（追加する情報（今回はユーザーID））);
-				// const docRef = doc(db, "users", user.uid);
-				// const docSnap = await getDoc(docRef);
+			if (user?.email !== data.email) {
+				try {
+					await verifyBeforeUpdateEmail(currentUser, data.email);
+					alert("新しく設定したメールアドレスにメールを送信しました。変更を完了するには認証となるためメールをご確認ください。");
+				} catch (error: any) {
+					setErrorMessage("※変更に失敗しました");
+					console.log("変更に失敗しました", error);
+				}
+			}
 
-				// console.log("docRef", docRef);
-				// console.log("docSnap", docSnap);
+			try {
+				const auth = getAuth();
+				await signOut(auth);
+				clearUser();
 
-				// if (!docSnap.exists()) {
-				// 	await setDoc(doc(db, "users", user.uid), {
-				// 		name: data.name,
-				// 		email: user.email,
-				// 	});
-
-				// フィールドにお気に入り情報を追加
-				// await setDoc(doc(db, `users/${user.uid}/myhotel`, "favorite"), {
-				// 	id: [],
-				// });
-				// }
-
-				console.log("変更完了しました", user);
-				alert("変更完了しました");
-				// router.push({
-				// 	pathname: "/mypage/member",
-				// });
-				// return user;
-				return;
-			} catch (error: any) {
-				setErrorMessage("※変更に失敗しました");
-				console.log("変更に失敗しました", error);
+				// alert("ログアウトしました");
+			} catch (e) {
+				if (uid && uid.length > 0) {
+					clearUser();
+				}
+				if (e instanceof FirebaseError) {
+					console.log("エラーです", e);
+				}
 			}
 		} else {
 			alert("フォームは変更されていません");
 			return;
 		}
-		console.log("data", data);
-		try {
-			// const userCredentical = await createUserWithEmailAndPassword(auth, data.mail, data.pass);
-			// const user = userCredentical.user;
-			const currentUser = auth.currentUser;
-
-			if (currentUser) {
-				await updateProfile(currentUser, {
-					displayName: data.name,
-				});
-
-				// await updateEmail(currentUser, {
-				// 	displayName: data.name,
-				// });
-			}
-
-			// firebase doc関数について https://firebase.google.com/docs/firestore/query-data/get-data?hl=ja
-			// doc(db, "users（firebaseに登録するパス名）", user.uid（追加する情報（今回はユーザーID））);
-			// const docRef = doc(db, "users", user.uid);
-			// const docSnap = await getDoc(docRef);
-
-			// console.log("docRef", docRef);
-			// console.log("docSnap", docSnap);
-
-			// if (!docSnap.exists()) {
-			// 	await setDoc(doc(db, "users", user.uid), {
-			// 		name: data.name,
-			// 		email: user.email,
-			// 	});
-
-			// フィールドにお気に入り情報を追加
-			// await setDoc(doc(db, `users/${user.uid}/myhotel`, "favorite"), {
-			// 	id: [],
-			// });
-			// }
-
-			console.log("変更完了しました", user);
-			alert("変更完了しました");
-			// router.push({
-			// 	pathname: "/mypage/member",
-			// });
-			// return user;
-		} catch (error: any) {
-			setErrorMessage("※変更に失敗しました");
-			console.log("変更に失敗しました", error);
-		}
 	};
-
-	// const message = errors?.keyword?.message?.toString();
 
 	return (
 		<div className={styles.mypage_wrap}>
