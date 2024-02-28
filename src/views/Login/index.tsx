@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import styles from "@/styles/authForm.module.scss";
 // lib
 import { useForm, useFormContext } from "react-hook-form";
+// hooks
+import { useRoute } from "@/hooks/useRoute";
 // utils
 import { getFavoriteHotelIds, getWentHotelIds } from "../../utils/myhotel";
 // firebase
@@ -14,6 +16,9 @@ import { useUserStore, useFavoriteStore, useWentStore } from "@/hooks/useUserSto
 import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 
 const LoginView = () => {
+	const router = useRoute();
+	const backUrl = router.query.from;
+
 	const [errorMessage, setErrorMessage] = useState("");
 
 	// Zustandの記述
@@ -31,33 +36,13 @@ const LoginView = () => {
 		getValues,
 	} = useForm();
 
-	// ユーザーのログイン
-	// const onLogin = async (data: ANY_OBJECT) => {
-	// 	try {
-	// 		const userCredentical = await signInWithEmailAndPassword(auth, data.mail, data.pass);
-	// 		const user = userCredentical.user;
-
-	// 		console.log("ログインしました", user);
-	// 		alert("ログインしました");
-	// 		// router.push({
-	// 		//     pathname: "/",
-	// 		// });
-
-	// 		return user;
-	// 	} catch (error: any) {
-	// 		setErrorMessage("※メールアドレスもしくはパスワードが違います");
-	// 		console.log("ログインに失敗しました", error);
-	// 	}
-	// };
-
 	// Zustandの記述
 	const onLogin = async (data: ANY_OBJECT) => {
 		try {
 			const userCredential = await signInWithEmailAndPassword(auth, data.mail, data.pass);
-			console.log("ログインしました", userCredential);
+			// console.log("ログインしました", userCredential);
 			const user = userCredential.user;
-
-			console.log("user::", user);
+			// console.log("user::", user);
 
 			// Zustandのuser情報を更新
 			setUser({
@@ -81,6 +66,10 @@ const LoginView = () => {
 				.catch((error) => {
 					console.error("Error:", error);
 				});
+
+			if (backUrl && backUrl.length > 0) {
+				router.replace(backUrl);
+			}
 
 			return user;
 		} catch (error: any) {

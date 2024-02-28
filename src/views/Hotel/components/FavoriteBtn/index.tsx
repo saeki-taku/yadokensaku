@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import styles from "@/styles/hotel.module.scss";
 // utils
 import { getFavoriteHotelIds, getWentHotelIds } from "../../../../utils/myhotel";
+// hooks
+import { useRoute } from "@/hooks/useRoute";
 // firebase
 import { doc, getDocs, setDoc, updateDoc, arrayUnion, arrayRemove, collection, FieldValue, deleteField } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
@@ -23,10 +25,12 @@ interface FavoriteBtnProps {
 }
 
 const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtnProps) => {
+	const router = useRoute();
 	// Zustandの状態を取得
 	const uid = useUserStore((state) => {
 		return state.user?.uid;
 	});
+
 	// お気に入り
 	const favoritHotels = useFavoriteStore((state) => state.favoriteHotels);
 	const increaseFavorite = useFavoriteStore((state) => state.increaseFavorite);
@@ -75,6 +79,12 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 	const toggleFavorite = async (e: any) => {
 		e.preventDefault();
 
+		// 未ログインの場合,現在のURLを付与しログインページへ遷移
+		if (!uid ?? uid === null) {
+			router.replace(`/login?from=${router.asPath}`);
+			return;
+		}
+
 		const favoriteCollection = doc(db, `users/${uid}/myhotel`, "favorite");
 
 		if (!isFavoriteHotelId) {
@@ -104,6 +114,11 @@ const FavoriteBtn = ({ hotelNo, hotelName, imgUrl, pref, lat, lng }: FavoriteBtn
 	// ホテルID/ホテル名/画像URL/都道府県/緯度/経度/自分で評価できる星
 	const toggleWent = async (e: any) => {
 		e.preventDefault();
+
+		if (!uid ?? uid === null) {
+			router.replace(`/login?from=${router.asPath}`);
+			return;
+		}
 
 		const wentCollection = doc(db, `users/${uid}/myhotel`, "went");
 
