@@ -486,6 +486,58 @@ table {
 	justify-content: center;
 	position: relative;
 
+	.modal_btn {
+		border: none;
+		background-color: color.$main;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		color: #fff;
+		font-weight: 600;
+		width: 100px;
+		padding: 10px 15px;
+		letter-spacing: 0.15em;
+		transition: background-color 0.2s;
+		cursor: pointer;
+
+		&:hover {
+			background-color: #fff;
+			color: color.$main;
+			border: 1px solid color.$main;
+		}
+	}
+
+	.close_btn {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		width: 20px;
+		height: 20px;
+		border: none;
+		background-color: transparent;
+		cursor: pointer;
+
+		&::before,
+		&::after {
+			content: "";
+			display: inline-block;
+			width: 20px;
+			height: 2px;
+			background-color: #919191;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		&::before {
+			transform: translate(-50%, -50%) rotate(45deg);
+		}
+
+		&::after {
+			transform: translate(-50%, -50%) rotate(-45deg);
+		}
+	}
+
 	&._star {
 		.modal_title {
 			font-size: 16px;
@@ -506,56 +558,40 @@ table {
 		.star_icon {
 			margin-bottom: 20px;
 		}
+	}
 
-		.modal_btn {
-			border: none;
-			background-color: color.$main;
-			border: 1px solid transparent;
-			border-radius: 4px;
-			color: #fff;
-			font-weight: 600;
-			width: 100px;
-			padding: 10px 15px;
-			letter-spacing: 0.15em;
-			transition: background-color 0.2s;
-			cursor: pointer;
+	&._memberModefy {
+		max-width: 480px;
 
-			&:hover {
-				background-color: #fff;
-				color: color.$main;
-				border: 1px solid color.$main;
-			}
-		}
+		.modal_text_wrap {
+			// text-align: center;
+			margin-bottom: 30px;
 
-		.close_btn {
-			position: absolute;
-			top: 15px;
-			right: 15px;
-			width: 20px;
-			height: 20px;
-			border: none;
-			background-color: transparent;
-			cursor: pointer;
+			> .title {
+				display: block;
+				padding-left: 6px;
+				padding-right: 6px;
+				font-size: 15px;
+				font-weight: bold;
+				margin: 0 auto 15px;
 
-			&::before,
-			&::after {
-				content: "";
-				display: inline-block;
-				width: 20px;
-				height: 2px;
-				background-color: #919191;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
+				&:last-of-type {
+					margin: 0 auto 10px;
+				}
+
+				&::before {
+					content: "※";
+					display: inline-block;
+					margin-right: 5px;
+					color: color.$red;
+					transform: translateY(1px);
+				}
 			}
 
-			&::before {
-				transform: translate(-50%, -50%) rotate(45deg);
-			}
-
-			&::after {
-				transform: translate(-50%, -50%) rotate(-45deg);
+			> .text {
+				font-size: 15px;
+				letter-spacing: 0.2rem;
+				text-align: left;
 			}
 		}
 	}
