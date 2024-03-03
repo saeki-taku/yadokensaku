@@ -726,7 +726,10 @@
 		}
 
 		> li {
-			a {
+			a,
+			button {
+				max-width: 450px;
+				width: 100%;
 				display: block;
 				text-align: center;
 				border: 1px solid color.$main;

@@ -5,9 +5,14 @@ import Image from "next/image";
 import styles from "@/styles/mypage.module.scss";
 // components
 import MypageMenuList from "@/components/Mypage/MypageMenuList";
+import Modal from "./components/Modal";
 // hooks
 import { useUserStore } from "@/hooks/useUserStore";
 import Link from "next/link";
+// firebase
+import { getAuth, signOut, sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "@/lib/firebaseConfig";
+import { FirebaseError } from "@firebase/util";
 
 interface User {
 	name: string;
@@ -18,13 +23,49 @@ interface User {
 const MypageMemberView = () => {
 	// Zustandの状態を取得
 	const uid = useUserStore((state) => state.user?.uid);
+	const [isModalShow, setIsModalShow] = useState(false);
 	const [userInfo, setUserInfo] = useState<User | null>(null);
+	const clearUser = useUserStore((state) => state.clearUser);
 
 	const { user } = useUserStore();
 
 	useEffect(() => {
 		setUserInfo(user);
 	}, []);
+
+	console.log("userInfo", userInfo?.email);
+
+	const email = userInfo?.email ? userInfo?.email : "";
+
+	const handleChange = async () => {
+		sendPasswordResetEmail(auth, email);
+
+		try {
+			setIsModalShow(true);
+		} catch (error: any) {
+			const errorCode = error.code;
+			const errorMessage = error.message;
+			alert(errorCode);
+		}
+	};
+
+	// モーダルを閉じる処理 ログイン画面遷移
+	const handleClose = async () => {
+		setIsModalShow(false);
+
+		try {
+			const auth = getAuth();
+			await signOut(auth);
+			clearUser();
+		} catch (e) {
+			if (uid && uid.length > 0) {
+				clearUser();
+			}
+			if (e instanceof FirebaseError) {
+				console.log("エラーです", e);
+			}
+		}
+	};
 
 	return (
 		<>
@@ -64,11 +105,15 @@ const MypageMemberView = () => {
 							<Link href="/mypage/member/info_modify">会員情報修正</Link>
 						</li>
 						<li>
-							<Link href="/mypage/member/pass_modify">パスワード変更</Link>
+							{/* <Link href="/mypage/member/pass_modify">パスワード変更</Link> */}
+							<button className="modal_btn" onClick={handleChange}>
+								パスワード変更
+							</button>
 						</li>
 					</ul>
 				</div>
 			</div>
+			{isModalShow && <Modal onClose={handleClose} />}
 		</>
 	);
 };

@@ -11,18 +11,9 @@ import Modal from "./components/Modal";
 // hooks
 import { useUserStore } from "@/hooks/useUserStore";
 // firebase
-import {
-	getAuth,
-	signOut,
-	createUserWithEmailAndPassword,
-	updateProfile,
-	updateEmail,
-	sendEmailVerification,
-	reauthenticateWithCredential,
-	verifyBeforeUpdateEmail,
-} from "firebase/auth";
-import { doc, setDoc, getDoc, addDoc, collection } from "firebase/firestore";
-import { app, auth, db } from "@/lib/firebaseConfig";
+import { getAuth, signOut, updateProfile, verifyBeforeUpdateEmail } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "@/lib/firebaseConfig";
 import { FirebaseError } from "@firebase/util";
 
 interface User {
@@ -31,7 +22,7 @@ interface User {
 	uid: string;
 }
 
-const MypageMemberInfoModefy = () => {
+const MemberInfoModefyView = () => {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [changeInfoText, setChangeInfoText] = useState("");
 	const [isEmailChange, setIsEmailChange] = useState(false);
@@ -214,4 +205,4 @@ const MypageMemberInfoModefy = () => {
 	);
 };
 
-export default MypageMemberInfoModefy;
+export default MemberInfoModefyView;
