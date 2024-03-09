@@ -4,7 +4,7 @@ import Image from "next/image";
 // styles
 import styles from "@/styles/mypage.module.scss";
 // components
-import ImgLinkCheck from "../../common/ImgLinkCheck";
+import ImgLinkCheck from "@/components/common/ImgLinkCheck";
 // lib
 import ReactStarsRating from "react-awesome-stars-rating";
 // utils
@@ -67,7 +67,7 @@ const MypageWentList = ({ isLimit }: MypageWentListProps) => {
 							<li key={`${data.hotelNo}`}>
 								<div className={styles.img_box}>
 									<figure>
-										<ImgLinkCheck link={data.imgUrl} />
+										<ImgLinkCheck link={data.imgUrl} width={1000} height={750} alt="" />
 										{/* <Image
 													src={data.imgUrl}
 													alt=""

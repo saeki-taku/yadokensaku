@@ -4,7 +4,7 @@ import Image from "next/image";
 // styles
 import styles from "@/styles/mypage.module.scss";
 // components
-import ImgLinkCheck from "../../common/ImgLinkCheck";
+import ImgLinkCheck from "@/components/common/ImgLinkCheck";
 // lib
 import ReactStarsRating from "react-awesome-stars-rating";
 // utils
@@ -109,7 +109,7 @@ const MypageFavoriteList = ({ isLimit }: MypageFavoriteListProps) => {
 								</div>
 								<div className={styles.img_box}>
 									<figure>
-										<ImgLinkCheck link={hotelBasicData.hotelImageUrl} />
+										<ImgLinkCheck link={hotelBasicData.hotelImageUrl} width={1000} height={750} alt="" />
 										{/* <Image
 													src={"https://img.travel.rakuten.co.jp/share/HOTEL/806/806.jpg"}
 													alt=""

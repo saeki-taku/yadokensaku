@@ -6,24 +6,8 @@ import ReactStarsRating from "react-awesome-stars-rating";
 import styles from "@/styles/hotel.module.scss";
 
 const HotelHead = ({ hotelBasicInfo, hotelDetailInfo, hotelFacilitiesInfo }: ANY_OBJECT) => {
-	// const handleSignOut = async (e: any) => {
-	// 	e.preventDefault();
-
-	// 	try {
-	// 		const auth = getAuth();
-	// 		await signOut(auth);
-	// 		clearUser();
-
-	// 		// alert("ログアウトしました");
-	// 	} catch (e) {
-	// 		if (e instanceof FirebaseError) {
-	// 			console.log("エラーです", e);
-	// 		}
-	// 	}
-	// };
-
 	// console.log("hotelInfo", hotelBasicInfo);
-	console.log("hotelInfo", hotelDetailInfo);
+	// console.log("hotelInfo", hotelDetailInfo);
 
 	return (
 		<div className={styles.hotelInfo__head}>
@@ -61,12 +45,14 @@ const HotelHead = ({ hotelBasicInfo, hotelDetailInfo, hotelFacilitiesInfo }: ANY
 							</div>
 						</div>
 					)}
-					<div className={styles.minCharge}>
-						<span className={styles.title}>
-							最安値<span>（税込）</span>
-						</span>
-						<span className={styles.num}>{hotelBasicInfo.hotelMinCharge}円〜</span>
-					</div>
+					{hotelBasicInfo.hotelMinCharge && (
+						<div className={styles.minCharge}>
+							<span className={styles.title}>
+								最安値<span>（税込）</span>
+							</span>
+							<span className={styles.num}>{hotelBasicInfo.hotelMinCharge}円〜</span>
+						</div>
+					)}
 				</div>
 				<div className={styles.hotelSpecial}>{hotelBasicInfo.hotelSpecial}</div>
 			</div>

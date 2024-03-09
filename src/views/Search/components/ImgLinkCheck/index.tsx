@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const LinkCheck = ({ link }: any) => {
+const ImgLinkCheck = ({ link }: any) => {
 	const [hasError, setHasError] = useState(false);
 
 	const handleImageError = () => {
@@ -39,4 +39,4 @@ const LinkCheck = ({ link }: any) => {
 	);
 };
 
-export default LinkCheck;
+export default ImgLinkCheck;

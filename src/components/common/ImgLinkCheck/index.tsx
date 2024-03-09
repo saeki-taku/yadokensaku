@@ -1,7 +1,14 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const LinkCheck = ({ link }: any) => {
+interface ImgLinkCheckProps {
+	link: string;
+	width: number;
+	height: number;
+	alt: string;
+}
+
+const ImgLinkCheck = ({ link, width, height, alt = "" }: ImgLinkCheckProps) => {
 	const [hasError, setHasError] = useState(false);
 
 	const handleImageError = () => {
@@ -14,8 +21,8 @@ const LinkCheck = ({ link }: any) => {
 				<Image
 					src="/img/noimage.jpg"
 					alt=""
-					width={1000}
-					height={750}
+					width={width}
+					height={height}
 					style={{
 						width: "100%",
 						height: "auto",
@@ -24,9 +31,9 @@ const LinkCheck = ({ link }: any) => {
 			) : (
 				<Image
 					src={link}
-					alt=""
-					width={1000}
-					height={750}
+					alt={alt}
+					width={width}
+					height={height}
 					sizes="100vw"
 					style={{
 						width: "100%",
@@ -39,4 +46,4 @@ const LinkCheck = ({ link }: any) => {
 	);
 };
 
-export default LinkCheck;
+export default ImgLinkCheck;

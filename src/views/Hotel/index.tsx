@@ -1,6 +1,7 @@
 // react
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 // styles
 import styles from "@/styles/hotel.module.scss";
 // components
@@ -10,6 +11,8 @@ import InfoKuchikomi from "./components/InfoKuchikomi";
 import InfoAccess from "./components/InfoAccess";
 import InfoBasic from "./components/InfoBasic";
 import InfoOthre from "./components/InfoOther";
+import ImgLinkCheck from "@/components/common/ImgLinkCheck";
+// import ImgLinkCheck from "./components/ImgLinkCheck";
 
 const HotelView = ({ pageData }: ANY_OBJECT) => {
 	const hotelBasicInfo = pageData.hotelDetail.hotels[0].hotel[0].hotelBasicInfo;
@@ -18,6 +21,8 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
 	const hotelFacilitiesInfo = pageData.hotelDetail.hotels[0].hotel[3].hotelFacilitiesInfo;
 	const hotelPolicyInfo = pageData.hotelDetail.hotels[0].hotel[4].hotelPolicyInfo;
 	const hotelOtherInfo = pageData.hotelDetail.hotels[0].hotel[5].hotelOtherInfo;
+
+	console.log("hotelPolicyInfo", hotelPolicyInfo);
 
 	return (
 		<>
@@ -41,7 +46,10 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
 				<div className={styles.hotelInfo}>
 					<HotelHead hotelBasicInfo={hotelBasicInfo} hotelDetailInfo={hotelDetailInfo} hotelPolicyInfo={hotelPolicyInfo} hotelFacilitiesInfo={hotelFacilitiesInfo} />
 					<div className={styles.hotelInfo__body}>
-						<InfoHeroImg hotelBasicInfo={hotelBasicInfo} />
+						<div className={styles.hotelImg_wrap}>
+							<ImgLinkCheck link={hotelBasicInfo.hotelImageUrl} width={1000} height={750} alt="" />
+							{/* <InfoHeroImg hotelBasicInfo={hotelBasicInfo} /> */}
+						</div>
 						{/* アクセス */}
 						<InfoAccess hotelBasicInfo={hotelBasicInfo} />
 						{/* 口コミ */}

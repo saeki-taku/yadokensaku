@@ -2,6 +2,8 @@
 import Image from "next/image";
 // styles
 import styles from "@/styles/hotel.module.scss";
+// components
+import ImgLinkCheck from "@/components/common/ImgLinkCheck";
 
 const InfoHeroImg = ({ hotelBasicInfo }: ANY_OBJECT) => {
 	return (

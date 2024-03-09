@@ -36,10 +36,10 @@ const Pagenation = ({ pageData, keyword }: ANY_OBJECT) => {
 
 	return (
 		<div className="pagenation_wrap">
-			<p>ページネーション箇所</p>
+			{/* <p>ページネーション箇所</p>
 			<p className="">ページカウント{pagingInfo?.pageCount}</p>
 			<p>現在ページ{pagingInfo?.page}</p>
-			<p>現在ページの最終カウント{pagingInfo?.last}</p>
+			<p>現在ページの最終カウント{pagingInfo?.last}</p> */}
 			<div className="pagenation_box">
 				{pagingInfo?.page !== 1 && pagingInfo?.pageCount > 5 && (
 					<>

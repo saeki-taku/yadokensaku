@@ -7,6 +7,13 @@ const InfoOther = ({ hotelPolicyInfo, hotelFacilitiesInfo, hotelOtherInfo }: ANY
 	const breakfastPlaces = hotelFacilitiesInfo.aboutMealPlace.filter((item: ANY_OBJECT) => item.breakfastPlace).map((item: ANY_OBJECT) => item.breakfastPlace);
 	const dinnerPlaces = hotelFacilitiesInfo.aboutMealPlace.filter((item: ANY_OBJECT) => item.dinnerPlace).map((item: ANY_OBJECT) => item.dinnerPlace);
 
+	const availableCreditCard = hotelPolicyInfo.availableCreditCard;
+	const handicappedFacilities = hotelFacilitiesInfo.handicappedFacilities;
+	const note = hotelPolicyInfo.note;
+	const cancelPolicy = hotelPolicyInfo.cancelPolicy;
+	const privilege = hotelOtherInfo.privilege;
+	const otherInformation = hotelOtherInfo.otherInformation;
+
 	// <BR>もしくは","の場合は改行される
 	const convertText = (text: any) => {
 		const lines = text?.split(/<BR>|,/);
@@ -18,6 +25,8 @@ const InfoOther = ({ hotelPolicyInfo, hotelFacilitiesInfo, hotelOtherInfo }: ANY
 			</React.Fragment>
 		));
 	};
+
+	console.log("privilege", hotelOtherInfo);
 
 	return (
 		<div className={styles.otherInfo}>
@@ -36,7 +45,7 @@ const InfoOther = ({ hotelPolicyInfo, hotelFacilitiesInfo, hotelOtherInfo }: ANY
 						<th>カード</th>
 						<td>
 							<ul className={styles.listFlex}>
-								{hotelPolicyInfo.availableCreditCard.map((value: ANY_OBJECT) => (
+								{availableCreditCard.map((value: ANY_OBJECT) => (
 									<li className={styles.item} key={value.card}>
 										{value.card}
 									</li>
@@ -48,28 +57,30 @@ const InfoOther = ({ hotelPolicyInfo, hotelFacilitiesInfo, hotelOtherInfo }: ANY
 						<th>バリアフリー対応</th>
 						<td>
 							<ul className={styles.listFlex}>
-								{hotelFacilitiesInfo.handicappedFacilities.map((value: ANY_OBJECT) => (
-									<li className={styles.item} key={value.item}>
-										{value.item}
-									</li>
-								))}
+								{handicappedFacilities.length > 0
+									? handicappedFacilities.map((value: ANY_OBJECT) => (
+											<li className={styles.item} key={value.item}>
+												{value.item}
+											</li>
+									  ))
+									: "ー"}
 							</ul>
 						</td>
 					</tr>
 					<tr>
 						<th>条件・注意事項</th>
-						<td>{convertText(hotelPolicyInfo.note)}</td>
+						<td>{note ? convertText(note) : "ー"}</td>
 					</tr>
 					<tr>
 						<th>キャンセルポリシー</th>
-						<td>{convertText(hotelPolicyInfo.cancelPolicy)}</td>
+						<td>{convertText(cancelPolicy)}</td>
 					</tr>
 					<tr>
 						<th>その他情報</th>
 						<td>
-							{(!hotelOtherInfo.privilege && !hotelOtherInfo.otherInformation) ?? "ー"}
-							<p>{hotelOtherInfo.privilege}</p>
-							<p>{hotelOtherInfo.otherInformation}</p>
+							{(!privilege && !otherInformation) ?? "ー"}
+							<p>{privilege}</p>
+							<p>{otherInformation}</p>
 						</td>
 					</tr>
 				</tbody>
