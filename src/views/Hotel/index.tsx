@@ -15,16 +15,14 @@ import ImgLinkCheck from "@/components/common/ImgLinkCheck";
 // import ImgLinkCheck from "./components/ImgLinkCheck";
 
 const HotelView = ({ pageData }: ANY_OBJECT) => {
-	const hotelBasicInfo = pageData.hotelDetail.hotels[0].hotel[0].hotelBasicInfo;
-	const hotelRatingInfo = pageData.hotelDetail.hotels[0].hotel[1].hotelRatingInfo;
-	const hotelDetailInfo = pageData.hotelDetail.hotels[0].hotel[2].hotelDetailInfo;
-	const hotelFacilitiesInfo = pageData.hotelDetail.hotels[0].hotel[3].hotelFacilitiesInfo;
-	const hotelPolicyInfo = pageData.hotelDetail.hotels[0].hotel[4].hotelPolicyInfo;
-	const hotelOtherInfo = pageData.hotelDetail.hotels[0].hotel[5].hotelOtherInfo;
+	const hotelBasicInfo = !pageData.hotelDetail.error && pageData.hotelDetail.hotels[0].hotel[0].hotelBasicInfo;
+	const hotelRatingInfo = !pageData.hotelDetail.error && pageData.hotelDetail.hotels[0].hotel[1].hotelRatingInfo;
+	const hotelDetailInfo = !pageData.hotelDetail.error && pageData.hotelDetail.hotels[0].hotel[2].hotelDetailInfo;
+	const hotelFacilitiesInfo = !pageData.hotelDetail.error && pageData.hotelDetail.hotels[0].hotel[3].hotelFacilitiesInfo;
+	const hotelPolicyInfo = !pageData.hotelDetail.error && pageData.hotelDetail.hotels[0].hotel[4].hotelPolicyInfo;
+	const hotelOtherInfo = !pageData.hotelDetail.error && pageData.hotelDetail.hotels[0].hotel[5].hotelOtherInfo;
 
-	console.log("hotelPolicyInfo", hotelPolicyInfo);
-
-	return (
+	return !pageData.hotelDetail.error ? (
 		<>
 			<div className="breadcrumb">
 				<ul className="breadcrumb__list">
@@ -32,13 +30,16 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
 						<Link href="/">TOP</Link>
 					</li>
 					<li>
-						<Link href="/">{hotelBasicInfo.address1}</Link>
+						{/* <Link href="/search?keyword={hotelBasicInfo.address1}&page=1">{hotelBasicInfo.address1}</Link> */}
+						<Link href={`/search?keyword=${hotelBasicInfo.address1}&page=1`}>{hotelBasicInfo.address1}</Link>
 					</li>
 					<li>
 						<Link href="/">{hotelDetailInfo.areaName}</Link>
 					</li>
 					<li>
-						<Link href="/">{hotelBasicInfo.hotelName}</Link>
+						<Link href="" aria-disabled>
+							{hotelBasicInfo.hotelName}
+						</Link>
 					</li>
 				</ul>
 			</div>
@@ -59,6 +60,20 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
 						{/* その他設備・サービス */}
 						<InfoOthre hotelPolicyInfo={hotelPolicyInfo} hotelFacilitiesInfo={hotelFacilitiesInfo} hotelOtherInfo={hotelOtherInfo} />
 					</div>
+				</div>
+			</div>
+		</>
+	) : (
+		<>
+			<div className="common_wrap">
+				<div className="noPage">
+					<div className="text_wrap">
+						<p className="title">データの取得に失敗しました。</p>
+						<p className="text">現在、お探しのホテルの情報はこちらでは取得できない可能性がございます。</p>
+					</div>
+					<Link href="/" className="link">
+						トップページに戻る
+					</Link>
 				</div>
 			</div>
 		</>

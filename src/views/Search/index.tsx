@@ -1,11 +1,10 @@
 // react / next
 import Link from "next/link";
-import { useState, useEffect } from "react";
 // styles
 import styles from "@/styles/search.module.scss";
 // lib
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import ReactStarsRating from "react-awesome-stars-rating";
 // components
 import Pagenation from "../../components/common/Pagenation";
@@ -92,10 +91,10 @@ const SearchView = ({ pageData, keyword }: ANY_OBJECT) => {
 											<Link href={`/hotel/${hotelData.hotelNo}`} className={styles.detail_link}>
 												<span>詳細へ</span>
 											</Link>
-											<a href={hotelData.planListUrl} className="common_btn_oficial" target="_blank" rel="noreferrer">
+											<Link href={hotelData.planListUrl} className="common_btn_oficial" target="_blank" rel="noreferrer">
 												<span>楽天トラベル</span>
 												<FontAwesomeIcon icon={faArrowUpRightFromSquare} size="sm" style={{ color: "#00B901" }} />
-											</a>
+											</Link>
 										</div>
 									</div>
 								</div>

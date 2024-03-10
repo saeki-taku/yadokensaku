@@ -28,11 +28,13 @@ export default function Hotel({ title, description, pageData }: Hotel) {
 }
 
 export const getServerSideProps = async (context: ANY_OBJECT) => {
+	const titleRear = " | 宿検索";
+
 	return promiseAll([requestPageData(context)], {
 		then: ([pageData]) => ({
 			props: {
-				title: `${pageData.hotelDetail?.hotels[0].hotel[0].hotelBasicInfo.hotelName}|宿検索`,
-				description: pageData.hotelDetail?.hotels[0].hotel[0].hotelBasicInfo.hotelSpecial,
+				title: `${!pageData.hotelDetail.error ? pageData.hotelDetail?.hotels[0]?.hotel[0]?.hotelBasicInfo?.hotelName + titleRear : "宿検索"}`,
+				description: `${!pageData.hotelDetail.error ? pageData?.hotelDetail?.hotels[0]?.hotel[0]?.hotelBasicInfo.hotelSpecial : "宿検索です"}`,
 				pageData: pageData,
 			},
 		}),

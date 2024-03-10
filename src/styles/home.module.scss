@@ -1,164 +1,189 @@
 @use "./common/_viewport.scss" as mq;
 
 .hero {
-    position: relative;
+	position: relative;
 
-    .form_area {
-        position: absolute;
-        top: 45%;
-        left: 50%;
-        border-radius: 5px;
-        transform: translateX(-50%);
-        z-index: 20;
+	.form_area {
+		position: absolute;
+		top: 45%;
+		left: 50%;
+		border-radius: 5px;
+		transform: translateX(-50%);
+		z-index: 20;
 
-        @include mq.mq(xs) {
-            max-width: 350px;
-            width: calc(100% - 30px);
-        }
-    }
+		@include mq.mq(xs) {
+			max-width: 350px;
+			width: calc(100% - 30px);
+		}
+	}
 }
 
 .main_wrap {
-    max-width: 1260px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 60px 30px;
+	max-width: 1260px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 60px 30px 90px;
 
-    p,
-    span {
-        color: green;
-    }
+	p {
+		color: green;
+	}
 
-    @include mq.mq(isp) {
-        padding: 40px 20px;
-    }
+	@include mq.mq(isp) {
+		padding: 40px 20px;
+	}
 
-    @include mq.mq(xs) {
-        padding: 40px 15px;
-    }
+	@include mq.mq(xs) {
+		padding: 40px 15px 90px;
+	}
 }
 
 .ranking {
-    padding-bottom: 90px;
+	padding-left: 8px;
+	padding-right: 8px;
 
-    @include mq.mq(isp) {
-        padding-bottom: 40px;
-    }
+	@include mq.mq(xs) {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
 
-    @include mq.mq(xs) {
-        padding-bottom: 60px;
-    }
+	&:not(:last-of-type) {
+		padding-bottom: 45px;
+		margin-bottom: 45px;
+		border-bottom: 1px solid #e2dada;
 
-    &__title {
-        margin-bottom: 25px;
-        letter-spacing: 0.08em;
+		@include mq.mq(isp) {
+			padding-bottom: 25px;
+			margin-bottom: 25px;
+		}
 
-        @include mq.mq(isp) {
-            font-size: 2rem;
-        }
-    }
+		@include mq.mq(xs) {
+			padding-bottom: 60px;
+			margin-bottom: 30px;
+		}
+	}
 
-    /* ======================================
+	&__title {
+		margin-bottom: 25px;
+		letter-spacing: 0.08em;
+
+		@include mq.mq(isp) {
+			font-size: 2rem;
+		}
+	}
+
+	/* ======================================
     splideの記述
     pagenationのstyleはglobal.scssにて
     ========================================== */
-    ul {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        row-gap: 30px;
-        column-gap: 30px;
-        list-style: none;
+	ul {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		row-gap: 40px;
+		column-gap: 30px;
+		list-style: none;
 
-        @media screen and (min-width: 576px) {
-            display: grid !important;
-        }
+		@media screen and (min-width: 576px) {
+			display: grid !important;
+		}
 
-        @include mq.mq(sp) {
-            grid-template-columns: 1fr 1fr 1fr;
-        }
+		@include mq.mq(sp) {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
 
-        @include mq.mq(isp) {
-            grid-template-columns: 1fr 1fr;
-        }
+		@include mq.mq(isp) {
+			row-gap: 40px;
+			column-gap: 25px;
+			grid-template-columns: 1fr 1fr;
+		}
 
-        @include mq.mq(xs) {
-            row-gap: 0;
-            column-gap: 0;
-        }
-    }
+		@include mq.mq(xs) {
+			row-gap: 0;
+			column-gap: 0;
+		}
+	}
 
-    &__item {
-        width: 100%;
-    }
+	&__item {
+		width: 100%;
+	}
 
-    .pref {
-        background-color: rgb(13, 123, 53);
-        border-radius: 4px;
-        color: #ffffff;
-        font-weight: bold;
-        font-size: 14px;
-        display: inline-block;
-        letter-spacing: 0.1em;
-        margin-bottom: 5px;
-        padding: 2px 8px;
+	.pref {
+		background-color: rgb(13, 123, 53);
+		border-radius: 4px;
+		color: #ffffff;
+		font-weight: bold;
+		font-size: 14px;
+		display: inline-block;
+		letter-spacing: 0.1em;
+		margin-bottom: 5px;
+		padding: 2px 8px;
 
-        @include mq.mq(xs) {
-            font-size: 12px;
-            padding: 2px 6px;
-        }
-    }
+		@include mq.mq(xs) {
+			font-size: 12px;
+			padding: 2px 6px;
+		}
+	}
 
-    .name {
-        font-weight: bold;
-        font-size: 15px;
-        margin-bottom: 2px;
-        min-height: 48px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2; /* 表示する行数 */
+	.name {
+		font-weight: bold;
+		font-size: 15px;
+		margin-bottom: 2px;
+		min-height: 46px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2; /* 表示する行数 */
 
-        @include mq.mq(xs) {
-            font-size: 13px;
-            min-height: 40px;
-            -webkit-line-clamp: 3; /* 表示する行数 */
-        }
-    }
+		@include mq.mq(xs) {
+			font-size: 13px;
+			min-height: 40px;
+			-webkit-line-clamp: 3; /* 表示する行数 */
+		}
+	}
 
-    figure {
-        position: relative;
-        // max-width: 200px;
-        width: 100%;
-        aspect-ratio: 3/2;
+	figure {
+		position: relative;
+		// max-width: 200px;
+		width: 100%;
+		aspect-ratio: 3/2;
 
-        img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 3/2;
-            object-fit: cover;
-            object-position: center;
-        }
-    }
+		img {
+			width: 100%;
+			height: auto;
+			aspect-ratio: 3/2;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
 
-    .kuchikomi {
-        display: flex;
-        align-items: center;
-        margin: 10px 0;
+	.kuchikomi {
+		display: flex;
+		align-items: center;
+		margin: 8px 0 6px;
 
-        .kuchikomiTitle {
-            font-size: 14px;
-            margin-right: 5px;
-        }
+		.kuchikomiTitle {
+			font-size: 14px;
+			margin-right: 5px;
+			margin-top: -0.2em;
+		}
 
-        a {
-            color: #111;
-            margin-left: 8px;
-            text-decoration: underline;
-            transition: text-decoration 0.2;
+		a {
+			color: #111;
+			margin-left: 8px;
+			text-decoration: underline;
+			transition: text-decoration 0.2;
 
-            &:hover {
-                text-decoration: none;
-            }
-        }
-    }
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
+	.link_box {
+		display: flex;
+		column-gap: 10px;
+
+		.detail_btn {
+			color: #ffffff;
+		}
+	}
 }

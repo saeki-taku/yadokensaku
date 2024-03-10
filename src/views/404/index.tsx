@@ -24,9 +24,11 @@ const NoPageView = () => {
 			</div>
 
 			<div className="common_wrap">
-				<div className={styles.noPage}>
-					<p className={styles.title}>お探しのページは見つかりませんでした。</p>
-					<Link href="/" className={styles.link}>
+				<div className="noPage">
+					<div className="text_wrap">
+						<p className="title">お探しのページは見つかりませんでした。</p>
+					</div>
+					<Link href="/" className="link">
 						トップページに戻る
 					</Link>
 				</div>

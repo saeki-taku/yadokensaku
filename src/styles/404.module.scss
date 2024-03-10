@@ -18,36 +18,3 @@
 		letter-spacing: 0.2em;
 	}
 }
-
-.noPage {
-	text-align: center;
-	margin-top: 20px;
-
-	.title {
-		font-size: 1.8rem;
-		font-weight: 600;
-		color: color.$text;
-		letter-spacing: 0.1em;
-		margin-bottom: 30px;
-	}
-
-	.link {
-		display: block;
-		margin: 0 auto;
-		background-color: color.$main;
-		color: #ffffff;
-		max-width: 280px;
-		width: calc(100% - 20px);
-		border-radius: 4px;
-		border: 1px solid transparent;
-		padding: 10px;
-		box-sizing: border-box;
-		letter-spacing: 0.1em;
-
-		&:hover {
-			background-color: #ffffff;
-			border: 1px solid color.$main;
-			color: color.$main;
-		}
-	}
-}

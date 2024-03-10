@@ -136,10 +136,28 @@ ul {
 	text-shadow: 0px 1px 2px #fff;
 }
 
+/**
+ボタン
+*/
+.common_btn {
+	border: 1px solid #fff;
+	display: block;
+	padding: 2px 7px 5px;
+	border-radius: 4px;
+	background-color: #800000;
+	text-align: center;
+	min-width: 75px;
+
+	span {
+		font-size: 14px;
+		color: #ffffff;
+	}
+}
+
 .common_btn_oficial {
 	border: 1px solid #00b901;
 	display: inline-block;
-	padding: 2px 8px 5px;
+	padding: 2px 7px 5px;
 	border-radius: 4px;
 	background-color: #ffffff;
 	text-align: center;
@@ -317,6 +335,14 @@ table {
 ページネーション
 */
 .pagenation_wrap {
+	margin-top: 60px;
+	margin-bottom: 30px;
+
+	@include mq.mq(isp) {
+		margin-top: 40px;
+		margin-bottom: 20px;
+	}
+
 	.pagenation_box {
 		display: flex;
 		align-items: center;
@@ -593,6 +619,46 @@ table {
 				letter-spacing: 0.2rem;
 				text-align: left;
 			}
+		}
+	}
+}
+
+/**
+404 / データ取得失敗
+*/
+.noPage {
+	text-align: center;
+	margin-top: 20px;
+
+	.text_wrap {
+		margin-bottom: 30px;
+	}
+
+	.title {
+		font-size: 1.8rem;
+		font-weight: 600;
+		color: color.$text;
+		letter-spacing: 0.1em;
+		margin-bottom: 10px;
+	}
+
+	.link {
+		display: block;
+		margin: 0 auto;
+		background-color: color.$main;
+		color: #ffffff;
+		max-width: 280px;
+		width: calc(100% - 20px);
+		border-radius: 4px;
+		border: 1px solid transparent;
+		padding: 10px;
+		box-sizing: border-box;
+		letter-spacing: 0.1em;
+
+		&:hover {
+			background-color: #ffffff;
+			border: 1px solid color.$main;
+			color: color.$main;
 		}
 	}
 }

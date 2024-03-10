@@ -10,62 +10,54 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useRoute } from "@/hooks/useRoute";
 
 export default function FormArea() {
-    const router = useRoute();
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        getValues,
-    } = useForm();
+	const router = useRoute();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		getValues,
+	} = useForm();
 
-    const onSubmit = (data: ANY_OBJECT) => {
-        console.log("data__", data.keyword);
-        // console.log("value__", getValues());
-        // https://www.react-hook-form.com/api/useform/getvalues/
+	const onSubmit = (data: ANY_OBJECT) => {
+		// console.log("data__", data.keyword);
+		// console.log("value__", getValues());
+		// https://www.react-hook-form.com/api/useform/getvalues/
 
-        if (data.keyword) {
-            router.push({
-                pathname: "/search",
-                query: {
-                    keyword: data.keyword,
-                    page: 1,
-                },
-            });
-        } else {
-            router.push({
-                pathname: "/",
-            });
-        }
-    };
+		if (data.keyword) {
+			router.push({
+				pathname: "/search",
+				query: {
+					keyword: data.keyword,
+					page: 1,
+				},
+			});
+		} else {
+			router.push({
+				pathname: "/",
+			});
+		}
+	};
 
-    const message = errors?.keyword?.message?.toString();
+	const message = errors?.keyword?.message?.toString();
 
-    return (
-        <div className={styles.form_area}>
-            <form
-                className="common_search top"
-                onSubmit={handleSubmit(onSubmit)}
-            >
-                <input
-                    {...register("keyword", {
-                        // required: "未入力です",
-                        maxLength: { value: 120, message: "20文字以内で入力してください" },
-                    })}
-                    className="input_text"
-                    type="text"
-                    placeholder="宿を検索する"
-                />
-                <div className="input_btn">
-                    <input type="submit" />
-                    <FontAwesomeIcon
-                        className="input_btn_icon"
-                        icon={faMagnifyingGlass}
-                        style={{ color: "#ffffff" }}
-                        size="lg"
-                    />
-                </div>
-            </form>
-            {message && <p className="error">{message}</p>}
-        </div>
-    );
+	return (
+		<div className={styles.form_area}>
+			<form className="common_search top" onSubmit={handleSubmit(onSubmit)}>
+				<input
+					{...register("keyword", {
+						// required: "未入力です",
+						maxLength: { value: 120, message: "20文字以内で入力してください" },
+					})}
+					className="input_text"
+					type="text"
+					placeholder="宿を検索する"
+				/>
+				<div className="input_btn">
+					<input type="submit" />
+					<FontAwesomeIcon className="input_btn_icon" icon={faMagnifyingGlass} style={{ color: "#ffffff" }} size="lg" />
+				</div>
+			</form>
+			{message && <p className="error">{message}</p>}
+		</div>
+	);
 }
