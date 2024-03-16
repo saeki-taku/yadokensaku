@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 export function useImageErrorHandling() {
 	const [hasError, setHasError] = useState(false);
 
-	console.log("hasError", hasError);
+	// console.log("hasError", hasError);
 
 	const handleImageError = () => {
 		setHasError(true);

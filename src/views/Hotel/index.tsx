@@ -22,6 +22,10 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
 	const hotelPolicyInfo = !pageData.hotelDetail.error && pageData.hotelDetail.hotels[0].hotel[4].hotelPolicyInfo;
 	const hotelOtherInfo = !pageData.hotelDetail.error && pageData.hotelDetail.hotels[0].hotel[5].hotelOtherInfo;
 
+	const adjustPrefectureName = hotelDetailInfo.middleClassCode !== "hokkaido" ? hotelBasicInfo.address1.slice(0, -1) : hotelBasicInfo.address1;
+
+	// console.log("hotelDetailInfo", hotelDetailInfo);
+
 	return !pageData.hotelDetail.error ? (
 		<>
 			<div className="breadcrumb">
@@ -31,10 +35,10 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
 					</li>
 					<li>
 						{/* <Link href="/search?keyword={hotelBasicInfo.address1}&page=1">{hotelBasicInfo.address1}</Link> */}
-						<Link href={`/search?keyword=${hotelBasicInfo.address1}&page=1`}>{hotelBasicInfo.address1}</Link>
+						<Link href={`/search?keyword=${adjustPrefectureName}&page=1`}>{hotelBasicInfo.address1}</Link>
 					</li>
 					<li>
-						<Link href="/">{hotelDetailInfo.areaName}</Link>
+						<Link href={`/search/area?prefName=${hotelDetailInfo.middleClassCode}&areaName=${hotelDetailInfo.smallClassCode}&page=1`}>{hotelDetailInfo.areaName}</Link>
 					</li>
 					<li>
 						<Link href="" aria-disabled>

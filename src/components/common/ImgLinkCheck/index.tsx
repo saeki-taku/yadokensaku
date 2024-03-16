@@ -27,6 +27,7 @@ const ImgLinkCheck = ({ link, width, height, alt = "" }: ImgLinkCheckProps) => {
 						width: "100%",
 						height: "auto",
 					}}
+					priority
 				/>
 			) : (
 				<Image
@@ -40,6 +41,7 @@ const ImgLinkCheck = ({ link, width, height, alt = "" }: ImgLinkCheckProps) => {
 						height: "auto",
 					}}
 					onError={handleImageError}
+					priority
 				/>
 			)}
 		</>

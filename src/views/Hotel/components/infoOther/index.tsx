@@ -26,8 +26,6 @@ const InfoOther = ({ hotelPolicyInfo, hotelFacilitiesInfo, hotelOtherInfo }: ANY
 		));
 	};
 
-	console.log("privilege", hotelOtherInfo);
-
 	return (
 		<div className={styles.otherInfo}>
 			<h3 className={styles.info_title}>その他設備・サービス</h3>

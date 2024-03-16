@@ -63,6 +63,7 @@ const TopMainRanking = ({ title, ranikingData }: Props) => {
 										style={{
 											objectFit: "cover",
 										}}
+										priority
 									/>
 								</figure>
 								<div className={styles.box}>
