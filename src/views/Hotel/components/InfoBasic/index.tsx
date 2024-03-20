@@ -3,7 +3,7 @@ import React from "react";
 // styles
 import styles from "@/styles/hotel.module.scss";
 
-const InfoOther = ({ hotelBasicInfo, hotelDetailInfo, hotelPolicyInfo, hotelFacilitiesInfo }: ANY_OBJECT) => {
+const InfoOther = ({ hotelBasicInfo, hotelDetailInfo, hotelFacilitiesInfo }: ANY_OBJECT) => {
 	return (
 		<div className={styles.basicInfo}>
 			<h3 className={styles.info_title}>基本情報</h3>
