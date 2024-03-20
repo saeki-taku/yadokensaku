@@ -7,7 +7,7 @@ import styles from "@/styles/hotel.module.scss";
 // components
 import HotelHead from "./components/HotelHead";
 import InfoBasic from "./components/InfoBasic";
-import InfoOthre from "./components/InfoOther";
+import InfoOther from "./components/InfoOther";
 import InfoAccess from "./components/InfoAccess";
 import InfoKuchikomi from "./components/InfoKuchikomi";
 import ImgLinkCheck from "@/components/common/ImgLinkCheck";
@@ -63,7 +63,7 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
 						{/* 基本情報 */}
 						<InfoBasic hotelBasicInfo={hotelBasicInfo} hotelDetailInfo={hotelDetailInfo} hotelPolicyInfo={hotelPolicyInfo} hotelFacilitiesInfo={hotelFacilitiesInfo} />
 						{/* その他設備・サービス */}
-						<InfoOthre hotelPolicyInfo={hotelPolicyInfo} hotelFacilitiesInfo={hotelFacilitiesInfo} hotelOtherInfo={hotelOtherInfo} />
+						<InfoOther hotelPolicyInfo={hotelPolicyInfo} hotelFacilitiesInfo={hotelFacilitiesInfo} hotelOtherInfo={hotelOtherInfo} />
 					</div>
 				</div>
 			</div>
