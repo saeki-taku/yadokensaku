@@ -6,10 +6,10 @@ import Image from "next/image";
 import styles from "@/styles/hotel.module.scss";
 // components
 import HotelHead from "./components/HotelHead";
-import InfoKuchikomi from "./components/InfoKuchikomi";
-import InfoAccess from "./components/InfoAccess";
 import InfoBasic from "./components/InfoBasic";
 import InfoOthre from "./components/InfoOther";
+import InfoAccess from "./components/InfoAccess";
+import InfoKuchikomi from "./components/InfoKuchikomi";
 import ImgLinkCheck from "@/components/common/ImgLinkCheck";
 // import ImgLinkCheck from "./components/ImgLinkCheck";
 
