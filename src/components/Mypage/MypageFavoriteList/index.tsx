@@ -11,12 +11,13 @@ import ReactStarsRating from "react-awesome-stars-rating";
 import { getFavoriteHotelIds } from "../../../utils/myhotel";
 // firebase
 import { doc, updateDoc, arrayRemove } from "firebase/firestore";
+//
 import { db } from "@/lib/firebaseConfig.js";
 import "firebase/firestore";
-// zustand
-import { useUserStore, useFavoriteStore } from "@/hooks/useUserStore";
 // api
 import { HotelSimple } from "@/api/hotel";
+// zustand
+import { useUserStore, useFavoriteStore } from "@/hooks/useUserStore";
 
 interface MypageFavoriteListProps {
 	isLimit: boolean;
