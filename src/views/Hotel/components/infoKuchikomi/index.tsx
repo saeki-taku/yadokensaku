@@ -4,9 +4,6 @@ import styles from "@/styles/hotel.module.scss";
 import ReactStarsRating from "react-awesome-stars-rating";
 
 const InfoKuchikomi = ({ hotelBasicInfo, hotelRatingInfo }: ANY_OBJECT) => {
-	// const hotelBasicInfo = pageData.hotelDetail.hotels[0].hotel[0].hotelBasicInfo;
-	// const hotelRatingInfo = pageData.hotelDetail.hotels[0].hotel[1].hotelRatingInfo;
-
 	return (
 		<div className={styles.kuchikomi}>
 			<h3 className={styles.info_title}>口コミ</h3>
