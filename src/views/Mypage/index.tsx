@@ -28,8 +28,8 @@ const MypageView = () => {
 			</div>
 			<div className={styles.mypage_wrap}>
 				<MypageMenuList />
-				<MypageWentList isLimit={true} />
 				<MypageFavoriteList isLimit={true} />
+				<MypageWentList isLimit={true} />
 			</div>
 		</>
 	);
