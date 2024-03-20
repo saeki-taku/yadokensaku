@@ -24,7 +24,9 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
 
 	const adjustPrefectureName = hotelDetailInfo.middleClassCode !== "hokkaido" ? hotelBasicInfo.address1.slice(0, -1) : hotelBasicInfo.address1;
 
-	// console.log("hotelDetailInfo", hotelDetailInfo);
+	console.log("hotelDetailInfo", hotelDetailInfo);
+	console.log("hotelOtherInfo", hotelOtherInfo);
+	console.log("hotelFacilitiesInfo", hotelFacilitiesInfo);
 
 	return !pageData.hotelDetail.error ? (
 		<>

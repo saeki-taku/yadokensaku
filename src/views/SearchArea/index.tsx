@@ -18,11 +18,12 @@ const SearchAreaView = ({ pageData, prefName, areaName }: ANY_OBJECT) => {
 	// 	return String(val).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 	// };
 
+	console.log("pageData", pageData);
 	console.log("prefName", prefName);
 	console.log("areaName", areaName);
 
 	return (
-		<>test</>
+		<></>
 		// <div className="common_wrap">
 		// 	<div className={styles.search__result}>
 		// 		<p className={styles.title}>
@@ -110,7 +111,7 @@ const SearchAreaView = ({ pageData, prefName, areaName }: ANY_OBJECT) => {
 		// 			<li>該当のホテルはありませんでした。</li>
 		// 		)}
 		// 	</ul>
-		// 	<Pagenation pageData={pageData} keyword={keyword} />
+		// 	{/* <Pagenation pageData={pageData} keyword={keyword} /> */}
 		// </div>
 	);
 };

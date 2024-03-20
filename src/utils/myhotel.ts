@@ -2,7 +2,6 @@
 import { doc, getDocs, collection } from "firebase/firestore";
 import { db } from "@/lib/firebaseConfig";
 import "firebase/firestore";
-import { log } from "console";
 
 export const getFavoriteHotelIds = async (uid: string = "") => {
   // const uid = useUserStore((state) => state.user?.uid);

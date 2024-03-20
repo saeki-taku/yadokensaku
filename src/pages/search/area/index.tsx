@@ -19,6 +19,8 @@ interface SearchProps {
 	title: string;
 	description: string;
 	keyword: string;
+	prefName: string;
+	areaName: string;
 	pageData: ANY_OBJECT;
 }
 

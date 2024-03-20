@@ -7,7 +7,9 @@ export const Keyword = async (keyword: any, page: number) => {
     return res.json();
 };
 
-export const AreaName = async (pref: string, area: string) => {
-    const res = await fetch(`${BASE_URL_SIMPLE}?format=?format=json&largeClassCode=japan&middleClassCode=${pref}&smallClassCode=${area}&applicationId=${process.env.RAKUTEN_API_KEY}`)
+export const AreaName = async (prefName: string, areaName: string) => {
+    console.log("11",prefName);
+    console.log("22",areaName);
+    const res = await fetch(`${BASE_URL_SIMPLE}?format=json&largeClassCode=japan&middleClassCode=${prefName}&smallClassCode=${areaName}&applicationId=${process.env.RAKUTEN_API_KEY}`)
     return res.json();
 };
