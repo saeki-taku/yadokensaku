@@ -12,7 +12,7 @@ import { getFavoriteHotelIds } from "../../../utils/myhotel";
 // firebase
 import { doc, updateDoc, arrayRemove } from "firebase/firestore";
 //
-import { db } from "@/lib/firebaseConfig.js";
+import { db } from "@/lib/firebaseConfig";
 import "firebase/firestore";
 // api
 import { HotelSimple } from "@/api/hotel";

@@ -5,7 +5,7 @@ const useUserStore = create(
 	persist(
 		(set) => ({
 			user: null,
-			setUser: (newUser) => set({ user: newUser }),
+			setUser: (newUser: any) => set({ user: newUser }),
 		}),
 		{
 			name: "user-storage", // 保存先の名前
