@@ -7,8 +7,8 @@ import styles from "@/styles/hotel.module.scss";
 // components
 import HotelHead from "./components/HotelHead";
 import InfoBasic from "./components/InfoBasic";
-import InfoOther from "./components/InfoOther";
 import InfoAccess from "./components/InfoAccess";
+import InfoOther from "./components/InfoOther";
 import InfoKuchikomi from "./components/InfoKuchikomi";
 import ImgLinkCheck from "@/components/common/ImgLinkCheck";
 // import ImgLinkCheck from "./components/ImgLinkCheck";
