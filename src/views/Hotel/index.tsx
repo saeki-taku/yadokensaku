@@ -6,7 +6,6 @@ import Image from "next/image";
 import styles from "@/styles/hotel.module.scss";
 // components
 import HotelHead from "./components/HotelHead";
-import InfoHeroImg from "./components/InfoHeroImg";
 import InfoKuchikomi from "./components/InfoKuchikomi";
 import InfoAccess from "./components/InfoAccess";
 import InfoBasic from "./components/InfoBasic";
@@ -24,9 +23,9 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
 
 	const adjustPrefectureName = hotelDetailInfo.middleClassCode !== "hokkaido" ? hotelBasicInfo.address1.slice(0, -1) : hotelBasicInfo.address1;
 
-	console.log("hotelDetailInfo", hotelDetailInfo);
-	console.log("hotelOtherInfo", hotelOtherInfo);
-	console.log("hotelFacilitiesInfo", hotelFacilitiesInfo);
+	// console.log("hotelDetailInfo", hotelDetailInfo);
+	// console.log("hotelOtherInfo", hotelOtherInfo);
+	// console.log("hotelFacilitiesInfo", hotelFacilitiesInfo);
 
 	return !pageData.hotelDetail.error ? (
 		<>
