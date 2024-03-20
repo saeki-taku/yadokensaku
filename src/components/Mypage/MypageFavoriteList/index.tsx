@@ -11,7 +11,6 @@ import ReactStarsRating from "react-awesome-stars-rating";
 import { getFavoriteHotelIds } from "../../../utils/myhotel";
 // firebase
 import { doc, updateDoc, arrayRemove } from "firebase/firestore";
-//
 import { db } from "@/lib/firebaseConfig";
 import "firebase/firestore";
 // api
