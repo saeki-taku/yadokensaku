@@ -31,6 +31,7 @@ const MypageMemberView = () => {
 
 	useEffect(() => {
 		setUserInfo(user);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	console.log("userInfo", userInfo?.email);
