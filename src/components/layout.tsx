@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 // Next.jsが推奨しているフォントの一覧に日本語対応のフォントが少なかった為、今回は使用しない
@@ -6,11 +7,13 @@ import Footer from "./Footer";
 // https://fonts.google.com/variablefonts
 
 export default function Layout({ children }: any) {
-    return (
-        <div className="root">
-            <Header />
-            <main>{children}</main>
-            <Footer />
-        </div>
-    );
+	// windowサイズが360px以下の場合はスタイル崩れを防ぐためにもviewportを固定する
+
+	return (
+		<div className="root">
+			<Header />
+			<main>{children}</main>
+			<Footer />
+		</div>
+	);
 }

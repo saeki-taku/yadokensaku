@@ -12,6 +12,7 @@ html {
 }
 
 body {
+	font-family: "Hiragino Kaku Gothic ProN", sans-serif;
 	font-size: 1.6rem;
 
 	@include mq.mq(sp) {
@@ -362,6 +363,13 @@ table {
 		position: relative;
 		margin-right: 10px;
 
+		@include mq.mq(xs) {
+			width: 25px;
+			height: 25px;
+			line-height: 24px;
+			margin-right: 5px;
+		}
+
 		&._prev {
 			&:after(:not(.start)) {
 				transform: translate(0%, -50%) rotate(-135deg);
@@ -438,6 +446,10 @@ table {
 		margin: 0 10px;
 		column-gap: 12px;
 
+		@include mq.mq(isp) {
+			margin: 0 10px 0 5px;
+		}
+
 		> li {
 			&.active {
 				a {
@@ -458,6 +470,12 @@ table {
 				border: 1px solid color.$main;
 				background-color: color.$main;
 				color: #ffffff;
+
+				@include mq.mq(xs) {
+					width: 25px;
+					height: 25px;
+					line-height: 24px;
+				}
 
 				&:hover {
 					border: 1px solid color.$main;
