@@ -1,19 +1,18 @@
 // react / next
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // styles
 import styles from "@/styles/authForm.module.scss";
 // lib
-import { useForm, useFormContext } from "react-hook-form";
+import { useForm } from "react-hook-form";
 // hooks
 import { useRoute } from "@/hooks/useRoute";
 // utils
 import { getFavoriteHotelIds, getWentHotelIds } from "../../utils/myhotel";
 // firebase
-import { getAuth, signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebaseConfig";
 // zustand
 import { useUserStore, useFavoriteStore, useWentStore } from "@/hooks/useUserStore";
-import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 
 const LoginView = () => {
 	const router = useRoute();
@@ -99,7 +98,7 @@ const LoginView = () => {
 						<div className={styles.input_frame}>
 							<p className={styles.input_label}>パスワード</p>
 							<input
-								type="text"
+								type="password"
 								{...register("pass", {
 									maxLength: { value: 10, message: "" },
 								})}
