@@ -21,7 +21,7 @@ const HotelView = ({ pageData }: ANY_OBJECT) => {
 	const hotelPolicyInfo = !pageData.hotelDetail.error && pageData.hotelDetail.hotels[0].hotel[4].hotelPolicyInfo;
 	const hotelOtherInfo = !pageData.hotelDetail.error && pageData.hotelDetail.hotels[0].hotel[5].hotelOtherInfo;
 
-	const adjustPrefectureName = hotelDetailInfo.middleClassCode !== "hokkaido" ? hotelBasicInfo.address1.slice(0, -1) : hotelBasicInfo.address1;
+	const adjustPrefectureName = hotelDetailInfo.middleClassCode !== "hokkaido" ? hotelBasicInfo.address1?.slice(0, -1) : hotelBasicInfo.address1;
 
 	// console.log("hotelDetailInfo", hotelDetailInfo);
 	// console.log("hotelOtherInfo", hotelOtherInfo);
