@@ -427,7 +427,7 @@
 
 				> .title {
 					@include mq.mq(sp) {
-						margin-bottom: 5px;
+						margin-bottom: 12px;
 					}
 					a {
 						font-size: 1.8rem;
@@ -735,9 +735,10 @@
 				text-align: center;
 				border: 1px solid color.$main;
 				border-radius: 4px;
-				color: color.$main;
 				background-color: #fdfdfd;
+				color: color.$main;
 				font-weight: 600;
+				font-size: 16px;
 				padding: 8px;
 				letter-spacing: 0.15em;
 				transition: background-color 0.1s ease-in-out;

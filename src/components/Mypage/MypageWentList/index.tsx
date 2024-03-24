@@ -65,6 +65,12 @@ const MypageWentList = ({ isLimit }: MypageWentListProps) => {
 						}
 						return (
 							<li key={`${data.hotelNo}`}>
+								<div className={`${styles.head} ${styles._sp}`}>
+									<span className={styles.pref}>{data.pref}</span>
+									<div className={styles.title}>
+										<a href={data.hotelNo ? `/hotel/${data.hotelNo}` : "#"}>{data.hotelName}</a>
+									</div>
+								</div>
 								<div className={styles.img_box}>
 									<figure>
 										<ImgLinkCheck link={data.imgUrl} width={1000} height={750} alt="" />
