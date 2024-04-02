@@ -1,5 +1,8 @@
-##　　使用技術一覧
-<img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json">
+## 使用技術一覧
+
+<img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=white"> <img src="https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white"> <img src="https://img.shields.io/badge/-Firebase-FFCA28.svg?logo=firebase&style=plastic"> <img src="https://img.shields.io/badge/Zustand-000000?logo=zustand&logoColor=white">
+<img src="https://img.shields.io/badge/Vercel-Deployed-green?logo=vercel&style=flat-square">
+
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
