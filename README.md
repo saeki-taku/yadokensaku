@@ -1,3 +1,7 @@
+##　　使用技術一覧
+<img alt="Dynamic JSON Badge" src="https://img.shields.io/badge/dynamic/json">
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
