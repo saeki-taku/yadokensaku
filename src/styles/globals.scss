@@ -150,6 +150,10 @@ ul {
 	text-align: center;
 	min-width: 75px;
 
+	&:active {
+		transform: scale(0.95);
+	}
+
 	span {
 		font-size: 14px;
 		color: #ffffff;
@@ -163,6 +167,10 @@ ul {
 	border-radius: 4px;
 	background-color: #ffffff;
 	text-align: center;
+
+	&:active {
+		transform: scale(0.95);
+	}
 
 	span {
 		// background-color: #00B901;
